@@ -11,14 +11,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/background_main"
-        app:title="@string/menu_lessons"
+        app:title="@string/menu_days"
         app:titleTextColor="@color/text_primary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lessonsList"
+        android:id="@+id/list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"

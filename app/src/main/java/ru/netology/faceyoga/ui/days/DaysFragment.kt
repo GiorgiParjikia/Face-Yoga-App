@@ -1,43 +1,54 @@
-package ru.netology.faceyoga.ui.lessons
+package ru.netology.faceyoga.ui.days
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
-import ru.netology.faceyoga.databinding.FragmentLessonsBinding
+import ru.netology.faceyoga.databinding.FragmentDaysBinding
 
-class DaysFragment : Fragment(R.layout.fragment_lessons) {
+@AndroidEntryPoint
+class DaysFragment : Fragment(R.layout.fragment_days) {
 
-    private var _binding: FragmentLessonsBinding? = null
+    private var _binding: FragmentDaysBinding? = null
     private val binding get() = _binding!!
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        _binding = FragmentLessonsBinding.bind(view)
+    private val viewModel: DaysViewModel by viewModels()
 
-        // Insets (твоя “правильная” версия)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        _binding = FragmentDaysBinding.bind(view)
+
+        // Insets (чтобы статусбар/навигация не перекрывали)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
             insets
         }
 
-        val adapter = LessonsAdapter { lesson ->
-            // пока просто заглушка
-            // позже: переход на экран деталей / плеера
+        val adapter = DaysAdapter { day ->
+            val args = Bundle().apply {
+                putLong("programDayId", day.programDayId)
+                putInt("dayNumber", day.dayNumber)
+            }
+            findNavController().navigate(R.id.action_daysFragment_to_dayExercisesFragment, args)
         }
 
-        binding.lessonsList.adapter = adapter
 
-        adapter.submit(
-            listOf(
-                LessonUi(1, "Базовый уход", "10 мин • Лёгкий уровень"),
-                LessonUi(2, "Глаза и отёки", "8 мин • Средний уровень"),
-                LessonUi(3, "Овал лица", "12 мин • Средний уровень"),
-                LessonUi(4, "Массаж гуаша", "15 мин • Продвинутый"),
-            )
-        )
+        binding.list.adapter = adapter
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.days.collect { adapter.submitList(it) }
+            }
+        }
     }
 
     override fun onDestroyView() {

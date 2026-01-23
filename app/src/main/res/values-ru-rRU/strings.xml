@@ -1,3 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">FaceYoga</string>
+
+    <string name="menu_days">Упражнения</string>
+    <string name="menu_articles">Статьи</string>
+    <string name="menu_progress">Прогресс</string>
+    <string name="menu_settings">Настройки</string>
+
+    <string name="day_title">День %1$d</string>
+    <string name="progress_percent">%1$d%%</string>
+
+    <string name="countdown_hint">Упражнения начнутся через</string>
+
+    <string name="action_skip">Пропустить</string>
+
+    <string name="action_start">Начать</string>
+
+
+    <plurals name="exercises_count">
+        <item quantity="one">%1$d упражнение</item>
+        <item quantity="few">%1$d упражнения</item>
+        <item quantity="many">%1$d упражнений</item>
+        <item quantity="other">%1$d упражнений</item>
+    </plurals>
+
+    <string name="action_next">Далее</string>
+    <string name="next_prefix">Далее: %1$s</string>
+    <string name="reps_format">%1$d повторений</string>
+
+    <!--Face Zone-->
+    <string name="exercise_subtitle">%1$s • %2$s</string>
+    <string name="type_reps">Повторения</string>
+    <string name="type_timer">Таймер</string>
+
+    <string name="zone_forehead">Лоб</string>
+    <string name="zone_eyes">Глаза</string>
+    <string name="zone_cheeks">Щёки</string>
+    <string name="zone_lips">Губы</string>
+    <string name="zone_jawline_chin">Овал лица и подбородок</string>
+    <string name="zone_neck">Шея</string>
+    <string name="zone_full_face">Всё лицо</string>
+
+
+    <!-- Levels -->
+    <string name="level_easy">Лёгкий</string>
+    <string name="level_medium">Средний</string>
+    <string name="level_hard">Сложный</string>
+    <string name="day_level_title">%1$s %2$d</string>
+
+    <!-- Exercises -->
+    <string name="ex_relax">Отдых</string>
+    <string name="ex_chin_and_jawline_lift">Подтяжка подбородка и овала лица</string>
+    <string name="ex_jawline_and_face_lift">Подтяжка овала лица</string>
+    <string name="ex_nasolabial_fold_smoothing">Разглаживание носогубных складок</string>
+    <string name="ex_cheek_lift">Лифтинг щёк</string>
+    <string name="ex_lymphatic_drainage_massage">Лимфодренажный массаж</string>
+    <string name="ex_forehead_lifting_massage">Лифтинг линии лба</string>
+    <string name="ex_revitalizing_face_massage">Тонизирующий массаж лица</string>
+    <string name="ex_face_and_neck_lift">Подтяжка лица и шеи</string>
+    <string name="ex_eye_muscle_strengthening">Укрепление мышц вокруг глаз</string>
+    <string name="ex_eye_contour_strengthening">Укрепление зоны вокруг глаз</string>
+    <string name="ex_blinking_with_eye_corner_stretch">Моргание с растяжкой уголков глаз</string>
+    <string name="ex_intense_blinking_with_deep_eye_corner_stretch">Интенсивное моргание с глубоким растяжением уголков глаз</string>
+    <string name="ex_horizontal_lip_stretch">Растяжение губ в стороны</string>
+    <string name="ex_finger_piano_massage_from_cheeks_to_temples">Пальчиковый массаж от щёк до висков</string>
+    <string name="ex_vertical_wave_forehead_massage">Вертикальная волна на лбу</string>
+    <string name="ex_lip_tucked_smile_exercise">Улыбка с подтягиванием губ внутрь</string>
+    <string name="ex_pencil_lip_workout">Карандашная гимнастика для губ</string>
+    <string name="ex_fists_from_chin_to_ears">Кулаки от подбородка к ушам</string>
+    <string name="ex_back_of_hand_glide_from_chin_to_ears">Скользящие тыльные стороны ладоней от подбородка к ушам</string>
+    <string name="ex_jawline_lift">Лифтинг-касание</string>
+    <string name="ex_mid_face_acupressure">Акупрессура средней зоны лица</string>
+    <string name="ex_smoothing_nasolabial_folds">Разглаживание носогубных складок вверх</string>
+    <string name="ex_nasolabial_to_temples_smoothing">Разглаживание от носа к вискам</string>
+    <string name="ex_gentle_facial_massage_with_tapping_and_smoothing">Лёгкий массаж лица с постукиванием и разглаживанием</string>
+    <string name="ex_forehead_and_temple_relaxation_massage">Расслабляющий массаж лба и висков</string>
+    <string name="ex_forehead_and_temple_relaxation_routine">Комплекс для расслабления лба и височной зоны</string>
+    <string name="ex_comprehensive_exercise_for_facial_smoothness_and_tone">Комплексное упражнение для гладкости и тонуса лица</string>
+    <string name="ex_cheek_lift_and_glow">Сияющие щёки</string>
+    <string name="ex_temple_area_massage">Массаж височной зоны</string>
+    <string name="ex_toning_massage_for_forehead">Тонизирующий массаж лба</string>
+    <string name="ex_eyebrow_pinching_massage">Щипковый массаж бровей</string>
+    <string name="ex_pressure_point_eye_relaxation">Точечное надавливание для расслабления глаз</string>
+    <string name="ex_cheek_elevation_massage">Подтяжка щёк</string>
+    <string name="ex_ear_pull_jawline_lift">Подтяжка овала через уши</string>
+    <string name="ex_chin_smoothing">Разглаживание подбородка</string>
+    <string name="ex_jawline_sculpting">Скульптурирование линии челюсти</string>
+    <string name="ex_mouth_corner_lift">Лифтинг уголков губ</string>
+    <string name="ex_air_kiss_stretch">Воздушный поцелуй</string>
+    <string name="ex_fixed_air_kiss">Фиксированный поцелуй</string>
+    <string name="ex_lip_corner_lift">Подтяжка уголков губ</string>
+    <string name="ex_horse_lips_exercise">Упражнение «Лошадка»</string>
+    <string name="ex_air_rolling_exercise">Упражнение «Перекатывание воздуха»</string>
+    <string name="ex_cheek_massage_with_fist_exercise">Упражнение «Массаж щёк кулаком»</string>
+    <string name="ex_lymphatic_drainage_face_and_neck_massage_exercise">Упражнение «Лимфодренажный массаж лица и шеи»</string>
+    <string name="ex_chin_and_neck_lift">Подтяжка подбородка и шеи</string>
+    <string name="ex_air_rolling_with_hand_pressure">Перекатывание воздуха с давлением рук</string>
+    <string name="ex_chin_support">Поддержка подбородка</string>
+    <string name="ex_cheek_tongue_workout">Языковая гимнастика для щёк</string>
+    <string name="ex_cheek_smoothing">Разглаживание скул</string>
+    <string name="ex_eyebrow_pressure">Надавливание на брови</string>
+    <string name="ex_forehead_pressure_taps">Надавливание на лоб</string>
+    <string name="ex_temple_pressure">Давление на виски</string>
+    <string name="ex_eyebrow_pinching">Пощипывание бровей</string>
+    <string name="ex_pressure_points_under_eyes">Надавливание на точки под глазами</string>
+    <string name="ex_index_fingers_to_temples">Указательные пальцы на виски</string>
+    <string name="ex_pressure_between_brows">Надавливание между бровями</string>
+    <string name="ex_cheek_acupressure_massage">Точечный массаж щёк</string>
+    <string name="ex_cheekbone_lift">Подтяжка скул</string>
+    <string name="ex_cheek_pinches">Щипки для щёк</string>
+    <string name="ex_cheekbone_pressure_points">Нажим на скуловые точки</string>
+    <string name="ex_corner_lift">Подъём уголков губ</string>
+    <string name="ex_smiling_resistance">Улыбка с сопротивлением</string>
+    <string name="ex_nasolabial_drainage">Дренаж носогубной зоны</string>
+    <string name="ex_chin_lift">Подбородочный лифт</string>
+    <string name="ex_masseter_release">Разгрузка жевательной мышцы</string>
+    <string name="ex_stroking_from_chin_to_cheek">Поглаживание от подбородка к щеке</string>
+    <string name="ex_cheek_massage_with_open_mouth">Массаж щёк с открытым ртом</string>
+    <string name="ex_cheek_and_jawline_smoothing_massage">Поглаживание щёк и линии нижней челюсти</string>
+    <string name="ex_lip_ring">Кольцо губ</string>
+    <string name="ex_forehead_supported_fish_face">Рыбка с поддержкой лба</string>
+    <string name="ex_chin_to_cheek_lift">Подъём от подбородка к скулам</string>
+    <string name="ex_corner_lift_exercise">Поднятие уголков губ</string>
+    <string name="ex_facial_lifting_massage">Массажный лифтинг лица</string>
+    <string name="ex_scalp_stimulation">Массаж головы</string>
+    <string name="ex_forehead_pinches">Щипки на лбу</string>
+    <string name="ex_smoothing_and_pressing_forehead_motions">Гладящие и надавливающие движения на лбу</string>
+    <string name="ex_forehead_smoothing">Разглаживание лба</string>
+    <string name="ex_glabella_smoothing">Разглаживание межбровной зоны</string>
+    <string name="ex_eye_corner_lifting">Лифтинг уголков глаз</string>
+    <string name="ex_nasolabial_muscle_lift">Подъём носогубных мышц</string>
+    <string name="ex_lymphatic_drainage_massage_for_face_and_neck">Дренажный массаж для лица и шеи</string>
+    <string name="ex_palm_eye_relaxation">Ладони на глаза</string>
+    <string name="ex_lower_jaw_contour_lift">Подтяжка линии нижней челюсти</string>
+    <string name="ex_tapping_from_upper_chest_to_chin">Постукивание от верхней части груди до подбородка</string>
+    <string name="ex_jawline_skin_twisting_with_knuckles">Скручивание кожи костяшками вдоль нижней челюсти</string>
+    <string name="ex_air_rolling_in_cheeks">Перекаты воздуха в щеках</string>
+    <string name="ex_closed_mouth_smile">Улыбка с закрытым ртом</string>
+    <string name="ex_kiss_the_ceiling">Поцелуй потолка</string>
+    <string name="ex_forehead_lift_with_blinking">Лифтинг лба с морганием</string>
+    <string name="ex_head_turns">Повороты головы</string>
+    <string name="ex_gentle_tapping_on_the_face">Лёгкие постукивания по лицу</string>
+    <string name="ex_head_lifts_and_drops">Подъёмы и опускания головы</string>
+    <string name="ex_neck_and_jawline_lift_with_ear_pull">Лифтинг шеи и овала с подтягиванием ушей</string>
+    <string name="ex_lions_gaze">Львиный взгляд</string>
+    <string name="ex_side_neck_stretch_left">Растяжка левой стороны шеи</string>
+    <string name="ex_side_neck_stretch_right">Растяжка правой стороны шеи</string>
+    <string name="ex_smiling_with_resistance">Улыбка с сопротивлением мышцам</string>
+    <string name="ex_kisses_to_the_ceiling">Поцелуи в потолок</string>
+    <string name="ex_graceful_smile">Грациозная улыбка</string>
+    <string name="ex_defined_jawline_exercise">Подтяжка нижней челюсти</string>
+    <string name="ex_chin_line_finger_lift">Пальцевой лифтинг линии подбородка</string>
+    <string name="ex_neck_awakening">Пробуждение шеи</string>
+    <string name="ex_fist_lift">Подъём кулаком</string>
+    <string name="ex_air_balloon">Воздушный шарик</string>
+    <string name="ex_air_wave">Воздушная волна</string>
+    <string name="ex_smooth_smile_lines">Гладкие носогубки</string>
+    <string name="ex_nasolabial_zone_massage">Массаж носогубной зоны</string>
+    <string name="ex_tear_trough_and_cheek_line_smoothing_left">Разглаживание носослёзной и скуловой зоны (Левая сторона)</string>
+    <string name="ex_tear_trough_and_cheek_line_smoothing_right">Разглаживание носослёзной и скуловой зоны (Правая сторона)</string>
+    <string name="ex_blinking_with_forehead_hold">Моргание с фиксацией лба</string>
+    <string name="ex_forehead_wrinkle_smoothing_right">Разглаживание морщин лба (Правая сторона)</string>
+    <string name="ex_forehead_wrinkle_smoothing_left">Разглаживание морщин лба (Левая сторона)</string>
+    <string name="ex_lymphatic_drainage_self_massage_routine">Комплексный лимфодренажный самомассаж</string>
+
 </resources>

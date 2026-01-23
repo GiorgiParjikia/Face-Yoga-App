@@ -1,0 +1,116 @@
+package ru.netology.faceyoga.data.seed
+
+object SeedPlansEasy {
+    suspend fun build(idEn: suspend (String) -> Long, relaxId: Long): Map<Int, List<Long>> {
+        suspend fun ids(vararg titles: String): List<Long> =
+            titles.map { t -> if (t == "__RELAX__") relaxId else idEn(t) }
+
+        return mapOf(
+            1 to ids(
+                "Chin and Jawline Lift",
+                "Jawline & Face Lift",
+                "Nasolabial Fold Smoothing",
+                "__RELAX__",
+                "Cheek Lift",
+                "Lymphatic Drainage Massage",
+            ),
+            2 to ids(
+                "Forehead Lifting Massage",
+                "Revitalizing Face Massage",
+                "Chin and Jawline Lift",
+                "__RELAX__",
+                "Face & Neck Lift",
+                "Jawline & Face Lift",
+            ),
+            3 to ids(
+                "Eye Muscle Strengthening",
+                "Eye Contour Strengthening",
+                "Horizontal Lip Stretch",
+                "__RELAX__",
+                "Finger Piano Massage from Cheeks to Temples",
+                "Vertical Wave Forehead Massage",
+                "Lip-Tucked Smile Exercise",
+            ),
+            4 to ids(
+                "Fists from Chin to Ears",
+                "Back-of-hand glide from chin to ears",
+                "Blinking with Eye Corner Stretch",
+                "__RELAX__",
+                "Jawline Lift",
+                "Mid-Face Acupressure",
+                "Jawline & Face Lift",
+            ),
+            5 to ids(
+                "Smoothing Nasolabial Folds",
+                "Gentle Facial Massage with Tapping and Smoothing",
+                "Horizontal Lip Stretch",
+                "Cheek Lift & Glow",
+                "__RELAX__",
+                "Fists from Chin to Ears",
+                "Temple Area Massage",
+                "Intense Blinking with Deep Eye Corner Stretch",
+            ),
+            6 to ids (
+                "Pressure Point Eye Relaxation",
+                "Nasolabial to Temples Smoothing",
+                "__RELAX__",
+                "Chin Smoothing",
+                "Ear Pull Jawline Lift",
+                "Jawline Sculpting",
+                "__RELAX__",
+                "Cheek Elevation Massage",
+                "Cheek Lift & Glow",
+            ),
+            7 to ids(
+                "Mouth Corner Lift",
+                "Chin Smoothing",
+                "Horse Lips Exercise",
+                "__RELAX__",
+                "Pencil Lip Workout",
+                "Lip Corner Lift",
+                "__RELAX__",
+                "Eyebrow Pinching Massage",
+                "Forehead and Temple Relaxation Massage",
+                "Air Kiss Stretch",
+            ),
+            8 to ids(
+                "Fixed Air Kiss",
+                "Comprehensive Exercise for Facial Smoothness and Tone",
+                "Toning Massage for Forehead",
+                "__RELAX__",
+                "Cheek Elevation Massage",
+                "Pencil Lip Workout",
+                "__RELAX__",
+                "Forehead and Temple Relaxation Routine",
+                "Air Rolling Exercise",
+                "Cheek Massage with Fist Exercise",
+            ),
+            9 to ids(
+                "Lymphatic Drainage Face & Neck Massage Exercise",
+                "Chin and Neck Lift",
+                "Air Rolling with Hand Pressure",
+                "__RELAX__",
+                "Chin Support",
+                "Cheek Tongue Workout",
+                "Cheek Massage with Fist Exercise",
+                "__RELAX__",
+                "Fixed Air Kiss",
+                "Cheek Smoothing",
+                "Eyebrow Pressure",
+            ),
+            10 to ids(
+                "Forehead Pressure Taps",
+                "Index Fingers to Temples",
+                "Eyebrow Pinching",
+                "__RELAX__",
+                "Pressure Points Under Eyes",
+                "Chin and Neck Lift",
+                "Pressure Between Brows",
+                "__RELAX__",
+                "Cheek Acupressure Massage",
+                "Chin Support",
+                "Cheekbone Lift",
+            )
+        )
+    }
+}

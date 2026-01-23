@@ -2,49 +2,71 @@ package ru.netology.faceyoga.ui.days
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ru.netology.faceyoga.databinding.ItemLessonBinding
+import ru.netology.faceyoga.R
+import ru.netology.faceyoga.databinding.ItemDayBinding
+import ru.netology.faceyoga.ui.common.localizedDayLevelTitle
 
-class LessonsAdapter(
-    private val onClick: (LessonUi) -> Unit
-) : RecyclerView.Adapter<LessonsAdapter.VH>() {
-
-    private var items: List<LessonUi> = emptyList()
-
-    fun submit(list: List<LessonUi>) {
-        items = list
-        notifyDataSetChanged()
-    }
+class DaysAdapter(
+    private val onClick: (DayUi) -> Unit
+) : ListAdapter<DayUi, DaysAdapter.VH>(Diff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemLessonBinding.inflate(inflater, parent, false)
+        val binding = ItemDayBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return VH(binding, onClick)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.bind(items[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = items.size
-
     class VH(
-        private val binding: ItemLessonBinding,
-        private val onClick: (LessonUi) -> Unit
+        private val binding: ItemDayBinding,
+        private val onClick: (DayUi) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private var current: LessonUi? = null
+        private var current: DayUi? = null
 
         init {
-            binding.root.setOnClickListener {
-                current?.let(onClick)
-            }
+            binding.root.setOnClickListener { current?.let(onClick) }
         }
 
-        fun bind(item: LessonUi) {
+        fun bind(item: DayUi) {
             current = item
-            binding.title.text = item.title
-            binding.subtitle.text = item.subtitle
+            val ctx = itemView.context
+
+            // Заголовок: Day X • Easy/Medium/Hard N (локализовано)
+            binding.title.text = buildString {
+                append(ctx.getString(R.string.day_title, item.dayNumber))
+                append(" • ")
+                append(ctx.localizedDayLevelTitle(item.dayNumber))
+            }
+
+            // Подзаголовок: N exercises (plurals, локализовано)
+            binding.subtitle.text = ctx.resources.getQuantityString(
+                R.plurals.exercises_count,
+                item.exercisesCount,
+                item.exercisesCount
+            )
+
+            // Прогресс
+            val percent = if (item.isCompleted) 100 else item.progressPercent
+            binding.progress.progress = percent
+            binding.status.text = ctx.getString(R.string.progress_percent, percent)
         }
+    }
+
+    private object Diff : DiffUtil.ItemCallback<DayUi>() {
+        override fun areItemsTheSame(oldItem: DayUi, newItem: DayUi): Boolean =
+            oldItem.programDayId == newItem.programDayId
+
+        override fun areContentsTheSame(oldItem: DayUi, newItem: DayUi): Boolean =
+            oldItem == newItem
     }
 }

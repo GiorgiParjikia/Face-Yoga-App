@@ -1,3 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- App -->
+    <string name="app_name">FaceYoga</string>
+
+    <!-- Bottom menu -->
+    <string name="menu_days">Lessons</string>
+    <string name="menu_articles">Articles</string>
+    <string name="menu_progress">Progress</string>
+
+    <!-- Days card -->
+    <string name="menu_settings">Settings</string>
+    <string name="day_title">Day %1$d</string>
+    <string name="progress_percent">%1$d%%</string>
+
+    <plurals name="exercises_count">
+        <item quantity="one">%1$d exercise</item>
+        <item quantity="other">%1$d exercises</item>
+    </plurals>
+    <string name="action_next">Next</string>
+
+    <string name="next_prefix">Next: %1$s</string>
+    <string name="reps_format">%1$d reps</string>
+
+    <string name="countdown_hint">The exercises will begin in</string>
+
+    <string name="action_skip">Skip</string>
+
+    <string name="action_start">Start</string>
+
+    <!-- Face Zone -->
+    <string name="exercise_subtitle">%1$s • %2$s</string>
+    <string name="type_reps">Reps</string>
+    <string name="type_timer">Timer</string>
+
+    <string name="zone_forehead">Forehead</string>
+    <string name="zone_eyes">Eyes</string>
+    <string name="zone_cheeks">Cheeks</string>
+    <string name="zone_lips">Lips</string>
+    <string name="zone_jawline_chin">Jawline &amp; Chin</string>
+    <string name="zone_neck">Neck</string>
+    <string name="zone_full_face">Full face</string>
+
+
+
+
+    <!-- Levels  -->
+    <string name="level_easy">Easy</string>
+    <string name="level_medium">Medium</string>
+    <string name="level_hard">Hard</string>
+    <string name="day_level_title">%1$s %2$d</string>
+
+    <!-- Exercises  -->
+    <string name="ex_relax">Relax</string>
+    <string name="ex_chin_and_jawline_lift">Chin and Jawline Lift</string>
+    <string name="ex_jawline_and_face_lift">Jawline and Face Lift</string>
+    <string name="ex_nasolabial_fold_smoothing">Nasolabial Fold Smoothing</string>
+    <string name="ex_cheek_lift">Cheek Lift</string>
+    <string name="ex_lymphatic_drainage_massage">Lymphatic Drainage Massage</string>
+    <string name="ex_forehead_lifting_massage">Forehead Lifting Massage</string>
+    <string name="ex_revitalizing_face_massage">Revitalizing Face Massage</string>
+    <string name="ex_face_and_neck_lift">Face &amp; Neck Lift</string>
+    <string name="ex_eye_muscle_strengthening">Eye Muscle Strengthening</string>
+    <string name="ex_eye_contour_strengthening">Eye Contour Strengthening</string>
+    <string name="ex_blinking_with_eye_corner_stretch">Blinking with Eye Corner Stretch</string>
+    <string name="ex_intense_blinking_with_deep_eye_corner_stretch">Intense Blinking with Deep Eye Corner Stretch</string>
+    <string name="ex_horizontal_lip_stretch">Horizontal Lip Stretch</string>
+    <string name="ex_finger_piano_massage_from_cheeks_to_temples">Finger Piano Massage from Cheeks to Temples</string>
+    <string name="ex_vertical_wave_forehead_massage">Vertical Wave Forehead Massage</string>
+    <string name="ex_lip_tucked_smile_exercise">Lip-Tucked Smile Exercise</string>
+    <string name="ex_pencil_lip_workout">Pencil Lip Workout</string>
+    <string name="ex_fists_from_chin_to_ears">Fists from Chin to Ears</string>
+    <string name="ex_back_of_hand_glide_from_chin_to_ears">Back-of-hand glide from chin to ears</string>
+    <string name="ex_jawline_lift">Jawline Lift</string>
+    <string name="ex_mid_face_acupressure">Mid-Face Acupressure</string>
+    <string name="ex_smoothing_nasolabial_folds">Smoothing Nasolabial Folds</string>
+    <string name="ex_nasolabial_to_temples_smoothing">Nasolabial to Temples Smoothing</string>
+    <string name="ex_gentle_facial_massage_with_tapping_and_smoothing">Gentle Facial Massage with Tapping and Smoothing</string>
+    <string name="ex_forehead_and_temple_relaxation_massage">Forehead and Temple Relaxation Massage</string>
+    <string name="ex_forehead_and_temple_relaxation_routine">Forehead and Temple Relaxation Routine</string>
+    <string name="ex_comprehensive_exercise_for_facial_smoothness_and_tone">Comprehensive Exercise for Facial Smoothness and Tone</string>
+    <string name="ex_cheek_lift_and_glow">Cheek Lift &amp; Glow</string>
+    <string name="ex_temple_area_massage">Temple Area Massage</string>
+    <string name="ex_toning_massage_for_forehead">Toning Massage for Forehead</string>
+    <string name="ex_eyebrow_pinching_massage">Eyebrow Pinching Massage</string>
+    <string name="ex_pressure_point_eye_relaxation">Pressure Point Eye Relaxation</string>
+    <string name="ex_cheek_elevation_massage">Cheek Elevation Massage</string>
+    <string name="ex_ear_pull_jawline_lift">Ear Pull Jawline Lift</string>
+    <string name="ex_chin_smoothing">Chin Smoothing</string>
+    <string name="ex_jawline_sculpting">Jawline Sculpting</string>
+    <string name="ex_mouth_corner_lift">Mouth Corner Lift</string>
+    <string name="ex_air_kiss_stretch">Air Kiss Stretch</string>
+    <string name="ex_fixed_air_kiss">Fixed Air Kiss</string>
+    <string name="ex_lip_corner_lift">Lip Corner Lift</string>
+    <string name="ex_horse_lips_exercise">Horse Lips Exercise</string>
+    <string name="ex_air_rolling_exercise">Air Rolling Exercise</string>
+    <string name="ex_cheek_massage_with_fist_exercise">Cheek Massage with Fist Exercise</string>
+    <string name="ex_lymphatic_drainage_face_and_neck_massage_exercise">Lymphatic Drainage Face &amp; Neck Massage</string>
+    <string name="ex_chin_and_neck_lift">Chin and Neck Lift</string>
+    <string name="ex_air_rolling_with_hand_pressure">Air Rolling with Hand Pressure</string>
+    <string name="ex_chin_support">Chin Support</string>
+    <string name="ex_cheek_tongue_workout">Cheek Tongue Workout</string>
+    <string name="ex_cheek_smoothing">Cheek Smoothing</string>
+    <string name="ex_eyebrow_pressure">Eyebrow Pressure</string>
+    <string name="ex_forehead_pressure_taps">Forehead Pressure Taps</string>
+    <string name="ex_temple_pressure">Temple Pressure</string>
+    <string name="ex_eyebrow_pinching">Eyebrow Pinching</string>
+    <string name="ex_pressure_points_under_eyes">Pressure Points Under Eyes</string>
+    <string name="ex_index_fingers_to_temples">Index Fingers to Temples</string>
+    <string name="ex_pressure_between_brows">Pressure Between Brows</string>
+    <string name="ex_cheek_acupressure_massage">Cheek Acupressure Massage</string>
+    <string name="ex_cheekbone_lift">Cheekbone Lift</string>
+    <string name="ex_cheek_pinches">Cheek Pinches</string>
+    <string name="ex_cheekbone_pressure_points">Cheekbone Pressure Points</string>
+    <string name="ex_corner_lift">Corner Lift</string>
+    <string name="ex_smiling_resistance">Smiling Resistance</string>
+    <string name="ex_nasolabial_drainage">Nasolabial Drainage</string>
+    <string name="ex_chin_lift">Chin Lift</string>
+    <string name="ex_masseter_release">Masseter Release</string>
+    <string name="ex_stroking_from_chin_to_cheek">Stroking from Chin to Cheek</string>
+    <string name="ex_cheek_massage_with_open_mouth">Cheek Massage with Open Mouth</string>
+    <string name="ex_cheek_and_jawline_smoothing_massage">Cheek and Jawline Smoothing Massage</string>
+    <string name="ex_lip_ring">Lip Ring</string>
+    <string name="ex_forehead_supported_fish_face">Forehead-Supported Fish Face</string>
+    <string name="ex_chin_to_cheek_lift">Chin-to-Cheek Lift</string>
+    <string name="ex_corner_lift_exercise">Corner Lift Exercise</string>
+    <string name="ex_facial_lifting_massage">Facial Lifting Massage</string>
+    <string name="ex_scalp_stimulation">Scalp Stimulation</string>
+    <string name="ex_forehead_pinches">Forehead Pinches</string>
+    <string name="ex_smoothing_and_pressing_forehead_motions">Smoothing and Pressing Forehead Motions</string>
+    <string name="ex_forehead_smoothing">Forehead Smoothing</string>
+    <string name="ex_glabella_smoothing">Glabella Smoothing</string>
+    <string name="ex_eye_corner_lifting">Eye Corner Lifting</string>
+    <string name="ex_nasolabial_muscle_lift">Nasolabial Muscle Lift</string>
+    <string name="ex_lymphatic_drainage_massage_for_face_and_neck">Lymphatic Drainage Massage for Face and Neck</string>
+    <string name="ex_palm_eye_relaxation">Palm Eye Relaxation</string>
+    <string name="ex_lower_jaw_contour_lift">Lower Jaw Contour Lift</string>
+    <string name="ex_tapping_from_upper_chest_to_chin">Tapping from Upper Chest to Chin</string>
+    <string name="ex_jawline_skin_twisting_with_knuckles">Jawline Skin Twisting with Knuckles</string>
+    <string name="ex_air_rolling_in_cheeks">Air Rolling in Cheeks</string>
+    <string name="ex_closed_mouth_smile">Closed-Mouth Smile</string>
+    <string name="ex_kiss_the_ceiling">Kiss the Ceiling</string>
+    <string name="ex_forehead_lift_with_blinking">Forehead Lift with Blinking</string>
+    <string name="ex_head_turns">Head Turns</string>
+    <string name="ex_gentle_tapping_on_the_face">Gentle Tapping on the Face</string>
+    <string name="ex_head_lifts_and_drops">Head Lifts and Drops</string>
+    <string name="ex_neck_and_jawline_lift_with_ear_pull">Neck and Jawline Lift with Ear Pull</string>
+    <string name="ex_lions_gaze">Lion’s Gaze</string>
+    <string name="ex_side_neck_stretch_left">Side Neck Stretch (Left)</string>
+    <string name="ex_side_neck_stretch_right">Side Neck Stretch (Right)</string>
+    <string name="ex_smiling_with_resistance">Smiling with Resistance</string>
+    <string name="ex_kisses_to_the_ceiling">Kisses to the Ceiling</string>
+    <string name="ex_graceful_smile">Graceful Smile</string>
+    <string name="ex_defined_jawline_exercise">Defined Jawline Exercise</string>
+    <string name="ex_chin_line_finger_lift">Chin Line Finger Lift</string>
+    <string name="ex_neck_awakening">Neck Awakening</string>
+    <string name="ex_fist_lift">Fist Lift</string>
+    <string name="ex_air_balloon">Air Balloon</string>
+    <string name="ex_air_wave">Air Wave</string>
+    <string name="ex_smooth_smile_lines">Smooth Smile Lines</string>
+    <string name="ex_nasolabial_zone_massage">Nasolabial Zone Massage</string>
+    <string name="ex_tear_trough_and_cheek_line_smoothing_left">Tear Trough &amp; Cheek Line Smoothing (Left)</string>
+    <string name="ex_tear_trough_and_cheek_line_smoothing_right">Tear Trough &amp; Cheek Line Smoothing (Right)</string>
+    <string name="ex_blinking_with_forehead_hold">Blinking with Forehead Hold</string>
+    <string name="ex_forehead_wrinkle_smoothing_right">Forehead Wrinkle Smoothing (Right)</string>
+    <string name="ex_forehead_wrinkle_smoothing_left">Forehead Wrinkle Smoothing (Left)</string>
+    <string name="ex_lymphatic_drainage_self_massage_routine">Lymphatic Drainage Self-Massage Routine</string>
+
+
+
+
+
+
+
+
+    <!-- Days card -->
 </resources>

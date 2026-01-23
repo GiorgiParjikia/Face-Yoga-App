@@ -1,3 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">FaceYoga</string>
+
+    <string name="menu_days">ვარჯიშები</string>
+    <string name="menu_articles">სტატიები</string>
+    <string name="menu_progress">პროგრესი</string>
+    <string name="menu_settings">პარამეტრები</string>
+
+    <string name="day_title">დღე %1$d</string>
+    <string name="progress_percent">%1$d%%</string>
+
+    <plurals name="exercises_count">
+        <item quantity="one">%1$d ვარჯიში</item>
+        <item quantity="other">%1$d ვარჯიში</item>
+    </plurals>
+
+    <string name="action_next">შემდეგი</string>
+    <string name="next_prefix">შემდეგი: %1$s</string>
+    <string name="reps_format">%1$d გამეორება</string>
+
+    <!-- Levels -->
+    <string name="level_easy">მარტივი</string>
+    <string name="level_medium">საშუალო</string>
+    <string name="level_hard">რთული</string>
+    <string name="day_level_title">%1$s %2$d</string>
+    <string name="countdown_hint">მოემზადეთ ვარჯიშისთვის</string>
+
+    <string name="action_skip">გამოტოვება</string>
+
+    <string name="action_start">დაწყება</string>
+
+    <!-- Face Zone -->
+    <string name="exercise_subtitle">%1$s • %2$s</string>
+    <string name="type_reps">გამეორებები</string>
+    <string name="type_timer">ტაიმერი</string>
+
+    <string name="zone_forehead">შუბლი</string>
+    <string name="zone_eyes">თვალები</string>
+    <string name="zone_cheeks">ლოყები</string>
+    <string name="zone_lips">ტუჩები</string>
+    <string name="zone_jawline_chin">ყბის ხაზი და ნიკაპი</string>
+    <string name="zone_neck">კისერი</string>
+    <string name="zone_full_face">მთელი სახე</string>
+
+
+
+
+    <!-- Exercises -->
+    <string name="ex_relax">შესვენება</string>
+    <string name="ex_chin_and_jawline_lift">ნიკაპისა და ყბის ხაზის ლიფტინგი</string>
+    <string name="ex_jawline_and_face_lift">ყბის ხაზისა და სახის ოვალის ლიფტინგი</string>
+    <string name="ex_nasolabial_fold_smoothing">ნაზოლაბიალური ნაოჭების გასწორება</string>
+    <string name="ex_cheek_lift">ლოყების კონტურის ლიფტინგი</string>
+    <string name="ex_lymphatic_drainage_massage">ლიმფოდრენაჟული მასაჟი</string>
+    <string name="ex_forehead_lifting_massage">შუბლის ხაზის ლიფტინგი</string>
+    <string name="ex_revitalizing_face_massage">სახის ტონიზირებელი მასაჟი</string>
+    <string name="ex_face_and_neck_lift">სახისა და კისრის აწევა</string>
+    <string name="ex_eye_muscle_strengthening">თვალების ირგვლივ კუნთების გამაგრება</string>
+    <string name="ex_eye_contour_strengthening">თვალის კონტურის გამაგრება</string>
+    <string name="ex_blinking_with_eye_corner_stretch">თვალის კუთხეების გაჭიმვით ციმციმი</string>
+    <string name="ex_intense_blinking_with_deep_eye_corner_stretch">თვალის კუთხეების ღრმა სტიმულაციით ციმციმი</string>
+    <string name="ex_horizontal_lip_stretch">ტუჩების ჰორიზონტალური გაჭიმვა</string>
+    <string name="ex_finger_piano_massage_from_cheeks_to_temples">ლოყებიდან საფეთქლებამდე რიტმული თითის მასაჟი</string>
+    <string name="ex_vertical_wave_forehead_massage">შუბლის ვერტიკალური ტალღოვანი მასაჟი</string>
+    <string name="ex_lip_tucked_smile_exercise">ტუჩების შიგნით შეკეცვით ღიმილი</string>
+    <string name="ex_pencil_lip_workout">ტუჩების გამაძლიერებელი ვარჯიში ფანქრით</string>
+    <string name="ex_fists_from_chin_to_ears">მუშტები ნიკაპიდან ყურებამდე</string>
+    <string name="ex_back_of_hand_glide_from_chin_to_ears">ნიკაპიდან ყურებამდე ხელის უკანა მხარის სრიალი</string>
+    <string name="ex_jawline_lift">ყბის კონტურის ლიფტინგ-შეხება</string>
+    <string name="ex_mid_face_acupressure">სახის შუა ზონის აკუპრესურა</string>
+    <string name="ex_smoothing_nasolabial_folds">ნაზოლაბიალური ნაკეცების ამწევი გასწორება</string>
+    <string name="ex_nasolabial_to_temples_smoothing">ცხვირიდან საფეთქლებამდე გასწორება</string>
+    <string name="ex_gentle_facial_massage_with_tapping_and_smoothing">სახის მსუბუქი მასაჟი დაკაკუნებითა და დამამშვიდებელი გასწორებით</string>
+    <string name="ex_forehead_and_temple_relaxation_massage">შუბლის და საფეთქლის რელაქს-მასაჟი</string>
+    <string name="ex_forehead_and_temple_relaxation_routine">შუბლისა და საფეთქლების რელაქს-კომპლექსი</string>
+    <string name="ex_comprehensive_exercise_for_facial_smoothness_and_tone">სახის ტონუსისა და სიგლუვის გამაუმჯობესებელი კომპლექსი</string>
+    <string name="ex_cheek_lift_and_glow">ლოყების ლიფტინგი და ბზინვარება</string>
+    <string name="ex_temple_area_massage">საფეთქლის ზონის მასაჟი</string>
+    <string name="ex_toning_massage_for_forehead">შუბლის ტონუსის მასაჟი</string>
+    <string name="ex_eyebrow_pinching_massage">წარბების პინცეტური მასაჟი</string>
+    <string name="ex_pressure_point_eye_relaxation">თვალის წერტილოვანი რელაქსაცია</string>
+    <string name="ex_cheek_elevation_massage">ლოყების ლიფტინგ-მასაჟი</string>
+    <string name="ex_ear_pull_jawline_lift">ყურების მეშვეობით სახის ოვალის ლიფტინგი</string>
+    <string name="ex_chin_smoothing">ნიკაპის დაგლუვება</string>
+    <string name="ex_jawline_sculpting">ყბის კონტურის სკულპტურირება</string>
+    <string name="ex_mouth_corner_lift">ღიმილის ხაზის ამწევი ტექნიკა</string>
+    <string name="ex_air_kiss_stretch">ჰაერის კოცნის ვარჯიში</string>
+    <string name="ex_fixed_air_kiss">ფიქსირებული კოცნის ვარჯიში</string>
+    <string name="ex_lip_corner_lift">ტუჩის კუთხეების აწევა</string>
+    <string name="ex_horse_lips_exercise">ტუჩების ვიბრაციული ვარჯიში („ცხენი“)</string>
+    <string name="ex_air_rolling_exercise">ჰაერის გადაგორების ვარჯიში</string>
+    <string name="ex_cheek_massage_with_fist_exercise">ლოყების მასაჟი მუშტით</string>
+    <string name="ex_lymphatic_drainage_face_and_neck_massage_exercise">სახისა და კისრის ლიმფოდრენაჟული მასაჟი</string>
+    <string name="ex_chin_and_neck_lift">ნიკაპი–კისრის ლიფტინგი</string>
+    <string name="ex_air_rolling_with_hand_pressure">ჰაერის გადაგორების ტექნიკა ხელების ზეწოლით</string>
+    <string name="ex_chin_support">ნიკაპის ფიქსაცია</string>
+    <string name="ex_cheek_tongue_workout">ლოყების სტიმულაცია ენით</string>
+    <string name="ex_cheek_smoothing">ლოყის ძვლების დაგლუვება</string>
+    <string name="ex_eyebrow_pressure">წარბების სტიმულაცია ზეწოლით</string>
+    <string name="ex_forehead_pressure_taps">შუბლის ზონის ზეწოლითი სტიმულაცია</string>
+    <string name="ex_temple_pressure">საფეთქლების წერტილოვანი დაჭერა</string>
+    <string name="ex_eyebrow_pinching">წარბების სტიმულაცია ჩქმეტით</string>
+    <string name="ex_pressure_points_under_eyes">თვალების ქვეშ წერტილოვანი დაჭერა</string>
+    <string name="ex_index_fingers_to_temples">საჩვენებელი თითებით საფეთქლებზე</string>
+    <string name="ex_pressure_between_brows">წარბებს შორის მოდუნების ზეწოლა</string>
+    <string name="ex_cheek_acupressure_massage">ლოყების წერტილოვანი მასაჟი</string>
+    <string name="ex_cheekbone_lift">ლოყის ძვლების კონტურის ლიფტინგი</string>
+    <string name="ex_cheek_pinches">ლოყების ჩქმეტა</string>
+    <string name="ex_cheekbone_pressure_points">ლოყის ძვლის წერტილებზე დაჭერა</string>
+    <string name="ex_corner_lift">ტუჩების კუთხეების აწევა</string>
+    <string name="ex_smiling_resistance">ღიმილი წინააღმდეგობით</string>
+    <string name="ex_nasolabial_drainage">ცხვირ-ტუჩის ზონის დრენაჟი</string>
+    <string name="ex_chin_lift">ნიკაპის ლიფტი</string>
+    <string name="ex_masseter_release">საღეჭი კუნთის მოდუნება</string>
+    <string name="ex_stroking_from_chin_to_cheek">ნიკაპიდან ლოყისკენ გადასმა</string>
+    <string name="ex_cheek_massage_with_open_mouth">ლოყების მასაჟი გახსნილი პირით</string>
+    <string name="ex_cheek_and_jawline_smoothing_massage">ლოყებისა და ყბის ხაზის მსუბუქი გასწორება</string>
+    <string name="ex_lip_ring">ტუჩების რგოლი</string>
+    <string name="ex_forehead_supported_fish_face">თევზის სახე შუბლის მხარდაჭერით</string>
+    <string name="ex_chin_to_cheek_lift">ნიკაპიდან ლოყის ძვლებამდე გასწორება</string>
+    <string name="ex_corner_lift_exercise">ტუჩების კუთხეების აწევის ვარჯიში</string>
+    <string name="ex_facial_lifting_massage">სახის გამამკვრივებელი მასაჟი</string>
+    <string name="ex_scalp_stimulation">თავის კანის სტიმულაცია</string>
+    <string name="ex_forehead_pinches">შუბლის ჩქმეტა</string>
+    <string name="ex_smoothing_and_pressing_forehead_motions">შუბლზე გამსწორებელი და დამჭერი მოძრაობები</string>
+    <string name="ex_forehead_smoothing">შუბლის გასწორება</string>
+    <string name="ex_glabella_smoothing">შუბლებს შორის ზონის გასწორება</string>
+    <string name="ex_eye_corner_lifting">თვალის კუთხეების გაძლიერება</string>
+    <string name="ex_nasolabial_muscle_lift">ცხვირ-ტუჩის კუნთების გააქტიურება</string>
+    <string name="ex_lymphatic_drainage_massage_for_face_and_neck">სახისა და კისრის ლიმფური დრენაჟის მასაჟი</string>
+    <string name="ex_palm_eye_relaxation">თვალების მოდუნება ხელისგულებით</string>
+    <string name="ex_lower_jaw_contour_lift">ქვედა ყბის ხაზის გამამკვრივებელი მოძრაობა</string>
+    <string name="ex_tapping_from_upper_chest_to_chin">მკერდის ზედა ნაწილიდან ნიკაპამდე დაკაკუნება</string>
+    <string name="ex_jawline_skin_twisting_with_knuckles">ქვედა ყბის გასწვრივ კანის ტრიალი მუჭის სახსრებით</string>
+    <string name="ex_air_rolling_in_cheeks">ლოყებში ჰაერის გადაგორება</string>
+    <string name="ex_closed_mouth_smile">ღიმილი დახურული პირით</string>
+    <string name="ex_kiss_the_ceiling">ჭერის კოცნა</string>
+    <string name="ex_forehead_lift_with_blinking">შუბლის გააქტიურება თვალების დახამხამებით</string>
+    <string name="ex_head_turns">თავის მობრუნებები</string>
+    <string name="ex_gentle_tapping_on_the_face">სახეზე მსუბუქი დაკაკუნება</string>
+    <string name="ex_head_lifts_and_drops">თავის აწევა და დაშვება</string>
+    <string name="ex_neck_and_jawline_lift_with_ear_pull">ქვედა ყბისა და კისრის გაჭიმვა ყურების მოქაჩვით</string>
+    <string name="ex_lions_gaze">ლომის მზერა</string>
+    <string name="ex_side_neck_stretch_left">კისრის მარცხენა მხარის გაჭიმვა</string>
+    <string name="ex_side_neck_stretch_right">კისრის მარჯვენა მხარის გაჭიმვა</string>
+    <string name="ex_smiling_with_resistance">ღიმილი კუნთების წინააღმდეგობით</string>
+    <string name="ex_kisses_to_the_ceiling">ჭერისკენ კოცნები</string>
+    <string name="ex_graceful_smile">ელეგანტური ღიმილი</string>
+    <string name="ex_defined_jawline_exercise">ქვედა ყბის ხაზის გამოკვეთის ვარჯიში</string>
+    <string name="ex_chin_line_finger_lift">ნიკაპის ხაზის თითებით გამოკვეთა</string>
+    <string name="ex_neck_awakening">კისრის გააქტიურება</string>
+    <string name="ex_fist_lift">მუშტით გასრიალება</string>
+    <string name="ex_air_balloon">ჰაერის ბუშტი</string>
+    <string name="ex_air_wave">ჰაერის ტალღა</string>
+    <string name="ex_smooth_smile_lines">ცხვირ-ტუჩის ხაზების გასწორება</string>
+    <string name="ex_nasolabial_zone_massage">ცხვირ-ტუჩის ზონის მასაჟი</string>
+    <string name="ex_tear_trough_and_cheek_line_smoothing_left">ცრემლსადენი ღარისა და ლოყის ხაზის გასწორება (მარცხენა მხარე)</string>
+    <string name="ex_tear_trough_and_cheek_line_smoothing_right">ცრემლსადენი ღარისა და ლოყის ხაზის გასწორება (მარჯვენა მხარე)</string>
+    <string name="ex_blinking_with_forehead_hold">თვალების დახამხამება შუბლის ფიქსაციით</string>
+    <string name="ex_forehead_wrinkle_smoothing_right">შუბლის ნაოჭების გასწორება (მარჯვენა მხარე)</string>
+    <string name="ex_forehead_wrinkle_smoothing_left">შუბლის ნაოჭების გასწორება (მარცხენა მხარე)</string>
+    <string name="ex_lymphatic_drainage_self_massage_routine">ლიმფური დრენაჟის თვითმასაჟის კომპლექსი</string>
+
+
 </resources>

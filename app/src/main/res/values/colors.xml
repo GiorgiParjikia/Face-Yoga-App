@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Primary -->
+    <color name="green_primary">#3A9D7A</color>
+    <color name="green_primary_dark">#2F7F63</color>
+
+    <!-- Backgrounds -->
+    <color name="background_main">#FAF9F7</color>
+    <color name="surface_card">#FFFFFF</color>
+
+    <!-- bottom nav -->
+    <color name="bottom_nav_bg">#FFFFFF</color>
+    <color name="bottom_nav_shadow">#14000000</color>
+
+    <!-- Text -->
+    <color name="text_primary">#2B2B2B</color>
+    <color name="text_secondary">#7A7A7A</color>
+
+    <!-- Navigation -->
+    <color name="icon_inactive">#9E9E9E</color>
+    <color name="system_nav_bar">#111111</color>
+
+
+    <!-- Other -->
+    <color name="divider">#E0E0E0</color>
+
+
+</resources>

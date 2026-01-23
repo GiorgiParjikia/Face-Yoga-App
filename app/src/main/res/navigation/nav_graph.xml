@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/nav_graph">
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/daysFragment">
+
+    <!-- Вкладка: Упражнения -->
+    <fragment
+        android:id="@+id/daysFragment"
+        android:name="ru.netology.faceyoga.ui.days.DaysFragment"
+        android:label="Упражнения">
+
+        <action
+            android:id="@+id/action_daysFragment_to_dayExercisesFragment"
+            app:destination="@id/dayExercisesFragment" />
+    </fragment>
+
+    <!-- Экран: упражнения дня -->
+    <fragment
+        android:id="@+id/dayExercisesFragment"
+        android:name="ru.netology.faceyoga.ui.day.DayExercisesFragment"
+        android:label="Day">
+
+        <argument
+            android:name="programDayId"
+            app:argType="long" />
+
+        <argument
+            android:name="dayNumber"
+            app:argType="integer"
+            android:defaultValue="1" />
+
+        <!-- Start -> Countdown -->
+        <action
+            android:id="@+id/action_dayExercisesFragment_to_countdownFragment"
+            app:destination="@id/countdownFragment" />
+    </fragment>
+
+    <!-- Экран: обратный отсчёт перед стартом -->
+    <fragment
+        android:id="@+id/countdownFragment"
+        android:name="ru.netology.faceyoga.ui.countdown.CountdownFragment"
+        android:label="Countdown">
+
+        <argument
+            android:name="programDayId"
+            app:argType="long" />
+
+        <!-- Countdown -> Player -->
+        <action
+            android:id="@+id/action_countdownFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
+    </fragment>
+
+    <!-- VideoPlayerFragment -->
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="ru.netology.faceyoga.ui.player.VideoPlayerFragment"
+        android:label="Player">
+
+        <argument
+            android:name="programDayId"
+            app:argType="long" />
+    </fragment>
+
+    <!-- Вкладка: Статьи -->
+    <fragment
+        android:id="@+id/articlesFragment"
+        android:name="ru.netology.faceyoga.ui.articles.ArticlesFragment"
+        android:label="Статьи" />
+
+    <!-- Вкладка: Прогресс -->
+    <fragment
+        android:id="@+id/progressFragment"
+        android:name="ru.netology.faceyoga.ui.progress.ProgressFragment"
+        android:label="Прогресс" />
+
+    <!-- Вкладка: Настройки -->
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.netology.faceyoga.ui.settings.SettingsFragment"
+        android:label="Настройки" />
 
 </navigation>
