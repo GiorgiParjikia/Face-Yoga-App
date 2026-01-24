@@ -36,10 +36,29 @@ class DayExercisesViewModel @Inject constructor(
                             type = row.type
                         ),
                         videoUri = row.videoUri,
-                        previewImageUri = row.previewImageUri
+                        previewImageUri = row.previewImageUri,
 
+                        // NEW: предметы
+                        requiresItem = row.requiresItem,
+                        requiredItemKey = row.requiredItemKey
                     )
                 }
+            }
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(5_000),
+                emptyList()
+            )
+
+    /**
+     * NEW: уникальные предметы дня — для инфо-блока сверху списка
+     * (например ["pencil"])
+     */
+    val requiredItemKeys: StateFlow<List<String>> =
+        exercises
+            .map { list ->
+                list.mapNotNull { it.requiredItemKey }
+                    .distinct()
             }
             .stateIn(
                 viewModelScope,

@@ -1,6 +1,9 @@
 package ru.netology.faceyoga.data.db
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import ru.netology.faceyoga.data.model.ExerciseType
 import ru.netology.faceyoga.data.model.Zone
 
@@ -23,6 +26,10 @@ data class ExerciseEntity(
     val level: Int? = null,
     val videoUri: String? = null,
     val previewImageUri: String? = null,
+
+    // NEW: предупреждения о необходимости предмета (карандаш и т.п.)
+    val requiresItem: Boolean = false,
+    val requiredItemKey: String? = null
 )
 
 @Entity(
@@ -36,7 +43,7 @@ data class ProgramEntity(
     val description: String,
     val durationDays: Int,
     val level: Int? = null,
-    val coverImageUri: String? = null,
+    val coverImageUri: String? = null
 )
 
 @Entity(
@@ -60,7 +67,7 @@ data class ProgramDayEntity(
     val id: Long = 0,
     val programId: Long,
     val dayNumber: Int, // 1..30
-    val title: String? = null,
+    val title: String? = null
 )
 
 @Entity(
@@ -94,7 +101,7 @@ data class DayExerciseEntity(
     val exerciseId: Long,
     val order: Int, // 1..N
     val overrideReps: Int? = null,
-    val overrideSeconds: Int? = null,
+    val overrideSeconds: Int? = null
 )
 
 @Entity(

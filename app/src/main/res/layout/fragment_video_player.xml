@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,6 +13,19 @@
         android:keepScreenOn="true"
         app:use_controller="false"
         app:resize_mode="zoom" />
+
+    <!-- ❌ Close (X) — ВСЕГДА поверх видео -->
+    <ImageButton
+        android:id="@+id/btnClose"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_close"
+        app:tint="@android:color/background_dark"
+        android:contentDescription="@string/exit" />
 
     <!-- ⏳ Loader поверх видео -->
     <FrameLayout
@@ -55,10 +69,11 @@
         android:text="1 / 6"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/background_dark" />
 
-    <!-- нижняя панель -->
+    <!-- ⬇️ Нижняя панель (ВАЖНО: id нужен для WindowInsets) -->
     <LinearLayout
+        android:id="@+id/bottomContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -83,7 +98,7 @@
                     android:id="@+id/tvTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
+                    android:text="@string/title_placeholder"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:maxLines="2"
@@ -116,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Next: ..."
+                    android:text="@string/next_placeholder"
                     android:maxLines="2"
                     android:textColor="@color/text_secondary" />
 

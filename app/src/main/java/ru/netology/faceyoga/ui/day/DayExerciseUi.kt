@@ -10,5 +10,7 @@ data class DayExerciseUi(
     val type: ExerciseType,
     val rightInfo: String,
     val videoUri: String?,
-    val previewImageUri: String?
+    val previewImageUri: String?,
+    val requiresItem: Boolean = false,
+    val requiredItemKey: String? = null
 )

@@ -166,9 +166,11 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             defaultReps = 10,
+            requiresItem = true,
+            requiredItemKey = "pencil",
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/17.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/17.jpg"
-        ),
+    ),
         ExerciseEntity(
             title = "Fists from Chin to Ears",
             zone = Zone.JAWLINE_CHIN,

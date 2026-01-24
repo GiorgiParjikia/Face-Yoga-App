@@ -3,12 +3,9 @@ package ru.netology.faceyoga.ui.common
 import android.content.Context
 import ru.netology.faceyoga.R
 
-fun Context.localizedDayLevelTitle(dayNumber: Int): String {
-    val (levelRes, insideLevelDay) = when (dayNumber) {
-        in 1..10 -> R.string.level_easy to dayNumber
-        in 11..20 -> R.string.level_medium to (dayNumber - 10)
-        else -> R.string.level_hard to (dayNumber - 20)
+fun Context.localizedDayLevelTitle(dayNumber: Int): String =
+    when (dayNumber) {
+        in 1..10 -> getString(R.string.level_easy)
+        in 11..20 -> getString(R.string.level_medium)
+        else -> getString(R.string.level_hard)
     }
-    val level = getString(levelRes)
-    return getString(R.string.day_level_title, level, insideLevelDay)
-}

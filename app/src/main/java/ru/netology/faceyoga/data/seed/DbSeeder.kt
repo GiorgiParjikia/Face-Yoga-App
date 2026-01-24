@@ -36,9 +36,9 @@ class DbSeeder @Inject constructor(
         // 2) Дни 1..30 (создать или получить id)
         val dayIds: List<Long> = (1..30).map { day ->
             val title: String? = when (day) {
-                in 1..10 -> "Easy $day"
-                in 11..20 -> "Medium ${day - 10}"
-                in 21..30 -> "Hard ${day - 20}"
+                in 1..10 -> "Easy"
+                in 11..20 -> "Medium"
+                in 21..30 -> "Hard"
                 else -> null
             }
 

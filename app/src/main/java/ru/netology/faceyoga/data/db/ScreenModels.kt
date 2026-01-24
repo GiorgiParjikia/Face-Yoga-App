@@ -1,4 +1,5 @@
 package ru.netology.faceyoga.data.db
+
 import ru.netology.faceyoga.data.model.ExerciseType
 import ru.netology.faceyoga.data.model.Zone
 
@@ -26,5 +27,9 @@ data class DayExerciseWithExercise(
     val defaultSeconds: Int?,
     val level: Int?,
     val videoUri: String?,
-    val previewImageUri: String?
+    val previewImageUri: String?,
+
+    // NEW
+    val requiresItem: Boolean,
+    val requiredItemKey: String?
 )

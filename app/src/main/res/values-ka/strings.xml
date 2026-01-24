@@ -17,12 +17,21 @@
 
     <string name="action_next">შემდეგი</string>
     <string name="next_prefix">შემდეგი: %1$s</string>
+    <string name="next_placeholder">შემდეგი: %1$s</string>
     <string name="reps_format">%1$d გამეორება</string>
 
+    <!--Warnings-->
+    <string name="exit_workout_title">ვარჯიშიდან გასვლა</string>
+    <string name="exit_workout_message">დარწმუნებული ხართ, რომ გსურთ გასვლა? მიმდინარე ვარჯიში შეწყდება.</string>
+    <string name="stay">გაგრძელება</string>
+    <string name="exit">გასვლა</string>
+
+    <!--ITEMS-->
+    <string name="day_item_warning_format">ℹ️ ამ დღეში არის ვარჯიში, რომელსაც სჭირდება ნივთი: %1$s</string>
+    <string name="item_pencil">ფანქარი</string>
+
+
     <!-- Levels -->
-    <string name="level_easy">მარტივი</string>
-    <string name="level_medium">საშუალო</string>
-    <string name="level_hard">რთული</string>
     <string name="day_level_title">%1$s %2$d</string>
     <string name="countdown_hint">მოემზადეთ ვარჯიშისთვის</string>
 
@@ -32,6 +41,12 @@
     <string name="finish_day_button">დასრულება</string>
 
     <string name="loading_video">ვიდეო იტვირთება…</string>
+
+    <string name="day_level_format">დონე: %1$s • %2$s</string>
+    <string name="level_easy">მსუბუქი</string>
+    <string name="level_medium">საშუალო</string>
+    <string name="level_hard">რთული</string>
+
 
     <!--Congrats Layout-->
     <string name="congrats_title">გილოცავთ!</string>

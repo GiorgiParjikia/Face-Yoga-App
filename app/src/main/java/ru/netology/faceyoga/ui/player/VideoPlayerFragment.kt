@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,6 +17,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -66,6 +70,30 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentVideoPlayerBinding.bind(view)
 
+        // ✅ Поднимаем нижнюю панель над системной навигацией (кнопки/жесты)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val navBarBottom = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+
+            // bottomContainer должен быть в xml: android:id="@+id/bottomContainer"
+            binding.bottomContainer.setPadding(
+                binding.bottomContainer.paddingLeft,
+                binding.bottomContainer.paddingTop,
+                binding.bottomContainer.paddingRight,
+                navBarBottom + dp(8)
+            )
+            insets
+        }
+
+        // ✅ Перехват "Назад" с подтверждением выхода
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            showExitDialog()
+        }
+
+        // ✅ Клик по крестику (Close)
+        binding.btnClose.setOnClickListener {
+            showExitDialog()
+        }
+
         // 🎥 Player
         player = ExoPlayer.Builder(requireContext()).build().also { exo ->
             exo.repeatMode = Player.REPEAT_MODE_ONE
@@ -89,7 +117,6 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
             val hasNext = state.index + 1 < state.list.size
             if (hasNext) {
-                // переход на следующее упражнение -> таймерный resume больше не актуален
                 pausedTimerSeconds = null
                 playerViewModel.next()
             } else {
@@ -158,13 +185,11 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             val seconds = secondsFromRightInfo(current).coerceAtLeast(1)
             val key = "${current.title}|${current.rightInfo}|${state.index}"
 
-            // ✅ RESUME: вернулись в то же упражнение, таймер был паузнут
             val resume = pausedTimerSeconds
             if (resume != null && resume > 0 && lastTimerKey == key && timer == null) {
                 pausedTimerSeconds = null
                 startRestTimer(resume)
             } else {
-                // обычный запуск: только если упражнение сменилось
                 if (lastTimerKey != key) {
                     lastTimerKey = key
                     pausedTimerSeconds = null
@@ -205,10 +230,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         timer = object : CountDownTimer(duration * 1000L, 1000L) {
             override fun onTick(millisUntilFinished: Long) {
                 val left = (millisUntilFinished / 1000L).toInt().coerceAtMost(totalSeconds)
-
-                // сохраняем остаток, чтобы продолжить после сворачивания
                 pausedTimerSeconds = left
-
                 binding.progressLine.progress = left
                 binding.tvMainInfo.text = formatMmSs(left)
             }
@@ -281,7 +303,6 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
     override fun onStop() {
         super.onStop()
 
-        // сохраняем прогресс таймера только если это TIMER-упражнение
         pausedTimerSeconds =
             if (binding.progressLine.visibility == View.VISIBLE)
                 binding.progressLine.progress.takeIf { it > 0 }
@@ -301,4 +322,21 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         player?.release()
         player = null
     }
+
+    // ✅ подтверждение выхода из тренировки
+    private fun showExitDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.exit_workout_title))
+            .setMessage(getString(R.string.exit_workout_message))
+            .setNegativeButton(getString(R.string.stay)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton(getString(R.string.exit)) { _, _ ->
+                findNavController().popBackStack(R.id.dayExercisesFragment, false)
+            }
+            .show()
+    }
+
+    private fun dp(value: Int): Int =
+        (value * resources.displayMetrics.density).toInt()
 }

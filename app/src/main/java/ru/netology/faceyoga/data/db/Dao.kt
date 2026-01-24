@@ -112,26 +112,28 @@ interface DayExerciseDao {
      */
     @Query(
         """
-        SELECT
-            de.id AS linkId,
-            de.`order` AS `order`,
-            de.overrideReps AS overrideReps,
-            de.overrideSeconds AS overrideSeconds,
-            e.id AS exerciseId,
-            e.title AS title,
-            e.zone AS zone,
-            e.description AS description,
-            e.type AS type,
-            e.defaultReps AS defaultReps,
-            e.defaultSeconds AS defaultSeconds,
-            e.level AS level,
-            e.videoUri AS videoUri,
-            e.previewImageUri AS previewImageUri
-        FROM day_exercises de
-        INNER JOIN exercises e ON e.id = de.exerciseId
-        WHERE de.programDayId = :programDayId
-        ORDER BY de.`order`
-        """
+    SELECT
+        de.id AS linkId,
+        de.`order` AS `order`,
+        de.overrideReps AS overrideReps,
+        de.overrideSeconds AS overrideSeconds,
+        e.id AS exerciseId,
+        e.title AS title,
+        e.zone AS zone,
+        e.description AS description,
+        e.type AS type,
+        e.defaultReps AS defaultReps,
+        e.defaultSeconds AS defaultSeconds,
+        e.level AS level,
+        e.videoUri AS videoUri,
+        e.previewImageUri AS previewImageUri,
+        e.requiresItem AS requiresItem,
+        e.requiredItemKey AS requiredItemKey
+    FROM day_exercises de
+    INNER JOIN exercises e ON e.id = de.exerciseId
+    WHERE de.programDayId = :programDayId
+    ORDER BY de.`order`
+    """
     )
     fun observeDayExercises(programDayId: Long): Flow<List<DayExerciseWithExercise>>
 }

@@ -2,6 +2,7 @@ package ru.netology.faceyoga.ui.day
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ import ru.netology.faceyoga.databinding.ItemDayExerciseBinding
 import ru.netology.faceyoga.ui.common.VerticalCropTransformation
 import ru.netology.faceyoga.ui.common.localizedExerciseTitle
 import ru.netology.faceyoga.ui.common.localizedExerciseType
+import ru.netology.faceyoga.ui.common.localizedItemName
 import ru.netology.faceyoga.ui.common.localizedZone
 import java.util.concurrent.ConcurrentHashMap
 
@@ -82,6 +84,15 @@ class DayExercisesAdapter(
 
             // rightInfo
             binding.rightInfo.text = item.rightInfo
+
+            // ===== ITEM ICON (NEW) =====
+            // показываем, если нужен предмет
+            binding.itemIcon.isVisible = item.requiresItem
+            if (item.requiresItem) {
+                // пока один предмет: pencil
+                binding.itemIcon.setImageResource(R.drawable.ic_item_pencil)
+                binding.itemIcon.contentDescription = ctx.localizedItemName(item.requiredItemKey)
+            }
 
             // ===== PREVIEW =====
             val uri = item.previewImageUri

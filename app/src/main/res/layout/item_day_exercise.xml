@@ -39,6 +39,33 @@
 
         </FrameLayout>
 
+        <!-- RIGHT INFO -->
+        <TextView
+            android:id="@+id/rightInfo"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:includeFontPadding="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- ✅ NEW: ITEM ICON (карандаш и т.п.) -->
+        <ImageView
+            android:id="@+id/itemIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_item_pencil"
+            app:tint="@color/text_secondary"
+            android:contentDescription="@string/item_pencil"
+            app:layout_constraintEnd_toStartOf="@id/rightInfo"
+            app:layout_constraintTop_toTopOf="@id/rightInfo"
+            app:layout_constraintBottom_toBottomOf="@id/rightInfo" />
+
         <!-- TITLE -->
         <TextView
             android:id="@+id/title"
@@ -57,7 +84,7 @@
 
             android:layout_marginStart="12dp"
             app:layout_constraintStart_toEndOf="@id/previewContainer"
-            app:layout_constraintEnd_toStartOf="@id/rightInfo"
+            app:layout_constraintEnd_toStartOf="@id/itemIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- SUBTITLE -->
@@ -74,19 +101,6 @@
             app:layout_constraintStart_toStartOf="@id/title"
             app:layout_constraintEnd_toStartOf="@id/rightInfo"
             app:layout_constraintTop_toBottomOf="@id/title" />
-
-        <!-- RIGHT INFO -->
-        <TextView
-            android:id="@+id/rightInfo"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp"
-            android:includeFontPadding="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -41,19 +41,22 @@ class DaysAdapter(
             current = item
             val ctx = itemView.context
 
-            // Заголовок: Day X • Easy/Medium/Hard N (локализовано)
-            binding.title.text = buildString {
-                append(ctx.getString(R.string.day_title, item.dayNumber))
-                append(" • ")
-                append(ctx.localizedDayLevelTitle(item.dayNumber))
-            }
+            // Заголовок: День X
+            binding.title.text = ctx.getString(R.string.day_title, item.dayNumber)
 
-            // Подзаголовок: N exercises (plurals, локализовано)
-            binding.subtitle.text = ctx.resources.getQuantityString(
+// Подзаголовок: Уровень • N упражнений
+            val level = ctx.localizedDayLevelTitle(item.dayNumber) // после правки будет "Лёгкий"
+            val exercises = ctx.resources.getQuantityString(
                 R.plurals.exercises_count,
                 item.exercisesCount,
                 item.exercisesCount
             )
+            binding.subtitle.text = ctx.getString(
+                R.string.day_level_format,
+                level,
+                exercises
+            )
+
 
             // Прогресс
             val percent = if (item.isCompleted) 100 else item.progressPercent
