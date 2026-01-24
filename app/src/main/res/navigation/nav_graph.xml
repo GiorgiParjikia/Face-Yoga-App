@@ -62,7 +62,33 @@
         <argument
             android:name="programDayId"
             app:argType="long" />
+
+        <argument
+            android:name="exerciseIndex"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+        <action
+            android:id="@+id/action_videoPlayerFragment_to_congratsFragment"
+            app:destination="@id/congratsFragment" />
     </fragment>
+
+    <!-- CongratsFragment -->
+    <fragment
+        android:id="@+id/congratsFragment"
+        android:name="ru.netology.faceyoga.ui.congrats.CongratsFragment"
+        android:label="Congrats">
+
+        <argument
+            android:name="programDayId"
+            app:argType="long" />
+
+        <argument
+            android:name="dayNumber"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+
 
     <!-- Вкладка: Статьи -->
     <fragment

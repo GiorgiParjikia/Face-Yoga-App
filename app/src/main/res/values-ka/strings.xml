@@ -29,6 +29,15 @@
     <string name="action_skip">გამოტოვება</string>
 
     <string name="action_start">დაწყება</string>
+    <string name="finish_day_button">დასრულება</string>
+
+    <string name="loading_video">ვიდეო იტვირთება…</string>
+
+    <!--Congrats Layout-->
+    <string name="congrats_title">გილოცავთ!</string>
+    <string name="congrats_subtitle">დღე დასრულებულია.</string>
+    <string name="congrats_open_article">სტატიის წაკითხვა</string>
+    <string name="congrats_back_to_days">ვარჯიშებზე დაბრუნება</string>
 
     <!-- Face Zone -->
     <string name="exercise_subtitle">%1$s • %2$s</string>

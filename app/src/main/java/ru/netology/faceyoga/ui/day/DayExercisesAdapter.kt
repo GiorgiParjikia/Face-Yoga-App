@@ -14,6 +14,7 @@ import kotlinx.coroutines.withContext
 import ru.netology.faceyoga.R
 import ru.netology.faceyoga.data.media.VideoUrlResolver
 import ru.netology.faceyoga.databinding.ItemDayExerciseBinding
+import ru.netology.faceyoga.ui.common.VerticalCropTransformation
 import ru.netology.faceyoga.ui.common.localizedExerciseTitle
 import ru.netology.faceyoga.ui.common.localizedExerciseType
 import ru.netology.faceyoga.ui.common.localizedZone
@@ -27,7 +28,8 @@ class DayExercisesAdapter(
     private val job = SupervisorJob()
     private val scope = CoroutineScope(job + Dispatchers.Main)
 
-    private val previewCache = ConcurrentHashMap<String, String>() // gs -> https
+    // cache: gs://... -> https://...
+    private val previewCache = ConcurrentHashMap<String, String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = ItemDayExerciseBinding.inflate(
@@ -56,6 +58,8 @@ class DayExercisesAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private var current: DayExerciseUi? = null
+
+        // защита от реюза viewHolder при асинхронной загрузке
         private var boundPreviewKey: String? = null
 
         init {
@@ -71,7 +75,7 @@ class DayExercisesAdapter(
             // title
             binding.title.text = ctx.localizedExerciseTitle(item.title)
 
-            // subtitle ( через ресурсы, без конкатенации)
+            // subtitle (через ресурсы)
             val zoneText = ctx.localizedZone(item.zone)
             val typeText = ctx.localizedExerciseType(item.type)
             binding.subtitle.text = ctx.getString(R.string.exercise_subtitle, zoneText, typeText)
@@ -79,10 +83,11 @@ class DayExercisesAdapter(
             // rightInfo
             binding.rightInfo.text = item.rightInfo
 
-            // preview (placeholder immediately)
+            // ===== PREVIEW =====
             val uri = item.previewImageUri
             boundPreviewKey = uri
 
+            // placeholder сразу (сброс старой картинки при реюзе)
             binding.preview.load(null) {
                 placeholder(R.drawable.ic_placeholder)
                 error(R.drawable.ic_image_error)
@@ -90,25 +95,29 @@ class DayExercisesAdapter(
 
             if (uri.isNullOrBlank()) return
 
+            // https -> грузим сразу
             if (uri.startsWith("http")) {
                 binding.preview.load(uri) {
                     crossfade(true)
                     placeholder(R.drawable.ic_placeholder)
                     error(R.drawable.ic_image_error)
+                    transformations(VerticalCropTransformation(0.18f))
                 }
                 return
             }
 
-            // gs:// -> https with cache
+            // gs:// -> проверяем кэш
             cache[uri]?.let { https ->
                 binding.preview.load(https) {
                     crossfade(true)
                     placeholder(R.drawable.ic_placeholder)
                     error(R.drawable.ic_image_error)
+                    transformations(VerticalCropTransformation(0.18f))
                 }
                 return
             }
 
+            // gs:// -> резолвим в https и кэшируем
             scope.launch {
                 val https = withContext(Dispatchers.IO) {
                     runCatching { resolver.resolve(uri) }.getOrNull()
@@ -123,6 +132,7 @@ class DayExercisesAdapter(
                     crossfade(true)
                     placeholder(R.drawable.ic_placeholder)
                     error(R.drawable.ic_image_error)
+                    transformations(VerticalCropTransformation(0.18f))
                 }
             }
         }

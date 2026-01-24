@@ -16,6 +16,8 @@ coroutines = "1.7.3"
 retrofit = "2.9.0"
 okhttp = "4.12.0"
 
+lottie = "6.4.0"
+
 hilt = "2.51.1"
 
 room = "2.6.1"
@@ -40,6 +42,9 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

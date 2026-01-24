@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 🎥 Video -->
     <androidx.media3.ui.PlayerView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
@@ -11,6 +12,38 @@
         android:keepScreenOn="true"
         app:use_controller="false"
         app:resize_mode="zoom" />
+
+    <!-- ⏳ Loader поверх видео -->
+    <FrameLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ProgressBar
+                android:id="@+id/pbLoading"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
+
+            <TextView
+                android:id="@+id/tvLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/loading_video"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </FrameLayout>
 
     <!-- 1 / 6 -->
     <TextView
@@ -21,7 +54,8 @@
         android:layout_marginTop="38dp"
         android:text="1 / 6"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@android:color/white" />
 
     <!-- нижняя панель -->
     <LinearLayout
@@ -39,7 +73,7 @@
             app:cardElevation="2dp"
             app:cardBackgroundColor="#E6FFFFFF">
 
-        <LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -53,23 +87,21 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:maxLines="2"
-                    android:textColor="@color/text_primary"/>
+                    android:textColor="@color/text_primary" />
 
-            <ProgressBar
-                android:id="@+id/progressLine"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="8dp"
-                android:indeterminate="false"
-                android:visibility="gone"
-                android:progressTint="@color/green_primary_dark"
-                android:backgroundTint="@android:color/darker_gray" />
+                <ProgressBar
+                    android:id="@+id/progressLine"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:indeterminate="false"
+                    android:visibility="gone"
+                    android:progressTint="@color/green_primary_dark"
+                    android:backgroundTint="@android:color/darker_gray" />
 
-
-
-            <TextView
+                <TextView
                     android:id="@+id/tvMainInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,7 +118,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Next: ..."
                     android:maxLines="2"
-                    android:textColor="@color/text_secondary"/>
+                    android:textColor="@color/text_secondary" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -106,7 +138,6 @@
             android:paddingEnd="32dp"
             android:paddingTop="6dp"
             android:paddingBottom="6dp" />
-
 
     </LinearLayout>
 

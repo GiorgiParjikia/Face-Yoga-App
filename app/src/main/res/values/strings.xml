@@ -21,6 +21,17 @@
     <string name="action_skip">Skip</string>
 
     <string name="action_start">Start</string>
+    <string name="finish_day_button">Finish</string>
+
+    <string name="loading_video">Loading Video…</string>
+
+
+    <!--Congrats Layout-->
+    <string name="congrats_title">Congratulations!</string>
+    <string name="congrats_subtitle">You’ve completed the day.</string>
+    <string name="congrats_open_article">Read an article</string>
+    <string name="congrats_back_to_days">Back to exercises</string>
+
 
     <!-- Face Zone -->
     <string name="exercise_subtitle">%1$s • %2$s</string>
