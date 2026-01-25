@@ -12,4 +12,9 @@ interface ProgramRepository {
      * Гарантирует, что есть программа в БД и возвращает её id.
      */
     suspend fun getDefaultProgramId(): Long
+
+    /**
+     * NEW: по programDayId получить programId (нужно для сохранения прогресса в конце дня)
+     */
+    suspend fun getProgramIdByProgramDayId(programDayId: Long): Long
 }

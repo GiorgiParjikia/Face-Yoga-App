@@ -32,4 +32,8 @@ class ProgramRepositoryImpl @Inject constructor(
         // 2) если нет — сидим и получаем id
         return seeder.seedIfNeeded()
     }
+
+    override suspend fun getProgramIdByProgramDayId(programDayId: Long): Long {
+        return programDayDao.getProgramIdByProgramDayId(programDayId) ?: 0L
+    }
 }

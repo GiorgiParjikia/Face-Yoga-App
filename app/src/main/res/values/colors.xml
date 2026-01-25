@@ -24,6 +24,8 @@
 
     <!-- Other -->
     <color name="divider">#E0E0E0</color>
+    <color name="surface_card_locked">#F2F2F2</color>
+
 
 
 </resources>

@@ -6,5 +6,6 @@ data class DayUi(
     val title: String?,         // "Зона глаз" и т.п.
     val exercisesCount: Int,
     val isCompleted: Boolean,
+    val isLocked: Boolean,
     val progressPercent: Int = 0 // пока 0, позже считаем по упражнениям
 )

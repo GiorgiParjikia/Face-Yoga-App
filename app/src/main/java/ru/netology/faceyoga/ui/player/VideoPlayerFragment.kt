@@ -120,6 +120,9 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 pausedTimerSeconds = null
                 playerViewModel.next()
             } else {
+                // ✅ NEW: фиксируем прогресс дня перед Congrats
+                playerViewModel.finishDay()
+
                 findNavController().navigate(
                     R.id.action_videoPlayerFragment_to_congratsFragment,
                     bundleOf(

@@ -21,6 +21,7 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
         _binding = FragmentCountdownBinding.bind(view)
 
         val programDayId = requireArguments().getLong("programDayId")
+        val dayNumber = requireArguments().getInt("dayNumber", 1)
 
         val totalSeconds = 10
         val skipAvailableAfter = 0 // можно поставить 3, если хочешь как YouTube (появится через 3 сек)
@@ -29,14 +30,15 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
         binding.btnSkip.isEnabled = skipAvailableAfter == 0
 
         binding.btnSkip.setOnClickListener {
-            goToPlayer(programDayId)
+            goToPlayer(programDayId, dayNumber)
         }
 
         startCountdown(
             totalSeconds = totalSeconds,
             skipAvailableAfter = skipAvailableAfter,
             twoDigits = true,          // true: 10, 09, 08...  false: 10, 9, 8...
-            programDayId = programDayId
+            programDayId = programDayId,
+            dayNumber = dayNumber
         )
     }
 
@@ -44,7 +46,8 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
         totalSeconds: Int,
         skipAvailableAfter: Int,
         twoDigits: Boolean,
-        programDayId: Long
+        programDayId: Long,
+        dayNumber: Int
     ) {
         timer?.cancel()
 
@@ -73,17 +76,25 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
 
             override fun onFinish() {
                 binding.tvCounter.text = if (twoDigits) "00" else "0"
-                goToPlayer(programDayId)
+                goToPlayer(programDayId, dayNumber)
             }
         }.start()
     }
 
-    private fun goToPlayer(programDayId: Long) {
+    private fun goToPlayer(programDayId: Long, dayNumber: Int) {
         timer?.cancel()
         timer = null
 
-        val args = Bundle().apply { putLong("programDayId", programDayId) }
-        findNavController().navigate(R.id.videoPlayerFragment, args)
+        val args = Bundle().apply {
+            putLong("programDayId", programDayId)
+            putInt("dayNumber", dayNumber)
+        }
+
+        // ✅ лучше навигировать по action, чтобы не было сюрпризов со стеком
+        findNavController().navigate(
+            R.id.action_countdownFragment_to_videoPlayerFragment,
+            args
+        )
     }
 
     override fun onDestroyView() {

@@ -2,6 +2,7 @@ package ru.netology.faceyoga.ui.day
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isGone
@@ -27,14 +28,15 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
 
     private val viewModel: DayExercisesViewModel by viewModels()
 
-    // ✅ Нужен для резолвинга gs:// -> https для превью
-    @Inject lateinit var videoUrlResolver: VideoUrlResolver
+    // gs:// → https для превью
+    @Inject
+    lateinit var videoUrlResolver: VideoUrlResolver
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDayExercisesBinding.bind(view)
 
-        // ✅ Корректный отступ под статус-бар
+        // Insets под статус-бар
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val topInset = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
             binding.toolbar.setPadding(
@@ -46,14 +48,21 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
             insets
         }
 
-        // Заголовок и back
-        val dayNumber = requireArguments().getInt("dayNumber")
-        binding.toolbar.title = "Day $dayNumber"
+        // -------- Аргументы --------
+        val args = requireArguments()
+        val dayNumber = args.getInt("dayNumber", 1)
+        val programDayId = args.getLong("programDayId")
+
+        // ⚠️ Оставляем, но теперь по идее не понадобится (DaysFragment не пускает в locked)
+        val isLocked = args.getBoolean("isLocked", false)
+
+        // -------- Toolbar --------
+        binding.toolbar.title = getString(R.string.day_title, dayNumber)
         binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
-        // ✅ Список упражнений
+        // -------- Список упражнений --------
         val adapter = DayExercisesAdapter(videoUrlResolver)
         binding.list.adapter = adapter
 
@@ -65,7 +74,7 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
             }
         }
 
-        // ✅ NEW: инфо-блок о предметах (карандаш и т.п.)
+        // -------- Инфо-блок про предметы --------
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.requiredItemKeys.collect { keys ->
@@ -87,16 +96,29 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
             }
         }
 
-        // Start → Countdown
-        binding.start.setOnClickListener {
-            val programDayId = requireArguments().getLong("programDayId")
-            val args = Bundle().apply {
-                putLong("programDayId", programDayId)
+        // -------- Start → Countdown (с защитой) --------
+        if (isLocked) {
+            binding.start.isEnabled = false
+            binding.start.alpha = 0.45f
+
+            binding.start.setOnClickListener {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.complete_previous_day),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-            findNavController().navigate(
-                R.id.action_dayExercisesFragment_to_countdownFragment,
-                args
-            )
+        } else {
+            binding.start.setOnClickListener {
+                val navArgs = Bundle().apply {
+                    putLong("programDayId", programDayId)
+                    putInt("dayNumber", dayNumber) // ✅ NEW: прокидываем dayNumber
+                }
+                findNavController().navigate(
+                    R.id.action_dayExercisesFragment_to_countdownFragment,
+                    navArgs
+                )
+            }
         }
     }
 

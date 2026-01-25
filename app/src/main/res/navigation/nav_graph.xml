@@ -47,6 +47,12 @@
             android:name="programDayId"
             app:argType="long" />
 
+        <!-- ✅ NEW: нужно, чтобы dayNumber дошёл до плеера -->
+        <argument
+            android:name="dayNumber"
+            app:argType="integer"
+            android:defaultValue="1" />
+
         <!-- Countdown -> Player -->
         <action
             android:id="@+id/action_countdownFragment_to_videoPlayerFragment"
@@ -63,10 +69,11 @@
             android:name="programDayId"
             app:argType="long" />
 
+        <!-- ✅ NEW: чтобы PlayerViewModel.finishDay() мог сохранить прогресс -->
         <argument
-            android:name="exerciseIndex"
+            android:name="dayNumber"
             app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="1" />
 
         <action
             android:id="@+id/action_videoPlayerFragment_to_congratsFragment"
@@ -88,7 +95,6 @@
             app:argType="integer"
             android:defaultValue="1" />
     </fragment>
-
 
     <!-- Вкладка: Статьи -->
     <fragment

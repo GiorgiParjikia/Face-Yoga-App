@@ -18,7 +18,27 @@
     <string name="action_next">შემდეგი</string>
     <string name="next_prefix">შემდეგი: %1$s</string>
     <string name="next_placeholder">შემდეგი: %1$s</string>
+    <string name="day_locked_toast">ჯერ დაასრულეთ %1$d დღე</string>
     <string name="reps_format">%1$d გამეორება</string>
+
+    <string name="complete_previous_day">
+    ჯერ წინა დღე დაასრულეთ
+</string>
+
+
+    <!--Progress Cancel-->
+    <string name="reset_progress">პროგრესის განულება</string>
+    <string name="reset_progress_title">გსურთ პროგრესის განულება?</string>
+    <string name="reset_progress_message">
+    ყველა დღე და ვარჯიში მოინიშნება როგორც შეუსრულებელი. ამ მოქმედების გაუქმება შეუძლებელია.
+</string>
+    <string name="cancel">გაუქმება</string>
+    <string name="reset">განულება</string>
+    <string name="progress_reset_done">პროგრესი განულებულია</string>
+
+    <string name="menu_about">აპლიკაციის შესახებ</string>
+
+
 
     <!--Warnings-->
     <string name="exit_workout_title">ვარჯიშიდან გასვლა</string>

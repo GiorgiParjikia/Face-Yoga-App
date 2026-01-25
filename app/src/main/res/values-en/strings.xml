@@ -21,6 +21,14 @@
     <string name="action_next">Next</string>
 
     <string name="next_prefix">Next: %1$s</string>
+
+    <string name="day_locked_toast">Complete day %1$d first</string>
+
+    <string name="complete_previous_day">
+    Complete the previous day first
+</string>
+
+
     <string name="next_placeholder">Next: %1$s</string>
     <string name="reps_format">%1$d reps</string>
 
@@ -32,6 +40,18 @@
     <string name="finish_day_button">Finish</string>
 
     <string name="loading_video">Loading Video…</string>
+
+    <string name="menu_about">About App</string>
+
+    <!--Progress Cancel-->
+    <string name="reset_progress">Reset progress</string>
+    <string name="reset_progress_title">Reset progress?</string>
+    <string name="reset_progress_message">
+    All days and exercises will be marked as not completed. This action cannot be undone.
+</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
+    <string name="progress_reset_done">Progress has been reset</string>
 
     <!--Congrats Layout-->
     <string name="congrats_title">Congratulations!</string>

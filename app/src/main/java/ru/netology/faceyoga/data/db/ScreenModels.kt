@@ -8,6 +8,7 @@ data class ProgramDayRow(
     val dayNumber: Int,
     val title: String?,
     val exercisesCount: Int,
+    val doneCount: Int,
     val isCompleted: Boolean
 )
 
