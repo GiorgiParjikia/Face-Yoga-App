@@ -12,7 +12,7 @@ object SeedPlansHard {
 
     @Suppress("SameParameterValue")
     private fun relax(seconds: Int = 60) =
-        DayExerciseSeed.Timer(title = "__RELAX__", seconds = seconds)
+        DayExerciseSeed.Timer(title = "Relax", seconds = seconds)
 
     // ex("Jawline Lift", reps = 5)
     //timer("Jawline Lift", seconds = 120),

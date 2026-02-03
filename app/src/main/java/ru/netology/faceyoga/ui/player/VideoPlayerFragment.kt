@@ -59,11 +59,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         requireArguments().getInt(StateKeys.DAY_NUMBER, 1)
     }
 
-    private fun formatMmSs(totalSeconds: Int): String {
-        val mm = totalSeconds / 60
-        val ss = totalSeconds % 60
-        return "%02d:%02d".format(mm, ss)
-    }
+    // ---------------- lifecycle ----------------
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentVideoPlayerBinding.bind(view)
@@ -84,15 +80,64 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         }
         binding.btnClose.setOnClickListener { showExitDialog() }
 
+        setupPlayer()
+        setupButtons()
+        observeDayExercises()
+        observeQueue()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        player?.playWhenReady = true
+        player?.play()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        pausedTimerSeconds =
+            if (binding.progressLine.visibility == View.VISIBLE)
+                binding.progressLine.progress.takeIf { it > 0 }
+            else null
+
+        timer?.cancel()
+        timer = null
+
+        player?.pause()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        player?.release()
+        player = null
+    }
+
+    // ---------------- setup ----------------
+
+    private fun setupPlayer() {
         player = ExoPlayer.Builder(requireContext()).build().also { exo ->
             exo.repeatMode = Player.REPEAT_MODE_ONE
             binding.playerView.player = exo
-        }
 
+            exo.addListener(object : Player.Listener {
+                override fun onPlaybackStateChanged(state: Int) {
+                    when (state) {
+                        Player.STATE_BUFFERING ->
+                            binding.loadingOverlay.visibility = View.VISIBLE
+                        Player.STATE_READY ->
+                            binding.loadingOverlay.visibility = View.GONE
+                    }
+                }
+            })
+        }
+    }
+
+    private fun setupButtons() {
         binding.btnNext.setOnClickListener {
             val state = lastQueueState ?: return@setOnClickListener
-
             val hasNext = state.index + 1 < state.list.size
+
             if (hasNext) {
                 pausedTimerSeconds = null
                 playerViewModel.next()
@@ -107,12 +152,16 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 )
             }
         }
+    }
 
-        // 1) упражнения дня -> очередь
+    // ---------------- observers ----------------
+
+    private fun observeDayExercises() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 dayViewModel.exercises.collect { list ->
                     if (list.isEmpty()) return@collect
+
                     val withVideo = list.filter { !it.videoUri.isNullOrBlank() }
                     if (withVideo.isNotEmpty() && !queueWasSet) {
                         queueWasSet = true
@@ -121,8 +170,9 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 }
             }
         }
+    }
 
-        // 2) смена текущего упражнения
+    private fun observeQueue() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 playerViewModel.queue.collect { state ->
@@ -134,11 +184,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        player?.playWhenReady = true
-        player?.play()
-    }
+    // ---------------- UI ----------------
 
     private fun updateOverlay(state: PlayerQueueState) {
         val ctx = requireContext()
@@ -162,23 +208,18 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 pausedTimerSeconds = null
                 startRestTimer(seconds)
             }
-
         } else {
             binding.progressLine.visibility = View.GONE
             stopTimerAndResetProgress()
-
-            // ✅ ПОЛНЫЙ ТЕКСТ В ПЛЕЕРЕ: "5 повторений" (через plurals)
             binding.tvMainInfo.text = repsFullText(current)
         }
 
         val next = state.list.getOrNull(state.index + 1)
         if (next != null) {
-            val nextTitle = ctx.localizedExerciseTitle(next.title)
-            val nextInfo = if (isTimer(next)) next.rightInfo else repsFullText(next)
-
             binding.tvNext.text = ctx.getString(
                 R.string.next_prefix,
-                "$nextTitle — $nextInfo"
+                "${ctx.localizedExerciseTitle(next.title)} — " +
+                        (if (isTimer(next)) next.rightInfo else repsFullText(next))
             )
             binding.btnNext.text = ctx.getString(R.string.action_next)
         } else {
@@ -187,10 +228,54 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         }
     }
 
+    // ---------------- video ----------------
+
+    private fun playCurrent() {
+        val item = playerViewModel.current() ?: return
+        val gs = item.videoUri ?: return
+
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            runCatching {
+                videoUrlResolver.resolve(gs)
+            }.onSuccess { https ->
+                launch(Dispatchers.Main) {
+                    player?.apply {
+                        setMediaItem(MediaItem.fromUri(https))
+                        prepare()
+                        playWhenReady = true
+                    }
+                }
+            }.onFailure {
+                launch(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Не удалось открыть видео",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    // ---------------- helpers ----------------
+
+    private fun isTimer(item: DayExerciseUi): Boolean =
+        item.rightInfo.contains(":")
+
+    private fun secondsFromRightInfo(item: DayExerciseUi): Int {
+        val parts = item.rightInfo.split(":")
+        if (parts.size != 2) return 0
+        val mm = parts[0].toIntOrNull() ?: return 0
+        val ss = parts[1].toIntOrNull() ?: return 0
+        return mm * 60 + ss
+    }
+
+    private fun repsFromRightInfo(item: DayExerciseUi): Int =
+        item.rightInfo.filter { it.isDigit() }.toIntOrNull() ?: 0
+
     private fun repsFullText(item: DayExerciseUi): String {
-        val ctx = requireContext()
-        val reps = repsFromRightInfo(item).takeIf { it > 0 } ?: 0
-        return ctx.resources.getQuantityString(
+        val reps = repsFromRightInfo(item)
+        return requireContext().resources.getQuantityString(
             R.plurals.repetitions,
             reps,
             reps
@@ -228,72 +313,14 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         binding.progressLine.progress = 0
     }
 
-    private fun playCurrent() {
-        val item = playerViewModel.current() ?: return
-        val gs = item.videoUri ?: return
-
-        binding.loadingOverlay.visibility = View.VISIBLE
-
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            runCatching {
-                val https = videoUrlResolver.resolve(gs)
-                launch(Dispatchers.Main) {
-                    player?.apply {
-                        setMediaItem(MediaItem.fromUri(https))
-                        prepare()
-                        playWhenReady = true
-                    }
-                    binding.loadingOverlay.visibility = View.GONE
-                }
-            }.onFailure {
-                launch(Dispatchers.Main) {
-                    binding.loadingOverlay.visibility = View.GONE
-                    Toast.makeText(requireContext(), "Не удалось открыть видео", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    private fun isTimer(item: DayExerciseUi): Boolean =
-        item.rightInfo.contains(":")
-
-    private fun secondsFromRightInfo(item: DayExerciseUi): Int {
-        val parts = item.rightInfo.split(":")
-        if (parts.size != 2) return 0
-        val mm = parts[0].toIntOrNull() ?: return 0
-        val ss = parts[1].toIntOrNull() ?: return 0
-        return mm * 60 + ss
-    }
-
-    private fun repsFromRightInfo(item: DayExerciseUi): Int =
-        item.rightInfo.filter { it.isDigit() }.toIntOrNull() ?: 0
-
-    override fun onStop() {
-        super.onStop()
-
-        pausedTimerSeconds =
-            if (binding.progressLine.visibility == View.VISIBLE)
-                binding.progressLine.progress.takeIf { it > 0 }
-            else null
-
-        timer?.cancel()
-        timer = null
-
-        player?.pause()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-        player?.release()
-        player = null
-    }
+    private fun formatMmSs(totalSeconds: Int): String =
+        "%02d:%02d".format(totalSeconds / 60, totalSeconds % 60)
 
     private fun showExitDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.exit_workout_title))
             .setMessage(getString(R.string.exit_workout_message))
-            .setNegativeButton(getString(R.string.stay)) { dialog, _ -> dialog.dismiss() }
+            .setNegativeButton(getString(R.string.stay)) { d, _ -> d.dismiss() }
             .setPositiveButton(getString(R.string.exit)) { _, _ ->
                 findNavController().popBackStack(R.id.dayExercisesFragment, false)
             }

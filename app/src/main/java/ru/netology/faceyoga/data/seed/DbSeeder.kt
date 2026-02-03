@@ -56,7 +56,7 @@ class DbSeeder @Inject constructor(
             }
         }
 
-        // 5) Resolve exercise id (ТОЛЬКО для Reps)
+        // 5) Resolve exercise id (ДЛЯ ВСЕХ: Reps и Timer)
         suspend fun idByTitle(title: String): Long =
             exerciseDao.getIdByTitle(title)
                 ?: error("Exercise not found: $title")
@@ -89,7 +89,7 @@ class DbSeeder @Inject constructor(
 
                     is DayExerciseSeed.Timer -> DayExerciseEntity(
                         programDayId = programDayId,
-                        exerciseId = null, // RELAX / timer не является Exercise
+                        exerciseId = idByTitle(seed.title), // ✅ FIX: Timer тоже Exercise
                         order = i + 1,
                         overrideReps = null,
                         overrideSeconds = seed.seconds
