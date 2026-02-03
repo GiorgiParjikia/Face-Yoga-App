@@ -57,8 +57,6 @@
     <string name="reset">Сбросить</string>
     <string name="progress_reset_done">Прогресс сброшен</string>
 
-    <string name="menu_about">О приложении</string>
-
 
     <!--Congrats Layout-->
     <string name="congrats_title">Поздравляем!</string>
@@ -212,5 +210,23 @@
     <string name="ex_forehead_wrinkle_smoothing_right">Разглаживание морщин лба (Правая сторона)</string>
     <string name="ex_forehead_wrinkle_smoothing_left">Разглаживание морщин лба (Левая сторона)</string>
     <string name="ex_lymphatic_drainage_self_massage_routine">Комплексный лимфодренажный самомассаж</string>
+
+    <!--About App-->
+    <string name="menu_about">О приложении</string>
+
+    <string name="about_title">О приложении</string>
+
+    <string name="about_description">
+FaceYoga — это мобильное приложение с ежедневными упражнениями для лица и шеи.
+
+Программа помогает сформировать привычку регулярного ухода за собой и выполнять упражнения в удобном формате.
+</string>
+
+    <string name="about_version">Версия приложения: %1$s (%2$d)</string>
+
+    <string name="about_warning">
+Приложение не является медицинским продуктом и не заменяет консультацию специалиста.
+</string>
+
 
 </resources>

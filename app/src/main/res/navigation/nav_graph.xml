@@ -31,7 +31,6 @@
             app:argType="integer"
             android:defaultValue="1" />
 
-        <!-- Start -> Countdown -->
         <action
             android:id="@+id/action_dayExercisesFragment_to_countdownFragment"
             app:destination="@id/countdownFragment" />
@@ -47,13 +46,11 @@
             android:name="programDayId"
             app:argType="long" />
 
-        <!-- ✅ NEW: нужно, чтобы dayNumber дошёл до плеера -->
         <argument
             android:name="dayNumber"
             app:argType="integer"
             android:defaultValue="1" />
 
-        <!-- Countdown -> Player -->
         <action
             android:id="@+id/action_countdownFragment_to_videoPlayerFragment"
             app:destination="@id/videoPlayerFragment" />
@@ -69,7 +66,6 @@
             android:name="programDayId"
             app:argType="long" />
 
-        <!-- ✅ NEW: чтобы PlayerViewModel.finishDay() мог сохранить прогресс -->
         <argument
             android:name="dayNumber"
             app:argType="integer"
@@ -113,5 +109,11 @@
         android:id="@+id/settingsFragment"
         android:name="ru.netology.faceyoga.ui.settings.SettingsFragment"
         android:label="Настройки" />
+
+    <!-- Экран: О приложении -->
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="ru.netology.faceyoga.ui.settings.AboutFragment"
+        android:label="@string/about_title" />
 
 </navigation>

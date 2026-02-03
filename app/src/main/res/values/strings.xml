@@ -43,9 +43,6 @@
 
     <string name="loading_video">Loading Video…</string>
 
-    <string name="menu_about">About App</string>
-
-
     <!--Progress Cancel-->
     <string name="reset_progress">Reset progress</string>
     <string name="reset_progress_title">Reset progress?</string>
@@ -220,5 +217,23 @@
         <item quantity="other">%1$d exercises</item>
     </plurals>
     <string name="menu_settings">Settings</string>
+
+<!--About App-->
+    <string name="menu_about">About app</string>
+
+    <string name="about_title">About the app</string>
+
+    <string name="about_description">
+FaceYoga is a mobile app with daily exercises for the face and neck.
+
+The program helps build a regular self-care habit and practice exercises in a simple and convenient format.
+</string>
+
+    <string name="about_version">App version: %1$s (%2$d)</string>
+
+    <string name="about_warning">
+This app is not a medical product and does not replace professional medical advice.
+</string>
+
 
 </resources>

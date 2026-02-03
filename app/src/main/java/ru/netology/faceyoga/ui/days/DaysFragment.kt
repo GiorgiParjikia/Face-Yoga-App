@@ -77,20 +77,23 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
 
     private fun setupToolbarMenu() {
         binding.toolbar.menu.clear()
-        binding.toolbar.inflateMenu(R.menu.menu_days)
+        binding.toolbar.inflateMenu(R.menu.menu_settings)
 
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
+
                 R.id.action_about -> {
-                    // Заглушка — потом заполнишь
-                    Snackbar.make(binding.root, "Скоро будет", Snackbar.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.aboutFragment)
                     true
                 }
 
                 R.id.action_reset_progress -> {
-                    // если disabled — клик и так не пройдет, но на всякий случай:
                     if (!item.isEnabled) {
-                        Snackbar.make(binding.root, "Нет прогресса для сброса", Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(
+                            binding.root,
+                            "Нет прогресса для сброса",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
                         return@setOnMenuItemClickListener true
                     }
                     showResetDialog()

@@ -1,6 +1,8 @@
 package ru.netology.faceyoga
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNav.isVisible = destination.id !in hideBottomNavOn
 
-            // ✅ ФИКС: корректная подсветка вкладки без навигации (не используем selectedItemId!)
+            // ✅ корректная подсветка вкладки без лишней навигации
             val tabId = destination.findBottomTabId()
             if (tabId != null) {
                 val item = bottomNav.menu.findItem(tabId)
@@ -55,9 +57,38 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
     }
 
+    // ─────────────────────────────
+    // TOP MENU (⋮)
+    // ─────────────────────────────
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_settings, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val navHost =
+            supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
+        val navController = navHost.navController
+
+        return when (item.itemId) {
+            R.id.action_about -> {
+                navController.navigate(R.id.aboutFragment)
+                true
+            }
+
+            R.id.action_reset_progress -> {
+                // TODO: логика сброса прогресса
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     /**
-     * Возвращаем id пункта bottom nav (у тебя они совпадают с id фрагментов).
-     * Весь workout flow считаем частью вкладки "Упражнения" (daysFragment).
+     * Возвращаем id пункта bottom nav
+     * Весь workout flow считаем частью вкладки "Упражнения"
      */
     private fun NavDestination.findBottomTabId(): Int? {
         return when (id) {

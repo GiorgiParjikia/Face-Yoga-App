@@ -18,8 +18,8 @@ object SeedPlansEasy {
     fun build(): Map<Int, List<DayExerciseSeed>> =
         mapOf(
             1 to listOf(
-                ex("Chin and Jawline Lift", reps = 5),
-                ex("Jawline & Face Lift", reps = 2),
+                ex("Chin and Jawline Lift", reps = 10),
+                ex("Jawline & Face Lift", reps = 10),
                 ex("Nasolabial Fold Smoothing", reps = 10),
                 relax(60),
                 ex("Cheek Lift", reps = 10),

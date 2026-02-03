@@ -45,8 +45,6 @@
     <string name="reset">განულება</string>
     <string name="progress_reset_done">პროგრესი განულებულია</string>
 
-    <string name="menu_about">აპლიკაციის შესახებ</string>
-
 
 
     <!--Warnings-->
@@ -214,6 +212,23 @@
     <string name="ex_forehead_wrinkle_smoothing_right">შუბლის ნაოჭების გასწორება (მარჯვენა მხარე)</string>
     <string name="ex_forehead_wrinkle_smoothing_left">შუბლის ნაოჭების გასწორება (მარცხენა მხარე)</string>
     <string name="ex_lymphatic_drainage_self_massage_routine">ლიმფური დრენაჟის თვითმასაჟის კომპლექსი</string>
+
+    <!--About App-->
+    <string name="menu_about">აპლიკაციის შესახებ</string>
+
+    <string name="about_title">აპლიკაციის შესახებ</string>
+
+    <string name="about_description">
+FaceYoga არის მობილური აპლიკაცია სახისა და კისრის ყოველდღიური ვარჯიშებისთვის.
+
+პროგრამა გეხმარებათ თვითმოვლის რეგულარული ჩვევის ჩამოყალიბებაში და ვარჯიშების მარტივ და მოსახერხებელ ფორმატში შესრულებაში.
+</string>
+
+    <string name="about_version">აპლიკაციის ვერსია: %1$s (%2$d)</string>
+
+    <string name="about_warning">
+აპლიკაცია არ წარმოადგენს სამედიცინო პროდუქტს და არ ცვლის სპეციალისტის კონსულტაციას.
+</string>
 
 
 </resources>
