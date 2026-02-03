@@ -28,9 +28,11 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
 
     private val viewModel: DayExercisesViewModel by viewModels()
 
-    // gs:// → https для превью
     @Inject
     lateinit var videoUrlResolver: VideoUrlResolver
+
+    private var previewController: VideoPreviewController? = null
+    private var holdPreviewTooltip: HoldPreviewTooltip? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,8 +54,6 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
         val args = requireArguments()
         val dayNumber = args.getInt("dayNumber", 1)
         val programDayId = args.getLong("programDayId")
-
-        // ⚠️ временно: защита от входа в закрытый день
         val isLocked = args.getBoolean("isLocked", false)
 
         // -------- Toolbar --------
@@ -62,11 +62,28 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
             findNavController().popBackStack()
         }
 
+        // -------- Video preview controller --------
+        previewController = VideoPreviewController(
+            parent = binding.root,
+            scope = viewLifecycleOwner.lifecycleScope,
+            videoUrlResolver = videoUrlResolver
+        )
+
+        // -------- Tooltip (1 раз) --------
+        holdPreviewTooltip = HoldPreviewTooltip(
+            parent = binding.root,
+            anchor = binding.toolbar, // ✅ ВАЖНО: якорь
+            scope = viewLifecycleOwner.lifecycleScope
+        ).also {
+            it.showIfNeeded()
+        }
+
         // -------- Список упражнений --------
         val adapter = DayExercisesAdapter(
             videoUrlResolver = videoUrlResolver,
             scope = viewLifecycleOwner.lifecycleScope,
-            onClick = { /* клик по упражнению (если понадобится) */ }
+            previewController = previewController!!,
+            onClick = { /* обычный клик */ }
         )
         binding.list.adapter = adapter
 
@@ -127,6 +144,9 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
     }
 
     override fun onDestroyView() {
+        previewController?.release()
+        previewController = null
+        holdPreviewTooltip = null
         _binding = null
         super.onDestroyView()
     }

@@ -19,6 +19,9 @@
 
     <string name="loading_video">Загрузка видео…</string>
 
+    <string name="tooltip_hold_preview">Удерживайте упражнение для превью</string>
+
+
 
     <plurals name="exercises_count">
         <item quantity="one">%1$d упражнение</item>

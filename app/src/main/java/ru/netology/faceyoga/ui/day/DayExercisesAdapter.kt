@@ -1,6 +1,7 @@
 package ru.netology.faceyoga.ui.day
 
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.view.isVisible
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.netology.faceyoga.R
@@ -25,6 +28,7 @@ import java.util.concurrent.ConcurrentHashMap
 class DayExercisesAdapter(
     private val videoUrlResolver: VideoUrlResolver,
     private val scope: CoroutineScope,
+    private val previewController: VideoPreviewController,
     private val onClick: (DayExerciseUi) -> Unit = {}
 ) : ListAdapter<DayExerciseUi, DayExercisesAdapter.VH>(Diff) {
 
@@ -37,7 +41,14 @@ class DayExercisesAdapter(
             parent,
             false
         )
-        return VH(binding, videoUrlResolver, scope, previewCache, onClick)
+        return VH(
+            binding = binding,
+            resolver = videoUrlResolver,
+            scope = scope,
+            cache = previewCache,
+            previewController = previewController,
+            onClick = onClick
+        )
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
@@ -49,15 +60,63 @@ class DayExercisesAdapter(
         private val resolver: VideoUrlResolver,
         private val scope: CoroutineScope,
         private val cache: ConcurrentHashMap<String, String>,
+        private val previewController: VideoPreviewController,
         private val onClick: (DayExerciseUi) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private var current: DayExerciseUi? = null
         private var boundPreviewKey: String? = null
 
+        // ⏱ job для задержки показа превью
+        private var previewJob: Job? = null
+
         init {
+            // обычный клик
             binding.root.setOnClickListener {
                 current?.let(onClick)
+            }
+
+            // 🔥 LONG PRESS VIDEO PREVIEW (с задержкой)
+            binding.root.setOnTouchListener { _, event ->
+                val item = current
+                val videoUri = item?.videoUri
+
+                if (videoUri.isNullOrBlank()) return@setOnTouchListener false
+
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        previewJob?.cancel()
+
+                        val localId = current?.id
+                        previewJob = scope.launch {
+                            delay(1_500) // ⏱ 1.5 секунды
+
+                            // защита от реюза ViewHolder
+                            if (current?.id == localId) {
+                                previewController.show(videoUri)
+                            }
+                        }
+                        true
+                    }
+
+                    MotionEvent.ACTION_UP -> {
+                        previewJob?.cancel()
+                        previewJob = null
+                        previewController.hide()
+                        binding.root.performClick() // 👈 ВАЖНО
+                        true
+                    }
+
+                    MotionEvent.ACTION_CANCEL -> {
+                        previewJob?.cancel()
+                        previewJob = null
+                        previewController.hide()
+                        true
+                    }
+
+
+                    else -> false
+                }
             }
         }
 
@@ -85,7 +144,7 @@ class DayExercisesAdapter(
                     ctx.localizedItemName(item.requiredItemKey)
             }
 
-            // -------- Preview --------
+            // -------- Preview image --------
             val uri = item.previewImageUri
             boundPreviewKey = uri
 

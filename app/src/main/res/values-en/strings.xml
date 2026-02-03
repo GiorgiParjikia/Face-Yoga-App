@@ -22,6 +22,9 @@
 
     <string name="next_prefix">Next: %1$s</string>
 
+    <string name="tooltip_hold_preview">Press and hold an exercise to preview</string>
+
+
     <string name="day_locked_toast">Complete day %1$d first</string>
 
     <string name="complete_previous_day">

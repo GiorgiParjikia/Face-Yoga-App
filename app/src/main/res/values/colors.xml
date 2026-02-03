@@ -31,6 +31,7 @@
 
     <!-- Overlay on video -->
     <color name="overlay_dark">#CC000000</color>
+    <color name="video_background">#F6F6F4</color>
 
     <!-- Text / icons on dark background -->
     <color name="text_on_dark">#FFFFFF</color>
