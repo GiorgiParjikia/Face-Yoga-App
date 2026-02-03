@@ -36,7 +36,7 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDayExercisesBinding.bind(view)
 
-        // Insets под статус-бар
+        // -------- Insets под статус-бар --------
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val topInset = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
             binding.toolbar.setPadding(
@@ -53,7 +53,7 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
         val dayNumber = args.getInt("dayNumber", 1)
         val programDayId = args.getLong("programDayId")
 
-        // ⚠️ Оставляем, но теперь по идее не понадобится (DaysFragment не пускает в locked)
+        // ⚠️ временно: защита от входа в закрытый день
         val isLocked = args.getBoolean("isLocked", false)
 
         // -------- Toolbar --------
@@ -63,7 +63,11 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
         }
 
         // -------- Список упражнений --------
-        val adapter = DayExercisesAdapter(videoUrlResolver)
+        val adapter = DayExercisesAdapter(
+            videoUrlResolver = videoUrlResolver,
+            scope = viewLifecycleOwner.lifecycleScope,
+            onClick = { /* клик по упражнению (если понадобится) */ }
+        )
         binding.list.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -96,7 +100,7 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
             }
         }
 
-        // -------- Start → Countdown (с защитой) --------
+        // -------- Start → Countdown --------
         if (isLocked) {
             binding.start.isEnabled = false
             binding.start.alpha = 0.45f
@@ -112,7 +116,7 @@ class DayExercisesFragment : Fragment(R.layout.fragment_day_exercises) {
             binding.start.setOnClickListener {
                 val navArgs = Bundle().apply {
                     putLong("programDayId", programDayId)
-                    putInt("dayNumber", dayNumber) // ✅ NEW: прокидываем dayNumber
+                    putInt("dayNumber", dayNumber)
                 }
                 findNavController().navigate(
                     R.id.action_dayExercisesFragment_to_countdownFragment,

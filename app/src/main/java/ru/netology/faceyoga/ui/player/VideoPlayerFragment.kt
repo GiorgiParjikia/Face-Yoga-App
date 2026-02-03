@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
 import ru.netology.faceyoga.data.media.VideoUrlResolver
 import ru.netology.faceyoga.databinding.FragmentVideoPlayerBinding
+import ru.netology.faceyoga.ui.common.StateKeys
 import ru.netology.faceyoga.ui.common.localizedExerciseTitle
 import ru.netology.faceyoga.ui.day.DayExerciseUi
 import ru.netology.faceyoga.ui.day.DayExercisesViewModel
@@ -43,22 +44,19 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
     private var player: ExoPlayer? = null
 
-    // --- TIMER ---
     private var timer: CountDownTimer? = null
     private var lastTimerKey: String? = null
-    private var pausedTimerSeconds: Int? = null   // сколько осталось при сворачивании
+    private var pausedTimerSeconds: Int? = null
 
-    // очередь
     private var queueWasSet = false
     private var lastQueueState: PlayerQueueState? = null
 
-    // аргументы
     private val programDayId: Long by lazy {
-        requireArguments().getLong("programDayId")
+        requireArguments().getLong(StateKeys.PROGRAM_DAY_ID)
     }
 
     private val dayNumber: Int by lazy {
-        requireArguments().getInt("dayNumber", 1)
+        requireArguments().getInt(StateKeys.DAY_NUMBER, 1)
     }
 
     private fun formatMmSs(totalSeconds: Int): String {
@@ -70,11 +68,8 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentVideoPlayerBinding.bind(view)
 
-        // ✅ Поднимаем нижнюю панель над системной навигацией (кнопки/жесты)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val navBarBottom = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-
-            // bottomContainer должен быть в xml: android:id="@+id/bottomContainer"
             binding.bottomContainer.setPadding(
                 binding.bottomContainer.paddingLeft,
                 binding.bottomContainer.paddingTop,
@@ -84,34 +79,16 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             insets
         }
 
-        // ✅ Перехват "Назад" с подтверждением выхода
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             showExitDialog()
         }
+        binding.btnClose.setOnClickListener { showExitDialog() }
 
-        // ✅ Клик по крестику (Close)
-        binding.btnClose.setOnClickListener {
-            showExitDialog()
-        }
-
-        // 🎥 Player
         player = ExoPlayer.Builder(requireContext()).build().also { exo ->
             exo.repeatMode = Player.REPEAT_MODE_ONE
             binding.playerView.player = exo
-
-            exo.addListener(object : Player.Listener {
-                override fun onPlaybackStateChanged(state: Int) {
-                    val loading = state == Player.STATE_BUFFERING || state == Player.STATE_IDLE
-                    binding.loadingOverlay.visibility = if (loading) View.VISIBLE else View.GONE
-                }
-
-                override fun onIsPlayingChanged(isPlaying: Boolean) {
-                    if (isPlaying) binding.loadingOverlay.visibility = View.GONE
-                }
-            })
         }
 
-        // 👉 Next / Finish
         binding.btnNext.setOnClickListener {
             val state = lastQueueState ?: return@setOnClickListener
 
@@ -120,40 +97,32 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 pausedTimerSeconds = null
                 playerViewModel.next()
             } else {
-                // ✅ NEW: фиксируем прогресс дня перед Congrats
                 playerViewModel.finishDay()
-
                 findNavController().navigate(
                     R.id.action_videoPlayerFragment_to_congratsFragment,
                     bundleOf(
-                        "programDayId" to programDayId,
-                        "dayNumber" to dayNumber
+                        StateKeys.PROGRAM_DAY_ID to programDayId,
+                        StateKeys.DAY_NUMBER to dayNumber
                     )
                 )
             }
         }
 
-        // 1️⃣ упражнения дня
+        // 1) упражнения дня -> очередь
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 dayViewModel.exercises.collect { list ->
                     if (list.isEmpty()) return@collect
-
                     val withVideo = list.filter { !it.videoUri.isNullOrBlank() }
-
-                    if (withVideo.isNotEmpty()) {
-                        if (!queueWasSet) {
-                            queueWasSet = true
-                            playerViewModel.setQueue(withVideo)
-                        }
-                    } else {
-                        Toast.makeText(requireContext(), "Для этого дня нет видео", Toast.LENGTH_SHORT).show()
+                    if (withVideo.isNotEmpty() && !queueWasSet) {
+                        queueWasSet = true
+                        playerViewModel.setQueue(withVideo)
                     }
                 }
             }
         }
 
-        // 2️⃣ смена текущего упражнения
+        // 2) смена текущего упражнения
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 playerViewModel.queue.collect { state ->
@@ -167,13 +136,8 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
     override fun onStart() {
         super.onStart()
-
-        if (player != null && playerViewModel.current() != null) {
-            player?.playWhenReady = true
-            player?.play()
-            binding.loadingOverlay.visibility = View.GONE
-        }
-        // ❗ Таймер НЕ запускаем тут — он возобновится внутри updateOverlay()
+        player?.playWhenReady = true
+        player?.play()
     }
 
     private fun updateOverlay(state: PlayerQueueState) {
@@ -185,6 +149,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
         if (isTimer(current)) {
             binding.progressLine.visibility = View.VISIBLE
+
             val seconds = secondsFromRightInfo(current).coerceAtLeast(1)
             val key = "${current.title}|${current.rightInfo}|${state.index}"
 
@@ -192,47 +157,56 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             if (resume != null && resume > 0 && lastTimerKey == key && timer == null) {
                 pausedTimerSeconds = null
                 startRestTimer(resume)
-            } else {
-                if (lastTimerKey != key) {
-                    lastTimerKey = key
-                    pausedTimerSeconds = null
-                    startRestTimer(seconds)
-                }
+            } else if (lastTimerKey != key) {
+                lastTimerKey = key
+                pausedTimerSeconds = null
+                startRestTimer(seconds)
             }
 
         } else {
             binding.progressLine.visibility = View.GONE
             stopTimerAndResetProgress()
-            binding.tvMainInfo.text = mainInfoText(current)
+
+            // ✅ ПОЛНЫЙ ТЕКСТ В ПЛЕЕРЕ: "5 повторений" (через plurals)
+            binding.tvMainInfo.text = repsFullText(current)
         }
 
         val next = state.list.getOrNull(state.index + 1)
         if (next != null) {
             val nextTitle = ctx.localizedExerciseTitle(next.title)
-            val nextInfo = mainInfoText(next)
-            binding.tvNext.text = ctx.getString(R.string.next_prefix, "$nextTitle — $nextInfo")
+            val nextInfo = if (isTimer(next)) next.rightInfo else repsFullText(next)
 
-            binding.btnNext.isEnabled = true
+            binding.tvNext.text = ctx.getString(
+                R.string.next_prefix,
+                "$nextTitle — $nextInfo"
+            )
             binding.btnNext.text = ctx.getString(R.string.action_next)
         } else {
             binding.tvNext.text = ""
-            binding.btnNext.isEnabled = true
             binding.btnNext.text = ctx.getString(R.string.finish_day_button)
         }
+    }
+
+    private fun repsFullText(item: DayExerciseUi): String {
+        val ctx = requireContext()
+        val reps = repsFromRightInfo(item).takeIf { it > 0 } ?: 0
+        return ctx.resources.getQuantityString(
+            R.plurals.repetitions,
+            reps,
+            reps
+        )
     }
 
     private fun startRestTimer(totalSeconds: Int) {
         timer?.cancel()
 
-        val duration = totalSeconds + 1
-
         binding.progressLine.max = totalSeconds
         binding.progressLine.progress = totalSeconds
         binding.tvMainInfo.text = formatMmSs(totalSeconds)
 
-        timer = object : CountDownTimer(duration * 1000L, 1000L) {
+        timer = object : CountDownTimer((totalSeconds + 1) * 1000L, 1000L) {
             override fun onTick(millisUntilFinished: Long) {
-                val left = (millisUntilFinished / 1000L).toInt().coerceAtMost(totalSeconds)
+                val left = (millisUntilFinished / 1000L).toInt().coerceAtLeast(0)
                 pausedTimerSeconds = left
                 binding.progressLine.progress = left
                 binding.tvMainInfo.text = formatMmSs(left)
@@ -269,6 +243,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                         prepare()
                         playWhenReady = true
                     }
+                    binding.loadingOverlay.visibility = View.GONE
                 }
             }.onFailure {
                 launch(Dispatchers.Main) {
@@ -293,16 +268,6 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
     private fun repsFromRightInfo(item: DayExerciseUi): Int =
         item.rightInfo.filter { it.isDigit() }.toIntOrNull() ?: 0
 
-    private fun mainInfoText(item: DayExerciseUi): String {
-        val ctx = requireContext()
-        return if (isTimer(item)) {
-            item.rightInfo
-        } else {
-            val reps = repsFromRightInfo(item).takeIf { it > 0 } ?: 10
-            ctx.getString(R.string.reps_format, reps)
-        }
-    }
-
     override fun onStop() {
         super.onStop()
 
@@ -314,9 +279,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         timer?.cancel()
         timer = null
 
-        player?.playWhenReady = false
         player?.pause()
-        player?.stop()
     }
 
     override fun onDestroyView() {
@@ -326,14 +289,11 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         player = null
     }
 
-    // ✅ подтверждение выхода из тренировки
     private fun showExitDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.exit_workout_title))
             .setMessage(getString(R.string.exit_workout_message))
-            .setNegativeButton(getString(R.string.stay)) { dialog, _ ->
-                dialog.dismiss()
-            }
+            .setNegativeButton(getString(R.string.stay)) { dialog, _ -> dialog.dismiss() }
             .setPositiveButton(getString(R.string.exit)) { _, _ ->
                 findNavController().popBackStack(R.id.dayExercisesFragment, false)
             }

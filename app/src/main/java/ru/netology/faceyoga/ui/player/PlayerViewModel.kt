@@ -12,6 +12,8 @@ import ru.netology.faceyoga.data.db.UserDayProgressEntity
 import ru.netology.faceyoga.data.repository.ProgramRepository
 import ru.netology.faceyoga.ui.day.DayExerciseUi
 import javax.inject.Inject
+import ru.netology.faceyoga.ui.common.StateKeys
+
 
 @HiltViewModel
 class PlayerViewModel @Inject constructor(
@@ -20,8 +22,11 @@ class PlayerViewModel @Inject constructor(
     private val progressDao: ProgressDao,
 ) : ViewModel() {
 
-    private val programDayId: Long = savedStateHandle["programDayId"] ?: 0L
-    private val dayNumber: Int = savedStateHandle["dayNumber"] ?: 0
+    private val programDayId: Long =
+        savedStateHandle[StateKeys.PROGRAM_DAY_ID] ?: 0L
+
+    private val dayNumber: Int =
+        savedStateHandle[StateKeys.DAY_NUMBER] ?: 0
 
     private val _queue = MutableStateFlow(PlayerQueueState())
     val queue: StateFlow<PlayerQueueState> = _queue

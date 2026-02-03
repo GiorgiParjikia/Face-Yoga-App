@@ -9,7 +9,7 @@
     <color name="background_main">#FAF9F7</color>
     <color name="surface_card">#FFFFFF</color>
 
-    <!-- bottom nav -->
+    <!-- Bottom nav -->
     <color name="bottom_nav_bg">#FFFFFF</color>
     <color name="bottom_nav_shadow">#14000000</color>
 
@@ -21,11 +21,24 @@
     <color name="icon_inactive">#9E9E9E</color>
     <color name="system_nav_bar">#111111</color>
 
-
     <!-- Other -->
     <color name="divider">#E0E0E0</color>
     <color name="surface_card_locked">#F2F2F2</color>
 
+    <!-- ================== -->
+    <!-- Added for video UI -->
+    <!-- ================== -->
 
+    <!-- Overlay on video -->
+    <color name="overlay_dark">#CC000000</color>
+
+    <!-- Text / icons on dark background -->
+    <color name="text_on_dark">#FFFFFF</color>
+    <color name="icon_on_video">#000000</color>
+    <color name="transparent">#00000000</color>
+
+
+    <!-- Progress -->
+    <color name="progress_background">#BDBDBD</color>
 
 </resources>

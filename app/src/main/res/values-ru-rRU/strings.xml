@@ -31,7 +31,14 @@
     <string name="next_prefix">Далее: %1$s</string>
     <string name="next_placeholder">Далее: %1$s</string>
     <string name="day_locked_toast">Сначала завершите день %1$d</string>
-    <string name="reps_format">%1$d повторений</string>
+
+    <plurals name="repetitions">
+        <item quantity="one">%d повторение</item>
+        <item quantity="few">%d повторения</item>
+        <item quantity="many">%d повторений</item>
+        <item quantity="other">%d повторения</item>
+    </plurals>
+
 
     <string name="complete_previous_day">
     Сначала завершите предыдущий день

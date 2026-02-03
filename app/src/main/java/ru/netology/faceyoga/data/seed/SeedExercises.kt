@@ -11,7 +11,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "Rest and relax",
             type = ExerciseType.TIMER,
-            defaultSeconds = 60,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/Relax.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/break.jpg"
         ),
@@ -20,7 +19,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/1.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/1.jpg"
 
@@ -30,7 +28,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/2.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/2.jpg"
         ),
@@ -39,7 +36,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/3.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/3.jpg"
         ),
@@ -48,7 +44,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/4.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/4.jpg"
         ),
@@ -57,7 +52,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/5.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/5.jpg"
         ),
@@ -66,7 +60,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/6.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/6.jpg"
         ),
@@ -75,7 +68,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/7.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/7.jpg"
         ),
@@ -84,7 +76,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/8.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/8.jpg"
         ),
@@ -93,7 +84,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/9.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/9.jpg"
         ),
@@ -102,7 +92,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/10.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/10.jpg"
         ),
@@ -111,7 +100,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/11.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/11.jpg"
         ),
@@ -120,7 +108,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/12.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/12.jpg"
         ),
@@ -129,7 +116,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/13.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/13.jpg"
         ),
@@ -138,7 +124,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/14.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/14.jpg"
         ),
@@ -147,7 +132,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/15.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/15.jpg"
         ),
@@ -156,7 +140,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/16.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/16.jpg"
         ),
@@ -165,7 +148,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             requiresItem = true,
             requiredItemKey = "pencil",
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/17.mp4",
@@ -176,7 +158,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/18.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/18.jpg"
         ),
@@ -185,7 +166,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/19.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/19.jpg"
         ),
@@ -194,7 +174,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/20.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/20.jpg"
         ),
@@ -203,7 +182,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/21.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/21.jpg"
         ),
@@ -212,7 +190,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/22.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/22.jpg"
         ),
@@ -221,7 +198,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/23.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/23.jpg"
         ),
@@ -230,7 +206,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/24.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/24.jpg"
         ),
@@ -239,7 +214,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/25.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/25.jpg"
         ),
@@ -248,7 +222,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/26.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/26.jpg"
         ),
@@ -257,7 +230,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/27.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/27.jpg"
         ),
@@ -266,7 +238,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/28.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/28.jpg"
         ),
@@ -275,7 +246,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/29.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/29.jpg"
         ),
@@ -284,7 +254,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/30.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/30.jpg"
         ),
@@ -293,7 +262,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/31.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/31.jpg"
         ),
@@ -302,7 +270,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/32.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/32.jpg"
         ),
@@ -311,7 +278,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/33.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/33.jpg"
         ),
@@ -320,7 +286,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/34.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/34.jpg"
         ),
@@ -329,7 +294,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/35.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/35.jpg"
         ),
@@ -338,7 +302,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/36.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/36.jpg"
         ),
@@ -347,7 +310,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/37.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/37.jpg"
         ),
@@ -356,7 +318,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/38.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/38.jpg"
         ),
@@ -365,7 +326,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/39.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/39.jpg"
         ),
@@ -374,7 +334,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/40.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/40.jpg"
         ),
@@ -383,7 +342,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/41.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/41.jpg"
         ),
@@ -392,7 +350,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/42.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/42.jpg"
         ),
@@ -401,7 +358,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/43.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/43.jpg"
         ),
@@ -410,7 +366,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/44.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/44.jpg"
         ),
@@ -419,7 +374,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/45.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/45.jpg"
         ),
@@ -428,7 +382,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/46.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/46.jpg"
         ),
@@ -437,7 +390,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/47.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/47.jpg"
         ),
@@ -446,7 +398,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/48.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/48.jpg"
         ),
@@ -455,7 +406,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/49.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/49.jpg"
         ),
@@ -464,7 +414,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/50.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/50.jpg"
         ),
@@ -473,7 +422,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/51.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/51.jpg"
         ),
@@ -482,7 +430,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/52.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/52.jpg"
         ),
@@ -491,7 +438,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/53.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/53.jpg"
         ),
@@ -500,7 +446,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/54.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/54.jpg"
         ),
@@ -509,7 +454,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/55.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/55.jpg"
         ),
@@ -518,7 +462,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/56.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/56.jpg"
         ),
@@ -527,7 +470,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/57.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/57.jpg"
         ),
@@ -536,7 +478,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/58.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/58.jpg"
         ),
@@ -545,7 +486,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/59.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/59.jpg"
         ),
@@ -554,7 +494,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/60.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/60.jpg"
         ),
@@ -563,7 +502,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/61.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/61.jpg"
         ),
@@ -572,7 +510,6 @@ object SeedExercises {
             zone = Zone.LIPS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/62.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/62.jpg"
         ),
@@ -581,7 +518,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/63.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/63.jpg"
         ),
@@ -590,7 +526,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/64.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/64.jpg"
         ),
@@ -599,7 +534,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/65.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/65.jpg"
         ),
@@ -608,7 +542,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/66.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/66.jpg"
         ),
@@ -617,7 +550,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/67.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/67.jpg"
         ),
@@ -626,7 +558,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/68.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/68.jpg"
         ),
@@ -635,7 +566,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/69.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/69.jpg"
         ),
@@ -644,7 +574,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/70.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/70.jpg"
         ),
@@ -653,7 +582,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/71.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/71.jpg"
         ),
@@ -662,7 +590,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/72.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/72.jpg"
         ),
@@ -671,16 +598,14 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/73.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/73.jpg"
         ),
         ExerciseEntity(
             title = "Scalp Stimulation",
-            zone = Zone.FULL_FACE, // Не совсем так (оно направленно на кожу головы, надо прописать в дискрипшне
+            zone = Zone.FULL_FACE, //TODO Не совсем так (оно направленно на кожу головы, надо прописать в дискрипшне
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/74.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/74.jpg"
         ),
@@ -689,7 +614,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/75.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/75.jpg"
         ),
@@ -698,7 +622,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/76.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/76.jpg"
         ),
@@ -707,7 +630,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/77.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/77.jpg"
         ),
@@ -716,7 +638,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/78.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/78.jpg"
         ),
@@ -725,7 +646,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/79.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/79.jpg"
         ),
@@ -734,7 +654,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/80.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/80.jpg"
         ),
@@ -743,7 +662,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/81.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/81.jpg"
         ),
@@ -752,7 +670,6 @@ object SeedExercises {
             zone = Zone.EYES,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/82.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/82.jpg"
         ),
@@ -761,7 +678,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/83.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/83.jpg"
         ),
@@ -770,7 +686,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/84.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/84.jpg"
         ),
@@ -779,7 +694,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/85.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/85.jpg"
         ),
@@ -788,7 +702,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/86.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/86.jpg"
         ),
@@ -797,7 +710,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/87.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/87.jpg"
         ),
@@ -806,7 +718,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/88.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/88.jpg"
         ),
@@ -815,7 +726,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/89.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/89.jpg"
         ),
@@ -824,7 +734,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/90.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/90.jpg"
         ),
@@ -833,7 +742,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/91.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/91.jpg"
         ),
@@ -842,7 +750,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/92.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/92.jpg"
         ),
@@ -851,7 +758,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/93.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/93.jpg"
         ),
@@ -860,7 +766,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/94.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/94.jpg"
         ),
@@ -869,7 +774,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/95.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/95.jpg"
         ),
@@ -878,7 +782,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/95_2.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/95_2.jpg"
         ),
@@ -887,7 +790,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/96.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/96.jpg"
         ),
@@ -896,7 +798,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/97.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/97.jpg"
         ),
@@ -905,7 +806,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/98.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/98.jpg"
         ),
@@ -914,7 +814,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/99.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/99.jpg"
         ),
@@ -923,7 +822,6 @@ object SeedExercises {
             zone = Zone.NECK,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/100.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/100.jpg"
         ),
@@ -932,7 +830,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/101.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/101.jpg"
         ),
@@ -941,7 +838,6 @@ object SeedExercises {
             zone = Zone.JAWLINE_CHIN,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/102.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/102.jpg"
         ),
@@ -950,7 +846,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/103.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/103.jpg"
         ),
@@ -959,7 +854,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/104.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/104.jpg"
         ),
@@ -968,7 +862,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/105.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/105.jpg"
         ),
@@ -977,7 +870,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/106.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/106.jpg"
         ),
@@ -986,7 +878,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/107.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/107.jpg"
         ),
@@ -995,7 +886,6 @@ object SeedExercises {
             zone = Zone.CHEEKS,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/107_2.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/107_2.jpg"
         ),
@@ -1004,7 +894,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/108.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/108.jpg"
         ),
@@ -1013,7 +902,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/109.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/109.jpg"
         ),
@@ -1022,7 +910,6 @@ object SeedExercises {
             zone = Zone.FOREHEAD,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/109_2.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/109_2.jpg"
         ),
@@ -1031,7 +918,6 @@ object SeedExercises {
             zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
-            defaultReps = 10,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/110.mp4",
             previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/110.jpg"
         ),

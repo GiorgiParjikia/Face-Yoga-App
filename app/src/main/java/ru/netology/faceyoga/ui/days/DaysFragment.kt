@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
 import ru.netology.faceyoga.databinding.FragmentDaysBinding
+import ru.netology.faceyoga.ui.common.StateKeys
 
 @AndroidEntryPoint
 class DaysFragment : Fragment(R.layout.fragment_days) {
@@ -41,8 +42,8 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
         val adapter = DaysAdapter(
             onClick = { day ->
                 val args = Bundle().apply {
-                    putLong("programDayId", day.programDayId)
-                    putInt("dayNumber", day.dayNumber)
+                    putLong(StateKeys.PROGRAM_DAY_ID, day.programDayId)
+                    putInt(StateKeys.DAY_NUMBER, day.dayNumber)
                 }
                 findNavController().navigate(
                     R.id.action_daysFragment_to_dayExercisesFragment,

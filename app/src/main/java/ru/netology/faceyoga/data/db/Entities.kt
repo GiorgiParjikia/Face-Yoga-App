@@ -98,7 +98,7 @@ data class DayExerciseEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val programDayId: Long,
-    val exerciseId: Long,
+    val exerciseId: Long?, // <-- ВОТ ЭТО ГЛАВНОЕ (nullable для Timer/Relax)
     val order: Int, // 1..N
     val overrideReps: Int? = null,
     val overrideSeconds: Int? = null

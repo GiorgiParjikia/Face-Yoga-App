@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,7 +16,7 @@
         app:use_controller="false"
         app:resize_mode="zoom" />
 
-    <!-- ❌ Close (X) — ВСЕГДА поверх видео -->
+    <!-- ❌ Close -->
     <ImageButton
         android:id="@+id/btnClose"
         android:layout_width="44dp"
@@ -24,54 +26,48 @@
         android:layout_marginEnd="12dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_close"
-        app:tint="@android:color/background_dark"
+        app:tint="@color/icon_on_video"
         android:contentDescription="@string/exit" />
 
-    <!-- ⏳ Loader поверх видео -->
-    <FrameLayout
+    <!-- ⏳ Loader -->
+    <LinearLayout
         android:id="@+id/loadingOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CC000000"
+        android:background="@color/overlay_dark"
+        android:gravity="center"
+        android:orientation="vertical"
         android:visibility="gone">
 
-        <LinearLayout
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+        <TextView
+            android:id="@+id/tvLoading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_marginTop="12dp"
+            android:text="@string/loading_video"
+            android:textColor="@color/text_on_dark"
+            android:textSize="14sp" />
+    </LinearLayout>
 
-            <ProgressBar
-                android:id="@+id/pbLoading"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="48dp"
-                android:layout_height="48dp" />
-
-            <TextView
-                android:id="@+id/tvLoading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/loading_video"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </FrameLayout>
-
-    <!-- 1 / 6 -->
+    <!-- 1 / 6 (preview) -->
     <TextView
         android:id="@+id/tvCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="38dp"
-        android:text="1 / 6"
+        tools:text="1 / 6"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@android:color/background_dark" />
+        android:textColor="@color/icon_on_video" />
 
-    <!-- ⬇️ Нижняя панель (ВАЖНО: id нужен для WindowInsets) -->
+    <!-- ⬇️ Bottom panel -->
     <LinearLayout
         android:id="@+id/bottomContainer"
         android:layout_width="match_parent"
@@ -80,7 +76,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- карточка -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,7 +93,7 @@
                     android:id="@+id/tvTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_placeholder"
+                    tools:text="Exercise title"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:maxLines="2"
@@ -114,14 +109,14 @@
                     android:indeterminate="false"
                     android:visibility="gone"
                     android:progressTint="@color/green_primary_dark"
-                    android:backgroundTint="@android:color/darker_gray" />
+                    android:backgroundTint="@color/progress_background" />
 
                 <TextView
                     android:id="@+id/tvMainInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text=""
+                    tools:text="00:30"
                     android:textColor="@color/green_primary"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -131,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/next_placeholder"
+                    tools:text="Next: Exercise"
                     android:maxLines="2"
                     android:textColor="@color/text_secondary" />
 

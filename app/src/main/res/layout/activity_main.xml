@@ -29,7 +29,7 @@
         app:labelVisibilityMode="labeled"
 
         app:itemIconSize="24dp"
-        app:itemRippleColor="@android:color/transparent"
+        app:itemRippleColor="@color/transparent"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

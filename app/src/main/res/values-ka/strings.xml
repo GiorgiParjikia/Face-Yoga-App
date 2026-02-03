@@ -19,7 +19,13 @@
     <string name="next_prefix">შემდეგი: %1$s</string>
     <string name="next_placeholder">შემდეგი: %1$s</string>
     <string name="day_locked_toast">ჯერ დაასრულეთ %1$d დღე</string>
-    <string name="reps_format">%1$d გამეორება</string>
+    <!-- res/values-ka/plurals.xml -->
+    <plurals name="repetitions">
+        <item quantity="one">%d გამეორება</item>
+        <item quantity="other">%d გამეორება</item>
+    </plurals>
+
+
 
     <string name="complete_previous_day">
     ჯერ წინა დღე დაასრულეთ

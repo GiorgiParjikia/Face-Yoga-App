@@ -30,7 +30,12 @@
 
 
     <string name="next_placeholder">Next: %1$s</string>
-    <string name="reps_format">%1$d reps</string>
+    <!-- res/values/plurals.xml -->
+    <plurals name="repetitions">
+        <item quantity="one">%d repetition</item>
+        <item quantity="other">%d repetitions</item>
+    </plurals>
+
 
     <string name="countdown_hint">The exercises will begin in</string>
 

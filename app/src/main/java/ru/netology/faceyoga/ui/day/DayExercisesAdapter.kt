@@ -2,6 +2,7 @@ package ru.netology.faceyoga.ui.day
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -9,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.netology.faceyoga.R
@@ -24,11 +24,9 @@ import java.util.concurrent.ConcurrentHashMap
 
 class DayExercisesAdapter(
     private val videoUrlResolver: VideoUrlResolver,
+    private val scope: CoroutineScope,
     private val onClick: (DayExerciseUi) -> Unit = {}
 ) : ListAdapter<DayExerciseUi, DayExercisesAdapter.VH>(Diff) {
-
-    private val job = SupervisorJob()
-    private val scope = CoroutineScope(job + Dispatchers.Main)
 
     // cache: gs://... -> https://...
     private val previewCache = ConcurrentHashMap<String, String>()
@@ -39,29 +37,22 @@ class DayExercisesAdapter(
             parent,
             false
         )
-        return VH(binding, onClick, videoUrlResolver, scope, previewCache)
+        return VH(binding, videoUrlResolver, scope, previewCache, onClick)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(getItem(position))
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView)
-        job.cancel()
-    }
-
     class VH(
         private val binding: ItemDayExerciseBinding,
-        private val onClick: (DayExerciseUi) -> Unit,
         private val resolver: VideoUrlResolver,
         private val scope: CoroutineScope,
-        private val cache: ConcurrentHashMap<String, String>
+        private val cache: ConcurrentHashMap<String, String>,
+        private val onClick: (DayExerciseUi) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private var current: DayExerciseUi? = null
-
-        // защита от реюза viewHolder при асинхронной загрузке
         private var boundPreviewKey: String? = null
 
         init {
@@ -74,31 +65,31 @@ class DayExercisesAdapter(
             current = item
             val ctx = itemView.context
 
-            // title
+            // -------- Title --------
             binding.title.text = ctx.localizedExerciseTitle(item.title)
 
-            // subtitle (через ресурсы)
+            // -------- Subtitle --------
             val zoneText = ctx.localizedZone(item.zone)
             val typeText = ctx.localizedExerciseType(item.type)
-            binding.subtitle.text = ctx.getString(R.string.exercise_subtitle, zoneText, typeText)
+            binding.subtitle.text =
+                ctx.getString(R.string.exercise_subtitle, zoneText, typeText)
 
-            // rightInfo
+            // -------- Right info --------
             binding.rightInfo.text = item.rightInfo
 
-            // ===== ITEM ICON (NEW) =====
-            // показываем, если нужен предмет
+            // -------- Item icon --------
             binding.itemIcon.isVisible = item.requiresItem
             if (item.requiresItem) {
-                // пока один предмет: pencil
                 binding.itemIcon.setImageResource(R.drawable.ic_item_pencil)
-                binding.itemIcon.contentDescription = ctx.localizedItemName(item.requiredItemKey)
+                binding.itemIcon.contentDescription =
+                    ctx.localizedItemName(item.requiredItemKey)
             }
 
-            // ===== PREVIEW =====
+            // -------- Preview --------
             val uri = item.previewImageUri
             boundPreviewKey = uri
 
-            // placeholder сразу (сброс старой картинки при реюзе)
+            // сбрасываем старую картинку при реюзе
             binding.preview.load(null) {
                 placeholder(R.drawable.ic_placeholder)
                 error(R.drawable.ic_image_error)
@@ -106,29 +97,19 @@ class DayExercisesAdapter(
 
             if (uri.isNullOrBlank()) return
 
-            // https -> грузим сразу
+            // http(s) — грузим сразу
             if (uri.startsWith("http")) {
-                binding.preview.load(uri) {
-                    crossfade(true)
-                    placeholder(R.drawable.ic_placeholder)
-                    error(R.drawable.ic_image_error)
-                    transformations(VerticalCropTransformation(0.18f))
-                }
+                binding.preview.loadPreview(uri)
                 return
             }
 
-            // gs:// -> проверяем кэш
+            // gs:// — проверяем кэш
             cache[uri]?.let { https ->
-                binding.preview.load(https) {
-                    crossfade(true)
-                    placeholder(R.drawable.ic_placeholder)
-                    error(R.drawable.ic_image_error)
-                    transformations(VerticalCropTransformation(0.18f))
-                }
+                binding.preview.loadPreview(https)
                 return
             }
 
-            // gs:// -> резолвим в https и кэшируем
+            // gs:// — резолвим асинхронно
             scope.launch {
                 val https = withContext(Dispatchers.IO) {
                     runCatching { resolver.resolve(uri) }.getOrNull()
@@ -136,24 +117,35 @@ class DayExercisesAdapter(
 
                 cache[uri] = https
 
-                // защита от реюза viewHolder
+                // защита от реюза ViewHolder
                 if (boundPreviewKey != uri) return@launch
 
-                binding.preview.load(https) {
-                    crossfade(true)
-                    placeholder(R.drawable.ic_placeholder)
-                    error(R.drawable.ic_image_error)
-                    transformations(VerticalCropTransformation(0.18f))
-                }
+                binding.preview.loadPreview(https)
             }
         }
     }
 
     private object Diff : DiffUtil.ItemCallback<DayExerciseUi>() {
-        override fun areItemsTheSame(oldItem: DayExerciseUi, newItem: DayExerciseUi): Boolean =
-            oldItem.id == newItem.id
+        override fun areItemsTheSame(
+            oldItem: DayExerciseUi,
+            newItem: DayExerciseUi
+        ): Boolean = oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: DayExerciseUi, newItem: DayExerciseUi): Boolean =
-            oldItem == newItem
+        override fun areContentsTheSame(
+            oldItem: DayExerciseUi,
+            newItem: DayExerciseUi
+        ): Boolean = oldItem == newItem
+    }
+}
+
+/**
+ * Extension для единообразной загрузки превью
+ */
+private fun ImageView.loadPreview(url: String?) {
+    load(url) {
+        crossfade(true)
+        placeholder(R.drawable.ic_placeholder)
+        error(R.drawable.ic_image_error)
+        transformations(VerticalCropTransformation(0.18f))
     }
 }

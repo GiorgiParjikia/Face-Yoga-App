@@ -2,13 +2,7 @@ package ru.netology.faceyoga.data.seed
 
 import javax.inject.Inject
 import javax.inject.Singleton
-import ru.netology.faceyoga.data.db.DayExerciseDao
-import ru.netology.faceyoga.data.db.DayExerciseEntity
-import ru.netology.faceyoga.data.db.ExerciseDao
-import ru.netology.faceyoga.data.db.ProgramDao
-import ru.netology.faceyoga.data.db.ProgramDayDao
-import ru.netology.faceyoga.data.db.ProgramDayEntity
-import ru.netology.faceyoga.data.db.ProgramEntity
+import ru.netology.faceyoga.data.db.*
 
 @Singleton
 class DbSeeder @Inject constructor(
@@ -21,7 +15,7 @@ class DbSeeder @Inject constructor(
     suspend fun seedIfNeeded(): Long {
         val programTitle = "Базовая программа 30 дней"
 
-        // 1) Программа (создать или получить id)
+        // 1) Program
         val programId = programDao.insert(
             ProgramEntity(
                 title = programTitle,
@@ -33,13 +27,12 @@ class DbSeeder @Inject constructor(
             if (id == -1L) programDao.getIdByTitle(programTitle)!! else id
         }
 
-        // 2) Дни 1..30 (создать или получить id)
-        val dayIds: List<Long> = (1..30).map { day ->
-            val title: String? = when (day) {
+        // 2) Days
+        val dayIds = (1..30).map { day ->
+            val title = when (day) {
                 in 1..10 -> "Easy"
                 in 11..20 -> "Medium"
-                in 21..30 -> "Hard"
-                else -> null
+                else -> "Hard"
             }
 
             programDayDao.insert(
@@ -53,46 +46,55 @@ class DbSeeder @Inject constructor(
             }
         }
 
-        // 3) Чистим связи, чтобы пересидинг реально перезаписывал порядок
+        // 3) Clear old links
         dayExerciseDao.deleteAllForProgram(programId)
 
-        // 4) Сидим упражнения (берём из SeedExercises)
+        // 4) Seed exercises
         SeedExercises.exercises.forEach { ex ->
             exerciseDao.insert(ex).let { id ->
                 if (id == -1L) exerciseDao.getIdByTitle(ex.title)!! else id
             }
         }
 
-        // 5) Резолвим id упражнений по EN title
-        suspend fun idEn(title: String): Long =
+        // 5) Resolve exercise id (ТОЛЬКО для Reps)
+        suspend fun idByTitle(title: String): Long =
             exerciseDao.getIdByTitle(title)
-                ?: error("Exercise not found by EN title: $title")
+                ?: error("Exercise not found: $title")
 
-        val relaxId = idEn("Relax")
+        // 6) Plans
+        val planEasy = SeedPlansEasy.build()
+        val planMedium = SeedPlansMedium.build()
+        val planHard = SeedPlansHard.build()
 
-        // 6) Строим планы (берём из SeedPlans*)
-        val planEasy = SeedPlansEasy.build(::idEn, relaxId)
-        val planMedium = SeedPlansMedium.build(::idEn, relaxId)
-        val planHard = SeedPlansHard.build(::idEn, relaxId)
-
-
-        // 7) Вставка связок: 1–10 Easy, 11–20 Medium, 21–30 Hard
+        // 7) Insert day ↔ exercise with overrides
         dayIds.forEachIndexed { index, programDayId ->
             val dayNumber = index + 1
 
-            val ordered: List<Long> = when (dayNumber) {
+            val seeds = when (dayNumber) {
                 in 1..10 -> planEasy[dayNumber].orEmpty()
                 in 11..20 -> planMedium[dayNumber - 10].orEmpty()
-                in 21..30 -> planHard[dayNumber - 20].orEmpty()
-                else -> emptyList()
+                else -> planHard[dayNumber - 20].orEmpty()
             }
 
-            val links = ordered.mapIndexed { i, exId ->
-                DayExerciseEntity(
-                    programDayId = programDayId,
-                    exerciseId = exId,
-                    order = i + 1
-                )
+            val links = seeds.mapIndexed { i, seed ->
+                when (seed) {
+
+                    is DayExerciseSeed.Reps -> DayExerciseEntity(
+                        programDayId = programDayId,
+                        exerciseId = idByTitle(seed.title),
+                        order = i + 1,
+                        overrideReps = seed.reps,
+                        overrideSeconds = null
+                    )
+
+                    is DayExerciseSeed.Timer -> DayExerciseEntity(
+                        programDayId = programDayId,
+                        exerciseId = null, // RELAX / timer не является Exercise
+                        order = i + 1,
+                        overrideReps = null,
+                        overrideSeconds = seed.seconds
+                    )
+                }
             }
 
             dayExerciseDao.insertAll(links)

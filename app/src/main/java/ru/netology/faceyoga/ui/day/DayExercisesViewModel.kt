@@ -10,16 +10,17 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import ru.netology.faceyoga.data.model.ExerciseType
 import ru.netology.faceyoga.data.repository.ProgramRepository
+import ru.netology.faceyoga.ui.common.StateKeys
 import javax.inject.Inject
 
 @HiltViewModel
 class DayExercisesViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    repository: ProgramRepository,
-    private val imageUrlResolver: ru.netology.faceyoga.data.media.ImageUrlResolver
+    repository: ProgramRepository
 ) : ViewModel() {
 
-    private val programDayId: Long = savedStateHandle["programDayId"] ?: 0L
+    private val programDayId: Long =
+        savedStateHandle[StateKeys.PROGRAM_DAY_ID] ?: 0L
 
     val exercises: StateFlow<List<DayExerciseUi>> =
         repository.observeDayExercises(programDayId)
@@ -30,15 +31,13 @@ class DayExercisesViewModel @Inject constructor(
                         title = row.title,
                         zone = row.zone,
                         type = row.type,
-                        rightInfo = formatValue(
+                        rightInfo = shortValue(
                             reps = row.overrideReps ?: row.defaultReps,
                             seconds = row.overrideSeconds ?: row.defaultSeconds,
                             type = row.type
                         ),
                         videoUri = row.videoUri,
                         previewImageUri = row.previewImageUri,
-
-                        // NEW: предметы
                         requiresItem = row.requiresItem,
                         requiredItemKey = row.requiredItemKey
                     )
@@ -50,29 +49,23 @@ class DayExercisesViewModel @Inject constructor(
                 emptyList()
             )
 
-    /**
-     * NEW: уникальные предметы дня — для инфо-блока сверху списка
-     * (например ["pencil"])
-     */
     val requiredItemKeys: StateFlow<List<String>> =
         exercises
-            .map { list ->
-                list.mapNotNull { it.requiredItemKey }
-                    .distinct()
-            }
+            .map { list -> list.mapNotNull { it.requiredItemKey }.distinct() }
             .stateIn(
                 viewModelScope,
                 SharingStarted.WhileSubscribed(5_000),
                 emptyList()
             )
 
-    private fun formatValue(
+    // ✅ ДЛЯ СПИСКА: коротко
+    private fun shortValue(
         reps: Int?,
         seconds: Int?,
         type: ExerciseType
     ): String =
         when (type) {
-            ExerciseType.REPS -> "x${reps ?: 0}"
+            ExerciseType.REPS -> "×${reps ?: 0}"
             ExerciseType.TIMER -> secondsToMmSs(seconds ?: 0)
         }
 
