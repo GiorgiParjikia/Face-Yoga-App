@@ -116,4 +116,16 @@
         android:name="ru.netology.faceyoga.ui.settings.AboutFragment"
         android:label="@string/about_title" />
 
+    <!-- Экран: Одна статья -->
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="ru.netology.faceyoga.ui.articles.ArticleFragment"
+        android:label="@string/menu_articles">
+
+        <argument
+            android:name="articleId"
+            app:argType="integer" />
+    </fragment>
+
+
 </navigation>
