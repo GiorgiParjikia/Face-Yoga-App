@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.request.CachePolicy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -114,7 +115,6 @@ class DayExercisesAdapter(
                         true
                     }
 
-
                     else -> false
                 }
             }
@@ -201,10 +201,33 @@ class DayExercisesAdapter(
  * Extension для единообразной загрузки превью
  */
 private fun ImageView.loadPreview(url: String?) {
+    if (url.isNullOrBlank()) {
+        load(null) {
+            placeholder(R.drawable.ic_placeholder)
+            error(R.drawable.ic_image_error)
+        }
+        return
+    }
+
+    // 56dp -> px (под твой контейнер 56dp x 56dp)
+    val px = (56f * resources.displayMetrics.density).toInt()
+
     load(url) {
         crossfade(true)
         placeholder(R.drawable.ic_placeholder)
         error(R.drawable.ic_image_error)
+
+        // КРИТИЧНО: иначе трансформация может "ломать" отрисовку (HARDWARE bitmap)
+        allowHardware(false)
+
+        // КРИТИЧНО: чтобы не декодировать 1080px ради 56dp
+        size(px, px)
+
+        // твой фокус (под лицо)
         transformations(VerticalCropTransformation(0.18f))
+
+        // Если ты заменил JPG -> WebP "по тому же URL" и хочешь проверить, что не кэш:
+        // memoryCachePolicy(CachePolicy.DISABLED)
+        // diskCachePolicy(CachePolicy.DISABLED)
     }
 }

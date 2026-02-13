@@ -33,6 +33,7 @@ class VerticalCropTransformation(
 
         // centerCrop scale
         val scale = max(outW.toFloat() / input.width, outH.toFloat() / input.height)
+
         val scaledW = input.width * scale
         val scaledH = input.height * scale
 
@@ -48,8 +49,10 @@ class VerticalCropTransformation(
             postTranslate(dx, dy)
         }
 
+        // Важно: создаём software bitmap, чтобы Canvas гарантированно рисовал.
         val out = Bitmap.createBitmap(outW, outH, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(out)
+
         val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
         canvas.drawBitmap(input, matrix, paint)
 

@@ -12,7 +12,7 @@ object SeedExercises {
             description = "Rest and relax",
             type = ExerciseType.TIMER,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/Relax.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/break.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/break.webp"
         ),
         ExerciseEntity(
             title = "Chin and Jawline Lift",
@@ -20,7 +20,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/1.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/1.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/1.webp"
 
         ),
         ExerciseEntity(
@@ -29,7 +29,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/2.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/2.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/2.webp"
         ),
         ExerciseEntity(
             title = "Nasolabial Fold Smoothing",
@@ -37,7 +37,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/3.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/3.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/3.webp"
         ),
         ExerciseEntity(
             title = "Cheek Lift",
@@ -45,7 +45,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/4.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/4.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/4.webp"
         ),
         ExerciseEntity(
             title = "Lymphatic Drainage Massage",
@@ -53,7 +53,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/5.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/5.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/5.webp"
         ),
         ExerciseEntity(
             title = "Forehead Lifting Massage",
@@ -61,7 +61,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/6.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/6.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/6.webp"
         ),
         ExerciseEntity(
             title = "Revitalizing Face Massage",
@@ -69,7 +69,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/7.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/7.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/7.webp"
         ),
         ExerciseEntity(
             title = "Face & Neck Lift",
@@ -77,7 +77,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/8.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/8.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/8.webp"
         ),
         ExerciseEntity(
             title = "Eye Muscle Strengthening",
@@ -85,7 +85,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/9.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/9.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/9.webp"
         ),
         ExerciseEntity(
             title = "Eye Contour Strengthening",
@@ -93,7 +93,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/10.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/10.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/10.webp"
         ),
         ExerciseEntity(
             title = "Blinking with Eye Corner Stretch",
@@ -101,7 +101,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/11.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/11.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/11.webp"
         ),
         ExerciseEntity(
             title = "Intense Blinking with Deep Eye Corner Stretch",
@@ -109,7 +109,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/12.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/12.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/12.webp"
         ),
         ExerciseEntity(
             title = "Horizontal Lip Stretch",
@@ -117,7 +117,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/13.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/13.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/13.webp"
         ),
         ExerciseEntity(
             title = "Finger Piano Massage from Cheeks to Temples",
@@ -125,7 +125,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/14.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/14.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/14.webp"
         ),
         ExerciseEntity(
             title = "Vertical Wave Forehead Massage",
@@ -133,7 +133,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/15.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/15.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/15.webp"
         ),
         ExerciseEntity(
             title = "Lip-Tucked Smile Exercise",
@@ -141,7 +141,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/16.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/16.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/16.webp"
         ),
         ExerciseEntity(
             title = "Pencil Lip Workout",
@@ -151,7 +151,7 @@ object SeedExercises {
             requiresItem = true,
             requiredItemKey = "pencil",
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/17.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/17.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/17.webp"
     ),
         ExerciseEntity(
             title = "Fists from Chin to Ears",
@@ -159,7 +159,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/18.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/18.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/18.webp"
         ),
         ExerciseEntity(
             title = "Back-of-hand glide from chin to ears",
@@ -167,7 +167,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/19.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/19.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/19.webp"
         ),
         ExerciseEntity(
             title = "Jawline Lift",
@@ -175,7 +175,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/20.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/20.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/20.webp"
         ),
         ExerciseEntity(
             title = "Mid-Face Acupressure",
@@ -183,7 +183,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/21.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/21.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/21.webp"
         ),
         ExerciseEntity(
             title = "Smoothing Nasolabial Folds",
@@ -191,7 +191,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/22.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/22.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/22.webp"
         ),
         ExerciseEntity(
             title = "Nasolabial to Temples Smoothing",
@@ -199,7 +199,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/23.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/23.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/23.webp"
         ),
         ExerciseEntity(
             title = "Gentle Facial Massage with Tapping and Smoothing",
@@ -207,7 +207,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/24.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/24.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/24.webp"
         ),
         ExerciseEntity(
             title = "Forehead and Temple Relaxation Massage",
@@ -215,7 +215,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/25.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/25.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/25.webp"
         ),
         ExerciseEntity(
             title = "Forehead and Temple Relaxation Routine",
@@ -223,7 +223,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/26.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/26.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/26.webp"
         ),
         ExerciseEntity(
             title = "Comprehensive Exercise for Facial Smoothness and Tone",
@@ -231,7 +231,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/27.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/27.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/27.webp"
         ),
         ExerciseEntity(
             title = "Cheek Lift & Glow",
@@ -239,7 +239,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/28.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/28.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/28.webp"
         ),
         ExerciseEntity(
             title = "Temple Area Massage",
@@ -247,7 +247,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/29.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/29.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/29.webp"
         ),
         ExerciseEntity(
             title = "Toning Massage for Forehead",
@@ -255,7 +255,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/30.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/30.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/30.webp"
         ),
         ExerciseEntity(
             title = "Eyebrow Pinching Massage",
@@ -263,7 +263,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/31.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/31.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/31.webp"
         ),
         ExerciseEntity(
             title = "Pressure Point Eye Relaxation",
@@ -271,7 +271,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/32.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/32.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/32.webp"
         ),
         ExerciseEntity(
             title = "Cheek Elevation Massage",
@@ -279,7 +279,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/33.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/33.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/33.webp"
         ),
         ExerciseEntity(
             title = "Ear Pull Jawline Lift",
@@ -287,7 +287,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/34.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/34.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/34.webp"
         ),
         ExerciseEntity(
             title = "Chin Smoothing",
@@ -295,7 +295,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/35.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/35.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/35.webp"
         ),
         ExerciseEntity(
             title = "Jawline Sculpting",
@@ -303,7 +303,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/36.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/36.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/36.webp"
         ),
         ExerciseEntity(
             title = "Mouth Corner Lift",
@@ -311,7 +311,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/37.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/37.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/37.webp"
         ),
         ExerciseEntity(
             title = "Air Kiss Stretch",
@@ -319,7 +319,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/38.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/38.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/38.webp"
         ),
         ExerciseEntity(
             title = "Fixed Air Kiss",
@@ -327,7 +327,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/39.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/39.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/39.webp"
         ),
         ExerciseEntity(
             title = "Lip Corner Lift",
@@ -335,7 +335,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/40.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/40.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/40.webp"
         ),
         ExerciseEntity(
             title = "Horse Lips Exercise",
@@ -343,7 +343,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/41.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/41.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/41.webp"
         ),
         ExerciseEntity(
             title = "Air Rolling Exercise",
@@ -351,7 +351,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/42.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/42.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/42.webp"
         ),
         ExerciseEntity(
             title = "Cheek Massage with Fist Exercise",
@@ -359,7 +359,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/43.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/43.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/43.webp"
         ),
         ExerciseEntity(
             title = "Lymphatic Drainage Face & Neck Massage Exercise",
@@ -367,7 +367,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/44.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/44.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/44.webp"
         ),
         ExerciseEntity(
             title = "Chin and Neck Lift",
@@ -375,7 +375,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/45.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/45.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/45.webp"
         ),
         ExerciseEntity(
             title = "Air Rolling with Hand Pressure",
@@ -383,7 +383,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/46.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/46.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/46.webp"
         ),
         ExerciseEntity(
             title = "Chin Support",
@@ -391,7 +391,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/47.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/47.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/47.webp"
         ),
         ExerciseEntity(
             title = "Cheek Tongue Workout",
@@ -399,7 +399,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/48.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/48.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/48.webp"
         ),
         ExerciseEntity(
             title = "Cheek Smoothing",
@@ -407,7 +407,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/49.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/49.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/49.webp"
         ),
         ExerciseEntity(
             title = "Eyebrow Pressure",
@@ -415,7 +415,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/50.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/50.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/50.webp"
         ),
         ExerciseEntity(
             title = "Forehead Pressure Taps",
@@ -423,7 +423,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/51.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/51.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/51.webp"
         ),
         ExerciseEntity(
             title = "Temple Pressure",
@@ -431,7 +431,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/52.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/52.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/52.webp"
         ),
         ExerciseEntity(
             title = "Eyebrow Pinching",
@@ -439,7 +439,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/53.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/53.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/53.webp"
         ),
         ExerciseEntity(
             title = "Pressure Points Under Eyes",
@@ -447,7 +447,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/54.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/54.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/54.webp"
         ),
         ExerciseEntity(
             title = "Index Fingers to Temples",
@@ -455,7 +455,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/55.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/55.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/55.webp"
         ),
         ExerciseEntity(
             title = "Pressure Between Brows",
@@ -463,7 +463,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/56.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/56.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/56.webp"
         ),
         ExerciseEntity(
             title = "Cheek Acupressure Massage",
@@ -471,7 +471,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/57.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/57.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/57.webp"
         ),
         ExerciseEntity(
             title = "Cheekbone Lift",
@@ -479,7 +479,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/58.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/58.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/58.webp"
         ),
         ExerciseEntity(
             title = "Cheek Pinches",
@@ -487,7 +487,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/59.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/59.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/59.webp"
         ),
         ExerciseEntity(
             title = "Cheekbone Pressure Points",
@@ -495,7 +495,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/60.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/60.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/60.webp"
         ),
         ExerciseEntity(
             title = "Corner Lift",
@@ -503,7 +503,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/61.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/61.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/61.webp"
         ),
         ExerciseEntity(
             title = "Smiling Resistance",
@@ -511,7 +511,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/62.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/62.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/62.webp"
         ),
         ExerciseEntity(
             title = "Nasolabial Drainage",
@@ -519,7 +519,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/63.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/63.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/63.webp"
         ),
         ExerciseEntity(
             title = "Chin Lift",
@@ -527,7 +527,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/64.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/64.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/64.webp"
         ),
         ExerciseEntity(
             title = "Masseter Release",
@@ -535,7 +535,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/65.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/65.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/65.webp"
         ),
         ExerciseEntity(
             title = "Stroking from Chin to Cheek",
@@ -543,7 +543,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/66.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/66.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/66.webp"
         ),
         ExerciseEntity(
             title = "Cheek Massage with Open Mouth",
@@ -551,7 +551,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/67.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/67.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/67.webp"
         ),
         ExerciseEntity(
             title = "Cheek and Jawline Smoothing Massage",
@@ -559,7 +559,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/68.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/68.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/68.webp"
         ),
         ExerciseEntity(
             title = "Lip Ring",
@@ -567,7 +567,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/69.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/69.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/69.webp"
         ),
         ExerciseEntity(
             title = "Forehead-Supported Fish Face",
@@ -575,7 +575,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/70.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/70.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/70.webp"
         ),
         ExerciseEntity(
             title = "Chin-to-Cheek Lift",
@@ -583,7 +583,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/71.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/71.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/71.webp"
         ),
         ExerciseEntity(
             title = "Corner Lift Exercise",
@@ -591,7 +591,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/72.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/72.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/72.webp"
         ),
         ExerciseEntity(
             title = "Facial Lifting Massage",
@@ -599,15 +599,15 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/73.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/73.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/73.webp"
         ),
         ExerciseEntity(
             title = "Scalp Stimulation",
-            zone = Zone.FULL_FACE, //TODO Не совсем так (оно направленно на кожу головы, надо прописать в дискрипшне
+            zone = Zone.FULL_FACE,
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/74.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/74.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/74.webp"
         ),
         ExerciseEntity(
             title = "Forehead Pinches",
@@ -615,7 +615,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/75.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/75.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/75.webp"
         ),
         ExerciseEntity(
             title = "Smoothing and Pressing Forehead Motions",
@@ -623,7 +623,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/76.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/76.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/76.webp"
         ),
         ExerciseEntity(
             title = "Forehead Smoothing",
@@ -631,7 +631,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/77.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/77.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/77.webp"
         ),
         ExerciseEntity(
             title = "Glabella Smoothing",
@@ -639,7 +639,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/78.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/78.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/78.webp"
         ),
         ExerciseEntity(
             title = "Eye Corner Lifting",
@@ -647,7 +647,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/79.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/79.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/79.webp"
         ),
         ExerciseEntity(
             title = "Nasolabial Muscle Lift",
@@ -655,7 +655,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/80.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/80.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/80.webp"
         ),
         ExerciseEntity(
             title = "Lymphatic Drainage Massage for Face and Neck",
@@ -663,7 +663,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/81.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/81.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/81.webp"
         ),
         ExerciseEntity(
             title = "Palm Eye Relaxation",
@@ -671,7 +671,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/82.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/82.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/82.webp"
         ),
         ExerciseEntity(
             title = "Lower Jaw Contour Lift",
@@ -679,7 +679,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/83.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/83.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/83.webp"
         ),
         ExerciseEntity(
             title = "Tapping from Upper Chest to Chin",
@@ -687,7 +687,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/84.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/84.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/84.webp"
         ),
         ExerciseEntity(
             title = "Jawline Skin Twisting with Knuckles",
@@ -695,7 +695,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/85.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/85.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/85.webp"
         ),
         ExerciseEntity(
             title = "Air Rolling in Cheeks",
@@ -703,7 +703,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/86.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/86.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/86.webp"
         ),
         ExerciseEntity(
             title = "Closed-Mouth Smile",
@@ -711,7 +711,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/87.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/87.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/87.webp"
         ),
         ExerciseEntity(
             title = "Kiss the Ceiling",
@@ -719,7 +719,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/88.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/88.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/88.webp"
         ),
         ExerciseEntity(
             title = "Forehead Lift with Blinking",
@@ -727,7 +727,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/89.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/89.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/89.webp"
         ),
         ExerciseEntity(
             title = "Head Turns",
@@ -735,7 +735,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/90.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/90.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/90.webp"
         ),
         ExerciseEntity(
             title = "Gentle Tapping on the Face",
@@ -743,7 +743,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/91.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/91.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/91.webp"
         ),
         ExerciseEntity(
             title = "Head Lifts and Drops",
@@ -751,7 +751,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/92.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/92.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/92.webp"
         ),
         ExerciseEntity(
             title = "Neck and Jawline Lift with Ear Pull",
@@ -759,7 +759,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/93.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/93.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/93.webp"
         ),
         ExerciseEntity(
             title = "Lions Gaze",
@@ -767,7 +767,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/94.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/94.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/94.webp"
         ),
         ExerciseEntity(
             title = "Side Neck Stretch (Left)",
@@ -775,7 +775,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/95.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/95.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/95.webp"
         ),
         ExerciseEntity(
             title = "Side Neck Stretch (Right)",
@@ -783,7 +783,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/95_2.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/95_2.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/95_2.webp"
         ),
         ExerciseEntity(
             title = "Smiling with Resistance",
@@ -791,7 +791,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/96.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/96.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/96.webp"
         ),
         ExerciseEntity(
             title = "Kisses to the Ceiling",
@@ -799,7 +799,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/97.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/97.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/97.webp"
         ),
         ExerciseEntity(
             title = "Graceful Smile",
@@ -807,7 +807,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/98.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/98.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/98.webp"
         ),
         ExerciseEntity(
             title = "Defined Jawline Exercise",
@@ -815,7 +815,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/99.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/99.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/99.webp"
         ),
         ExerciseEntity(
             title = "Chin Line Finger Lift",
@@ -823,7 +823,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/100.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/100.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/100.webp"
         ),
         ExerciseEntity(
             title = "Neck Awakening",
@@ -831,7 +831,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/101.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/101.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/101.webp"
         ),
         ExerciseEntity(
             title = "Fist Lift",
@@ -839,7 +839,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/102.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/102.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/102.webp"
         ),
         ExerciseEntity(
             title = "Air Balloon",
@@ -847,7 +847,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/103.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/103.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/103.webp"
         ),
         ExerciseEntity(
             title = "Air Wave",
@@ -855,7 +855,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/104.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/104.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/104.webp"
         ),
         ExerciseEntity(
             title = "Smooth Smile Lines",
@@ -863,7 +863,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/105.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/105.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/105.webp"
         ),
         ExerciseEntity(
             title = "Nasolabial Zone Massage",
@@ -871,7 +871,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/106.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/106.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/106.webp"
         ),
         ExerciseEntity(
             title = "Tear Trough & Cheek Line Smoothing (Left)",
@@ -879,7 +879,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/107.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/107.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/107.webp"
         ),
         ExerciseEntity(
             title = "Tear Trough & Cheek Line Smoothing (Right)",
@@ -887,7 +887,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/107_2.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/107_2.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/107_2.webp"
         ),
         ExerciseEntity(
             title = "Blinking with Forehead Hold",
@@ -895,7 +895,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/108.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/108.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/108.webp"
         ),
         ExerciseEntity(
             title = "Forehead Wrinkle Smoothing (Right)",
@@ -903,7 +903,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/109.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/109.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/109.webp"
         ),
         ExerciseEntity(
             title = "Forehead Wrinkle Smoothing (Left)",
@@ -911,7 +911,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/109_2.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/109_2.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/109_2.webp"
         ),
         ExerciseEntity(
             title = "Lymphatic Drainage Self-Massage Routine",
@@ -919,7 +919,7 @@ object SeedExercises {
             description = "",
             type = ExerciseType.REPS,
             videoUri = "gs://face-yoga-mvp.firebasestorage.app/Videos (Mobile)/110.mp4",
-            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/110.jpg"
+            previewImageUri = "gs://face-yoga-mvp.firebasestorage.app/Preview_Image/110.webp"
         ),
     )
 }
