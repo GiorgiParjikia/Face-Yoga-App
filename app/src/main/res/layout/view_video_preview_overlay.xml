@@ -21,39 +21,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Карточка с видео -->
+    <!-- Карточка с видео (ТОЛЬКО видео) -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/videoCard"
         android:layout_width="0dp"
         android:layout_height="280dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
         android:backgroundTint="@color/video_background"
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:strokeWidth="1dp"
         app:strokeColor="@color/divider"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/titleCard"
+        app:layout_constraintVertical_chainStyle="packed">
 
-        <!-- Фон + видео -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/video_background">
 
-            <!-- Media3 PlayerView -->
             <androidx.media3.ui.PlayerView
                 android:id="@+id/playerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:use_controller="false"
+                android:keepScreenOn="false"
                 app:resize_mode="fit"
-                android:keepScreenOn="false" />
+                app:use_controller="false" />
 
-            <!-- Индикатор загрузки -->
             <ProgressBar
                 android:id="@+id/loading"
                 android:layout_width="36dp"
@@ -61,8 +59,42 @@
                 android:layout_gravity="center"
                 android:indeterminateTint="@color/text_on_dark"
                 android:visibility="gone" />
-
         </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Отдельная карточка с названием упражнения (НИЖЕ видео) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/titleCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/videoCard"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/exerciseTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:ellipsize="@null"
+            android:maxLines="100"
+            android:singleLine="false" />
 
     </com.google.android.material.card.MaterialCardView>
 

@@ -1,10 +1,8 @@
 package ru.netology.faceyoga.ui.day
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
@@ -27,21 +25,23 @@ class VideoPreviewController(
     private var player: ExoPlayer? = null
     private var resolveJob: Job? = null
     private var isShown = false
+
     private var lastVideoUri: String? = null
+    private var lastTitle: String? = null
 
     // -------- public API --------
 
-    fun show(videoUri: String) {
-        if (isShown && lastVideoUri == videoUri) return
+    fun show(videoUri: String, title: String) {
+        // если тот же ролик и то же имя — ничего не делаем
+        if (isShown && lastVideoUri == videoUri && lastTitle == title) return
 
         ensureOverlay()
         isShown = true
         lastVideoUri = videoUri
+        lastTitle = title
 
-        // 👉 ОПУСКАЕМ КАРТОЧКУ НИЖЕ
-        binding.videoCard.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-            topMargin = 56.dp
-        }
+        // 👉 заголовок упражнения (отдельной карточкой ниже видео)
+        binding.exerciseTitle.text = title
 
         binding.previewOverlayRoot.isVisible = true
         binding.loading.isVisible = true
@@ -54,6 +54,7 @@ class VideoPreviewController(
 
         isShown = false
         lastVideoUri = null
+        lastTitle = null
 
         resolveJob?.cancel()
         resolveJob = null
@@ -93,33 +94,30 @@ class VideoPreviewController(
             exo.addListener(object : Player.Listener {
                 override fun onPlaybackStateChanged(state: Int) {
                     when (state) {
-                        Player.STATE_BUFFERING ->
-                            binding.loading.isVisible = true
-                        Player.STATE_READY ->
-                            binding.loading.isVisible = false
+                        Player.STATE_BUFFERING -> binding.loading.isVisible = true
+                        Player.STATE_READY -> binding.loading.isVisible = false
                     }
                 }
             })
         }
 
         resolveJob = scope.launch(Dispatchers.IO) {
-            runCatching {
-                videoUrlResolver.resolve(gsUri)
-            }.onSuccess { https ->
-                launch(Dispatchers.Main) {
-                    if (!isShown) return@launch
-
-                    player?.apply {
-                        setMediaItem(MediaItem.fromUri(https))
-                        prepare()
-                        playWhenReady = true
+            runCatching { videoUrlResolver.resolve(gsUri) }
+                .onSuccess { https ->
+                    launch(Dispatchers.Main) {
+                        if (!isShown) return@launch
+                        player?.apply {
+                            setMediaItem(MediaItem.fromUri(https))
+                            prepare()
+                            playWhenReady = true
+                        }
                     }
                 }
-            }.onFailure {
-                launch(Dispatchers.Main) {
-                    binding.loading.isVisible = false
+                .onFailure {
+                    launch(Dispatchers.Main) {
+                        binding.loading.isVisible = false
+                    }
                 }
-            }
         }
     }
 
@@ -129,8 +127,3 @@ class VideoPreviewController(
         player = null
     }
 }
-
-/* ---------- helpers ---------- */
-
-private val Int.dp: Int
-    get() = (this * Resources.getSystem().displayMetrics.density).toInt()

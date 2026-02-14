@@ -94,11 +94,14 @@ class DayExercisesAdapter(
 
                             // защита от реюза ViewHolder
                             if (current?.id == localId) {
-                                previewController.show(videoUri)
+                                val ctx = binding.root.context
+                                val title = ctx.localizedExerciseTitle(item.title)
+                                previewController.show(videoUri, title)
                             }
                         }
                         true
                     }
+
 
                     MotionEvent.ACTION_UP -> {
                         previewJob?.cancel()
