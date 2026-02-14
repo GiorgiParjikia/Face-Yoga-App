@@ -49,12 +49,12 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
             }
         }
 
-        vm.load()
+        vm.start()
     }
 
     override fun onResume() {
         super.onResume()
         // ✅ если язык/прогресс поменялись пока ты был в другом экране — обновим
-        vm.load()
+        vm.start()
     }
 }

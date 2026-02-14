@@ -15,7 +15,7 @@ class ProgramRepositoryImpl @Inject constructor(
     private val programDao: ProgramDao,
     private val programDayDao: ProgramDayDao,
     private val dayExerciseDao: DayExerciseDao,
-    private val seeder: DbSeeder,
+    private val seeder: DbSeeder
 ) : ProgramRepository {
 
     override fun observeDays(programId: Long): Flow<List<ProgramDayRow>> =
@@ -25,15 +25,16 @@ class ProgramRepositoryImpl @Inject constructor(
         dayExerciseDao.observeDayExercises(programDayId)
 
     override suspend fun getDefaultProgramId(): Long {
-        // 1) пытаемся получить существующую программу по title (надежно)
+        // 1) пытаемся найти уже сидированную программу по title
         val existingId = programDao.getIdByTitle("Базовая программа 30 дней")
         if (existingId != null) return existingId
 
-        // 2) если нет — сидим и получаем id
+        // 2) если нет — сидим
         return seeder.seedIfNeeded()
     }
 
-    override suspend fun getProgramIdByProgramDayId(programDayId: Long): Long {
-        return programDayDao.getProgramIdByProgramDayId(programDayId) ?: 0L
+    override suspend fun getProgramDayIdByDayNumber(programId: Long, dayNumber: Int): Long {
+        return programDayDao.getId(programId, dayNumber) ?: 0L
     }
+
 }

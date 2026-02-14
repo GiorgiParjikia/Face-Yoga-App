@@ -49,6 +49,13 @@
 
     <string name="loading_video">Loading Video…</string>
 
+    <string name="progress_done_format">%1$d / %2$d</string>
+    <string name="progress_percent_format">%1$d%%</string>
+    <string name="progress_streak_format">Streak: %1$d</string>
+    <string name="progress_title">Progress</string>
+
+    <string name="thirty_days">30 Days</string>
+
     <!--Progress Cancel-->
     <string name="reset_progress">Reset progress</string>
     <string name="reset_progress_title">Reset progress?</string>

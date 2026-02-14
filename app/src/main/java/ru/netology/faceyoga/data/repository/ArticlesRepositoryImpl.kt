@@ -23,15 +23,11 @@ class ArticlesRepositoryImpl @Inject constructor(
     private val gson = Gson()
 
     override suspend fun loadSections(): List<ArticleSectionUi> {
-        // ✅ язык именно из ресурсов приложения (учитывает смену языка в приложении)
         val lang = appContext.currentLang()
-
-        // ✅ реальный прогресс (последний завершённый день)
-        val lastCompletedDay = progressRepo.getLastCompletedDay()
+        val lastCompletedDay = progressRepo.getLastCompletedDay() // ✅ реальный прогресс
 
         val articles: List<ArticleJson> = loadArticles()
         val catalog: List<ArticleCatalogJson> = loadCatalog()
-
         val catalogById = catalog.associateBy { it.id }
 
         val merged = articles.mapNotNull { a ->
@@ -46,6 +42,7 @@ class ArticlesRepositoryImpl @Inject constructor(
         }
 
         fun toCard(m: MergedArticle): ArticleCardUi {
+            // правило: статья дня N открывается после завершения дня N
             val locked = lastCompletedDay < m.day
             return ArticleCardUi(
                 id = m.id,

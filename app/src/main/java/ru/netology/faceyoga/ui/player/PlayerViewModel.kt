@@ -8,18 +8,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.data.db.ProgressDao
+import ru.netology.faceyoga.data.db.ProgramDayDao
 import ru.netology.faceyoga.data.db.UserDayProgressEntity
-import ru.netology.faceyoga.data.repository.ProgramRepository
+import ru.netology.faceyoga.ui.common.StateKeys
 import ru.netology.faceyoga.ui.day.DayExerciseUi
 import javax.inject.Inject
-import ru.netology.faceyoga.ui.common.StateKeys
-
 
 @HiltViewModel
 class PlayerViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val repository: ProgramRepository,
     private val progressDao: ProgressDao,
+    private val programDayDao: ProgramDayDao, // ✅ чтобы достать programId по programDayId
 ) : ViewModel() {
 
     private val programDayId: Long =
@@ -64,7 +63,7 @@ class PlayerViewModel @Inject constructor(
         if (programDayId == 0L || dayNumber == 0 || list.isEmpty()) return
 
         viewModelScope.launch {
-            val programId = repository.getProgramIdByProgramDayId(programDayId)
+            val programId = programDayDao.getProgramIdByProgramDayId(programDayId) ?: 0L
             if (programId == 0L) return@launch
 
             // 1) отметить ВСЕ упражнения дня выполненными
@@ -72,7 +71,7 @@ class PlayerViewModel @Inject constructor(
                 progressDao.insertOrReplaceExerciseProgress(
                     programId = programId,
                     dayNumber = dayNumber,
-                    exerciseId = ex.id,
+                    exerciseId = ex.id, 
                     isCompleted = true
                 )
             }

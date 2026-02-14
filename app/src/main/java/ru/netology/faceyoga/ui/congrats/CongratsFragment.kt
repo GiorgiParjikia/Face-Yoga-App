@@ -38,12 +38,10 @@ class CongratsFragment : Fragment(R.layout.fragment_congrats) {
             // защита от кривых аргументов (на всякий случай)
             if (dayNumber <= 0) return@setOnClickListener
 
-            val bundle = Bundle().apply {
-                // статья дня = номер дня
-                putInt("articleId", dayNumber)
-            }
-
-            findNavController().navigate(R.id.articleFragment, bundle)
+            findNavController().navigate(
+                R.id.articleFragment,
+                Bundle().apply { putInt("articleId", dayNumber) }
+            )
         }
 
         btnBackToDays.setOnClickListener {

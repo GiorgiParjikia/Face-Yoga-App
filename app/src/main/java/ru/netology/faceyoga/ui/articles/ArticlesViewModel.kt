@@ -8,20 +8,25 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.data.repository.ArticlesRepository
+import ru.netology.faceyoga.data.repository.ProgressRepository
 import ru.netology.faceyoga.ui.articles.model.ArticleSectionUi
 import javax.inject.Inject
 
 @HiltViewModel
 class ArticlesViewModel @Inject constructor(
-    private val repo: ArticlesRepository
+    private val repo: ArticlesRepository,
+    private val progressRepo: ProgressRepository
 ) : ViewModel() {
 
     private val _sections = MutableStateFlow<List<ArticleSectionUi>>(emptyList())
     val sections: StateFlow<List<ArticleSectionUi>> = _sections.asStateFlow()
 
-    fun load() {
+    fun start() {
         viewModelScope.launch {
-            _sections.value = repo.loadSections()
+            progressRepo.observeLastCompletedDay().collect {
+                // прогресс поменялся — пересобрали UI
+                _sections.value = repo.loadSections()
+            }
         }
     }
 }
