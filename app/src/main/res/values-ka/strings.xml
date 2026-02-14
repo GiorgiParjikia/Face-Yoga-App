@@ -95,6 +95,22 @@
     <string name="zone_full_face">მთელი სახე</string>
 
 
+        <!-- Articles -->
+        <string name="articles_recommended">რეკომენდებული სტატიები</string>
+
+        <!-- Categories -->
+        <string name="articles_cat_base_care">🧱 კანის მოვლის საფუძვლები (ფუნდამენტი)</string>
+        <string name="articles_cat_process_tech">🔬 პროცესები და ტექნოლოგიები</string>
+        <string name="articles_cat_face_system">🧠 სახე როგორც სისტემა</string>
+        <string name="articles_cat_lifestyle">🌿 ცხოვრების წესი და სახე</string>
+        <string name="articles_cat_extra_useful">🧩 დამატებითი, მაგრამ სასარგებლო</string>
+        <string name="articles_cat_social_psy">🎯 სოციალური და ფსიქოლოგიური კონტექსტი</string>
+        <string name="articles_cat_final">🧡 ფინალი</string>
+
+        <!-- Lock text -->
+        <string name="articles_unlock_after_day">გაიხსნება %1$d-ე დღის შემდეგ</string>
+
+
 
 
     <!-- Exercises -->

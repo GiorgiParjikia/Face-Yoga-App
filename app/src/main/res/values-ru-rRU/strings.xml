@@ -95,6 +95,24 @@
     <string name="level_hard">сложный</string>
     <string name="day_level_title">%1$s %2$d</string>
 
+
+        <!-- Articles -->
+        <string name="articles_recommended">Recommended articles</string>
+
+        <!-- Categories -->
+        <string name="articles_cat_base_care">🧱 БАЗА УХОДА (фундамент)</string>
+        <string name="articles_cat_process_tech">🔬 ПРОЦЕССЫ И ТЕХНОЛОГИИ</string>
+        <string name="articles_cat_face_system">🧠 ЛИЦО КАК СИСТЕМА</string>
+        <string name="articles_cat_lifestyle">🌿 ОБРАЗ ЖИЗНИ И ЛИЦО</string>
+        <string name="articles_cat_extra_useful">🧩 ДОПОЛНИТЕЛЬНЫЕ, НО ПОЛЕЗНЫЕ</string>
+        <string name="articles_cat_social_psy">🎯 СОЦИАЛЬНЫЙ И ПСИХОЛОГИЧЕСКИЙ КОНТЕКСТ</string>
+        <string name="articles_cat_final">🧡 ФИНАЛ</string>
+
+        <!-- Lock text -->
+        <string name="articles_unlock_after_day">Откроется после дня %1$d</string>
+
+
+
     <!-- Exercises -->
     <string name="ex_relax">Отдых</string>
     <string name="ex_chin_and_jawline_lift">Подтяжка подбородка и овала лица</string>

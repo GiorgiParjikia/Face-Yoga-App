@@ -1,0 +1,40 @@
+[
+  { "id": 0,  "categoryKey": "base_care",   "orderInCategory": 0 },
+
+  { "id": 1,  "categoryKey": "base_care",   "orderInCategory": 1 },
+  { "id": 2,  "categoryKey": "base_care",   "orderInCategory": 2 },
+  { "id": 3,  "categoryKey": "base_care",   "orderInCategory": 3 },
+  { "id": 4,  "categoryKey": "base_care",   "orderInCategory": 4 },
+  { "id": 5,  "categoryKey": "base_care",   "orderInCategory": 5 },
+  { "id": 6,  "categoryKey": "base_care",   "orderInCategory": 6 },
+  { "id": 7,  "categoryKey": "base_care",   "orderInCategory": 7 },
+  { "id": 8,  "categoryKey": "base_care",   "orderInCategory": 8 },
+
+  { "id": 9,  "categoryKey": "process_tech","orderInCategory": 1 },
+  { "id": 10, "categoryKey": "process_tech","orderInCategory": 2 },
+  { "id": 11, "categoryKey": "process_tech","orderInCategory": 3 },
+
+  { "id": 12, "categoryKey": "face_system", "orderInCategory": 1 },
+  { "id": 13, "categoryKey": "face_system", "orderInCategory": 2 },
+  { "id": 14, "categoryKey": "face_system", "orderInCategory": 3 },
+  { "id": 15, "categoryKey": "face_system", "orderInCategory": 4 },
+
+  { "id": 16, "categoryKey": "lifestyle",   "orderInCategory": 1 },
+  { "id": 17, "categoryKey": "lifestyle",   "orderInCategory": 2 },
+  { "id": 18, "categoryKey": "lifestyle",   "orderInCategory": 3 },
+  { "id": 19, "categoryKey": "lifestyle",   "orderInCategory": 4 },
+  { "id": 20, "categoryKey": "lifestyle",   "orderInCategory": 5 },
+  { "id": 21, "categoryKey": "lifestyle",   "orderInCategory": 6 },
+  { "id": 22, "categoryKey": "lifestyle",   "orderInCategory": 7 },
+  { "id": 23, "categoryKey": "lifestyle",   "orderInCategory": 8 },
+
+  { "id": 24, "categoryKey": "extra_useful","orderInCategory": 1 },
+  { "id": 25, "categoryKey": "extra_useful","orderInCategory": 2 },
+  { "id": 26, "categoryKey": "extra_useful","orderInCategory": 3 },
+
+  { "id": 27, "categoryKey": "social_psy",  "orderInCategory": 1 },
+  { "id": 28, "categoryKey": "social_psy",  "orderInCategory": 2 },
+
+  { "id": 29, "categoryKey": "final",       "orderInCategory": 1 },
+  { "id": 30, "categoryKey": "final",       "orderInCategory": 2 }
+]

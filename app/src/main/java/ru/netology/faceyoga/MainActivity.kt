@@ -8,7 +8,6 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +29,26 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val navController = navHost.navController
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        bottomNav.setupWithNavController(navController)
+
+        // ✅ ВАЖНО: НЕ используем setupWithNavController, иначе будет "залипание" на вложенных экранах
+        // bottomNav.setupWithNavController(navController)
+
+        // ✅ При клике по вкладке — всегда показываем КОРЕНЬ вкладки
+        bottomNav.setOnItemSelectedListener { item ->
+            // Если вкладка уже в back stack — поднимаем её (и тем самым убираем вложенные экраны типа articleFragment)
+            val popped = navController.popBackStack(item.itemId, false)
+
+            // Если нет — просто идём на неё
+            if (!popped) {
+                navController.navigate(item.itemId)
+            }
+            true
+        }
+
+        // ✅ Повторный клик по текущей вкладке — тоже возвращает в корень вкладки
+        bottomNav.setOnItemReselectedListener { item ->
+            navController.popBackStack(item.itemId, false)
+        }
 
         // ✅ Скрываем bottom bar во время тренировки + Congrats
         val hideBottomNavOn = setOf(
@@ -42,12 +60,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNav.isVisible = destination.id !in hideBottomNavOn
 
-            // ✅ корректная подсветка вкладки без лишней навигации
+            // ✅ корректная подсветка вкладки
             val tabId = destination.findBottomTabId()
             if (tabId != null) {
-                val item = bottomNav.menu.findItem(tabId)
-                if (item != null && !item.isChecked) {
-                    item.isChecked = true
+                val menuItem = bottomNav.menu.findItem(tabId)
+                if (menuItem != null && !menuItem.isChecked) {
+                    menuItem.isChecked = true
                 }
             }
         }
@@ -99,8 +117,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             R.id.videoPlayerFragment,
             R.id.congratsFragment -> R.id.daysFragment
 
+            // Вкладка "Статьи"
+            R.id.articlesFragment,
+            R.id.articleFragment -> R.id.articlesFragment
+
             // Остальные вкладки
-            R.id.articlesFragment -> R.id.articlesFragment
             R.id.progressFragment -> R.id.progressFragment
             R.id.settingsFragment -> R.id.settingsFragment
 

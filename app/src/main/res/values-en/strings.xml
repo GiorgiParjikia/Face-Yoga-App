@@ -96,6 +96,23 @@
     <string name="day_item_warning_format">ℹ️ This day includes an exercise that requires an item: %1$s</string>
     <string name="item_pencil">a pencil</string>
 
+    <!--Articles Categories-->
+        <!-- Articles -->
+        <string name="articles_recommended">Recommended articles</string>
+
+        <!-- Categories -->
+        <string name="articles_cat_base_care">🧱 SKINCARE BASICS (Foundation)</string>
+        <string name="articles_cat_process_tech">🔬 PROCESSES &amp; TECHNOLOGIES</string>
+        <string name="articles_cat_face_system">🧠 FACE AS A SYSTEM</string>
+        <string name="articles_cat_lifestyle">🌿 LIFESTYLE &amp; FACE</string>
+        <string name="articles_cat_extra_useful">🧩 EXTRA, BUT USEFUL</string>
+        <string name="articles_cat_social_psy">🎯 SOCIAL &amp; PSYCHOLOGICAL CONTEXT</string>
+        <string name="articles_cat_final">🧡 FINAL</string>
+
+        <!-- Lock text -->
+        <string name="articles_unlock_after_day">Unlocks after day %1$d</string>
+
+
 
     <!-- Exercises  -->
     <string name="ex_relax">Relax</string>

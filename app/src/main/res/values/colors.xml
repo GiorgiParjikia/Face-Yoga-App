@@ -21,6 +21,10 @@
     <color name="icon_inactive">#9E9E9E</color>
     <color name="system_nav_bar">#111111</color>
 
+    <color name="article_card_green_locked">#6F9F90</color>
+    <color name="article_arrow_locked">#9AA3A1</color>
+
+
     <!-- Other -->
     <color name="divider">#E0E0E0</color>
     <color name="surface_card_locked">#F2F2F2</color>
