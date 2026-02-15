@@ -93,11 +93,13 @@
                     android:id="@+id/tvTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     tools:text="Exercise title"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:maxLines="2"
                     android:textColor="@color/text_primary" />
+
 
                 <ProgressBar
                     android:id="@+id/progressLine"
@@ -116,19 +118,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:gravity="center"
                     tools:text="00:30"
                     android:textColor="@color/green_primary"
                     android:textSize="28sp"
                     android:textStyle="bold" />
+
 
                 <TextView
                     android:id="@+id/tvNext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:gravity="center"
                     tools:text="Next: Exercise"
                     android:maxLines="2"
                     android:textColor="@color/text_secondary" />
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

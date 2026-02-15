@@ -3,7 +3,6 @@ package ru.netology.faceyoga.ui.progress
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -20,6 +19,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
+import ru.netology.faceyoga.ui.common.FySnack
 
 @AndroidEntryPoint
 class ProgressFragment : Fragment(R.layout.fragment_progress) {
@@ -38,6 +38,8 @@ class ProgressFragment : Fragment(R.layout.fragment_progress) {
             insets
         }
 
+        val anchor = requireActivity().findViewById<View>(R.id.bottom_nav)
+
         val tvDone = view.findViewById<TextView>(R.id.tvDone)
         val tvPercent = view.findViewById<TextView>(R.id.tvPercent)
         val tvStreak = view.findViewById<TextView>(R.id.tvStreak)
@@ -47,22 +49,22 @@ class ProgressFragment : Fragment(R.layout.fragment_progress) {
         val adapter = ProgressDaysAdapter { dayUi ->
             when (dayUi.state) {
                 DayState.LOCKED -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "День ${dayUi.day} пока закрыт",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    FySnack.show(
+                        rootView = view,
+                        message = "День ${dayUi.day} пока закрыт",
+                        anchor = anchor
+                    )
                 }
 
                 DayState.AVAILABLE, DayState.DONE -> {
                     viewLifecycleOwner.lifecycleScope.launch {
                         val programDayId = vm.resolveProgramDayId(dayUi.day)
                         if (programDayId == 0L) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Не удалось открыть день",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            FySnack.show(
+                                rootView = view,
+                                message = "Не удалось открыть день",
+                                anchor = anchor
+                            )
                             return@launch
                         }
 

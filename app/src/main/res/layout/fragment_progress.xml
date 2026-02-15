@@ -14,22 +14,24 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="0dp"
         app:strokeWidth="1dp"
-        app:strokeColor="?attr/colorOutline">
+        app:strokeColor="@color/surface_card">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="@color/surface_card">
 
-            <TextView
+
+        <TextView
                 android:id="@+id/tvProgressTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/progress_title"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="?attr/colorOnSurface" />
+                android:textColor="@color/text_primary" />
 
             <TextView
                 android:id="@+id/tvDone"
@@ -37,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textSize="16sp"
-                android:textColor="?attr/colorOnSurface" />
+                android:textColor="@color/text_primary" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progressBar"
@@ -45,7 +47,8 @@
                 android:layout_height="8dp"
                 android:layout_marginTop="10dp"
                 android:progress="0"
-                app:trackCornerRadius="8dp" />
+                app:trackCornerRadius="8dp"
+                app:indicatorColor="@color/green_primary" />
 
             <TextView
                 android:id="@+id/tvPercent"
@@ -53,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textSize="14sp"
-                android:textColor="?attr/colorOnSurfaceVariant" />
+                android:textColor="@color/text_primary" />
 
             <TextView
                 android:id="@+id/tvStreak"
@@ -61,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:textSize="14sp"
-                android:textColor="?attr/colorOnSurfaceVariant" />
+                android:textColor="@color/text_primary" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

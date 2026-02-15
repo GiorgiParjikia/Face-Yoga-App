@@ -11,11 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
 import ru.netology.faceyoga.databinding.FragmentDaysBinding
+import ru.netology.faceyoga.ui.common.FySnack
 import ru.netology.faceyoga.ui.common.StateKeys
 
 @AndroidEntryPoint
@@ -30,7 +30,6 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDaysBinding.bind(view)
 
-        // Insets (чтобы статусбар/навигация не перекрывали)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
@@ -63,7 +62,6 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
             }
         }
 
-        // ✅ NEW: Reset виден всегда, но выключен если прогресса нет
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.hasProgress.collect { hasProgress ->
@@ -89,11 +87,11 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
 
                 R.id.action_reset_progress -> {
                     if (!item.isEnabled) {
-                        Snackbar.make(
-                            binding.root,
-                            "Нет прогресса для сброса",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        FySnack.show(
+                            rootView = binding.root,
+                            message = "Нет прогресса для сброса",
+                            anchor = requireActivity().findViewById(R.id.bottom_nav)
+                        )
                         return@setOnMenuItemClickListener true
                     }
                     showResetDialog()
@@ -114,11 +112,11 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
             }
             .setPositiveButton(getString(R.string.reset)) { _, _ ->
                 viewModel.resetProgress()
-                Snackbar.make(
-                    binding.root,
-                    getString(R.string.progress_reset_done),
-                    Snackbar.LENGTH_SHORT
-                ).show()
+                FySnack.show(
+                    rootView = binding.root,
+                    message = getString(R.string.progress_reset_done),
+                    anchor = requireActivity().findViewById(R.id.bottom_nav)
+                )
             }
             .show()
     }
@@ -126,7 +124,11 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
     private fun showLockedDaySnack(day: DayUi) {
         val prevDay = (day.dayNumber - 1).coerceAtLeast(1)
         val text = getString(R.string.day_locked_toast, prevDay)
-        Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
+        FySnack.show(
+            rootView = binding.root,
+            message = text,
+            anchor = requireActivity().findViewById(R.id.bottom_nav)
+        )
     }
 
     override fun onDestroyView() {

@@ -17,6 +17,10 @@
     <color name="text_primary">#2B2B2B</color>
     <color name="text_secondary">#7A7A7A</color>
 
+    <color name="snackbar_bg">#171717</color>
+    <color name="snackbar_text">#FFFFFF</color>
+
+
     <!-- Navigation -->
     <color name="icon_inactive">#9E9E9E</color>
     <color name="system_nav_bar">#111111</color>

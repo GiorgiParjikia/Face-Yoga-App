@@ -2,7 +2,6 @@ package ru.netology.faceyoga.ui.articles
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
+import ru.netology.faceyoga.ui.common.FySnack
 
 @AndroidEntryPoint
 class ArticlesFragment : Fragment(R.layout.fragment_articles) {
@@ -22,16 +22,19 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
     private lateinit var adapter: ArticlesSectionsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val list = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.sectionsList)
+        val anchor = requireActivity().findViewById<View>(R.id.bottom_nav)
 
         adapter = ArticlesSectionsAdapter { article ->
             if (article.isLocked) {
                 val day = article.lockedAfterDay ?: 0
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.articles_unlock_after_day, day),
-                    Toast.LENGTH_SHORT
-                ).show()
+                FySnack.show(
+                    rootView = view,
+                    message = getString(R.string.articles_unlock_after_day, day),
+                    anchor = anchor
+                )
             } else {
                 findNavController().navigate(
                     R.id.action_articlesFragment_to_articleFragment,
@@ -49,12 +52,6 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
             }
         }
 
-        vm.start()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // ✅ если язык/прогресс поменялись пока ты был в другом экране — обновим
         vm.start()
     }
 }
