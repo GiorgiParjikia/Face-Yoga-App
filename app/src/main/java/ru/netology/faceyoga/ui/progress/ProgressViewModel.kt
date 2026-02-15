@@ -6,6 +6,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.data.repository.ProgramRepository
 import ru.netology.faceyoga.data.repository.ProgressRepository
@@ -23,18 +27,36 @@ class ProgressViewModel @Inject constructor(
     )
     val ui: StateFlow<ProgressUi> = _ui.asStateFlow()
 
+    private val _programId = MutableStateFlow<Long?>(null)
+
+    @Volatile
+    private var started = false
+
     fun start() {
+        if (started) return
+        started = true
+
+        // 1) programId один раз
         viewModelScope.launch {
-            progressRepo.observeLastCompletedDay().collect { last ->
-                _ui.value = buildUi(lastCompletedDay = last)
-            }
+            _programId.value = programRepo.getDefaultProgramId()
+        }
+
+        // 2) слушаем Room maxCompletedDay
+        viewModelScope.launch {
+            _programId
+                .filterNotNull()
+                .distinctUntilChanged()
+                .flatMapLatest { programId ->
+                    progressRepo.observeMaxCompletedDay(programId)
+                }
+                .distinctUntilChanged()
+                .onEach { lastCompletedDay ->
+                    _ui.value = buildUi(lastCompletedDay = lastCompletedDay)
+                }
+                .collect { /* handled */ }
         }
     }
 
-    /**
-     * Для клика по дню в Progress:
-     * находим programDayId по номеру дня.
-     */
     suspend fun resolveProgramDayId(dayNumber: Int): Long {
         val programId = programRepo.getDefaultProgramId()
         return programRepo.getProgramDayIdByDayNumber(programId, dayNumber)
@@ -54,8 +76,6 @@ class ProgressViewModel @Inject constructor(
             ProgressDayUi(day = day, state = state)
         }
 
-        // Без истории мы не можем честно посчитать streak.
-        // Поэтому делаем "условный": если дошёл до N — streak = min(N, 7) (или 0 если не начинал).
         val streak = if (done == 0) 0 else minOf(done, 7)
 
         return ProgressUi(

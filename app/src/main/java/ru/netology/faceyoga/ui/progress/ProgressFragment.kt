@@ -47,15 +47,22 @@ class ProgressFragment : Fragment(R.layout.fragment_progress) {
         val adapter = ProgressDaysAdapter { dayUi ->
             when (dayUi.state) {
                 DayState.LOCKED -> {
-                    // простой текст — можно потом локализовать
-                    Toast.makeText(requireContext(), "День ${dayUi.day} пока закрыт", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "День ${dayUi.day} пока закрыт",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 DayState.AVAILABLE, DayState.DONE -> {
                     viewLifecycleOwner.lifecycleScope.launch {
                         val programDayId = vm.resolveProgramDayId(dayUi.day)
                         if (programDayId == 0L) {
-                            Toast.makeText(requireContext(), "Не удалось открыть день", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Не удалось открыть день",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             return@launch
                         }
 
@@ -87,6 +94,7 @@ class ProgressFragment : Fragment(R.layout.fragment_progress) {
             }
         }
 
+        // ✅ важно вызвать (внутри VM стоит защита от повторного запуска)
         vm.start()
     }
 }

@@ -196,6 +196,35 @@ interface ProgressDao {
         isCompleted: Boolean
     )
 
+    // ===== OBSERVE (для автоматического обновления Progress/Articles) =====
+
+    @Query(
+        """
+        SELECT COALESCE(MAX(dayNumber), 0)
+        FROM user_day_progress
+        WHERE programId = :programId AND isCompleted = 1
+        """
+    )
+    fun observeMaxCompletedDay(programId: Long): Flow<Int>
+
+    @Query(
+        """
+        SELECT COUNT(*)
+        FROM user_day_progress
+        WHERE programId = :programId AND isCompleted = 1
+        """
+    )
+    fun observeCompletedDaysCount(programId: Long): Flow<Int>
+
+    @Query(
+        """
+        SELECT COUNT(*)
+        FROM user_exercise_progress
+        WHERE programId = :programId AND isCompleted = 1
+        """
+    )
+    fun observeCompletedExercisesCount(programId: Long): Flow<Int>
+
     // ===== RESET PROGRESS =====
 
     @Query("DELETE FROM user_day_progress WHERE programId = :programId")

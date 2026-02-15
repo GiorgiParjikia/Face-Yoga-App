@@ -12,14 +12,21 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.netology.faceyoga.data.db.ProgramDao
+import ru.netology.faceyoga.data.db.ProgressDao
+import ru.netology.faceyoga.data.repository.ProgressRepository
 import ru.netology.faceyoga.data.seed.DbSeeder
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    @Inject
-    lateinit var seeder: DbSeeder
+    @Inject lateinit var seeder: DbSeeder
+
+    // ✅ для reset
+    @Inject lateinit var programDao: ProgramDao
+    @Inject lateinit var progressDao: ProgressDao
+    @Inject lateinit var progressRepo: ProgressRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +42,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         // ✅ При клике по вкладке — всегда показываем КОРЕНЬ вкладки
         bottomNav.setOnItemSelectedListener { item ->
-            // Если вкладка уже в back stack — поднимаем её (и тем самым убираем вложенные экраны типа articleFragment)
             val popped = navController.popBackStack(item.itemId, false)
-
-            // Если нет — просто идём на неё
-            if (!popped) {
-                navController.navigate(item.itemId)
-            }
+            if (!popped) navController.navigate(item.itemId)
             true
         }
 
@@ -96,7 +98,22 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
 
             R.id.action_reset_progress -> {
-                // TODO: логика сброса прогресса
+                lifecycleScope.launch {
+                    // 1) сброс в Room + prefs (важно для вкладки Progress)
+                    launch(Dispatchers.IO) {
+                        val programId = programDao.getIdByTitle(DbSeeder.PROGRAM_TITLE) ?: return@launch
+                        progressDao.resetProgressForProgram(programId)
+
+                        // ✅ сброс SharedPreferences (last_completed_day)
+                        progressRepo.resetLocalProgress()
+                    }.join()
+
+                    // 2) UI: увести в корень вкладки "Упражнения"
+                    navController.popBackStack(R.id.daysFragment, false)
+                    if (navController.currentDestination?.id != R.id.daysFragment) {
+                        navController.navigate(R.id.daysFragment)
+                    }
+                }
                 true
             }
 

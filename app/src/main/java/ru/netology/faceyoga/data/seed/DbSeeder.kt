@@ -2,7 +2,13 @@ package ru.netology.faceyoga.data.seed
 
 import javax.inject.Inject
 import javax.inject.Singleton
-import ru.netology.faceyoga.data.db.*
+import ru.netology.faceyoga.data.db.DayExerciseDao
+import ru.netology.faceyoga.data.db.DayExerciseEntity
+import ru.netology.faceyoga.data.db.ExerciseDao
+import ru.netology.faceyoga.data.db.ProgramDao
+import ru.netology.faceyoga.data.db.ProgramDayDao
+import ru.netology.faceyoga.data.db.ProgramDayEntity
+import ru.netology.faceyoga.data.db.ProgramEntity
 
 @Singleton
 class DbSeeder @Inject constructor(
@@ -12,23 +18,27 @@ class DbSeeder @Inject constructor(
     private val dayExerciseDao: DayExerciseDao,
 ) {
 
-    suspend fun seedIfNeeded(): Long {
-        val programTitle = "Базовая программа 30 дней"
+    companion object {
+        const val PROGRAM_TITLE = "Базовая программа 30 дней"
+        private const val DURATION_DAYS = 30
+        private const val LEVEL = 1
+    }
 
+    suspend fun seedIfNeeded(): Long {
         // 1) Program
         val programId = programDao.insert(
             ProgramEntity(
-                title = programTitle,
+                title = PROGRAM_TITLE,
                 description = "Стартовая программа для MVP",
-                durationDays = 30,
-                level = 1
+                durationDays = DURATION_DAYS,
+                level = LEVEL
             )
         ).let { id ->
-            if (id == -1L) programDao.getIdByTitle(programTitle)!! else id
+            if (id == -1L) programDao.getIdByTitle(PROGRAM_TITLE)!! else id
         }
 
         // 2) Days
-        val dayIds = (1..30).map { day ->
+        val dayIds = (1..DURATION_DAYS).map { day ->
             val title = when (day) {
                 in 1..10 -> "Easy"
                 in 11..20 -> "Medium"
@@ -78,7 +88,6 @@ class DbSeeder @Inject constructor(
 
             val links = seeds.mapIndexed { i, seed ->
                 when (seed) {
-
                     is DayExerciseSeed.Reps -> DayExerciseEntity(
                         programDayId = programDayId,
                         exerciseId = idByTitle(seed.title),
@@ -89,7 +98,7 @@ class DbSeeder @Inject constructor(
 
                     is DayExerciseSeed.Timer -> DayExerciseEntity(
                         programDayId = programDayId,
-                        exerciseId = idByTitle(seed.title), // ✅ FIX: Timer тоже Exercise
+                        exerciseId = idByTitle(seed.title), // Timer тоже Exercise
                         order = i + 1,
                         overrideReps = null,
                         overrideSeconds = seed.seconds

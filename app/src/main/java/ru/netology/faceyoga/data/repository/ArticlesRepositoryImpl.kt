@@ -16,15 +16,13 @@ import javax.inject.Singleton
 
 @Singleton
 class ArticlesRepositoryImpl @Inject constructor(
-    @ApplicationContext private val appContext: Context,
-    private val progressRepo: ProgressRepository
+    @ApplicationContext private val appContext: Context
 ) : ArticlesRepository {
 
     private val gson = Gson()
 
-    override suspend fun loadSections(): List<ArticleSectionUi> {
+    override suspend fun loadSections(maxCompletedDay: Int): List<ArticleSectionUi> {
         val lang = appContext.currentLang()
-        val lastCompletedDay = progressRepo.getLastCompletedDay() // ✅ реальный прогресс
 
         val articles: List<ArticleJson> = loadArticles()
         val catalog: List<ArticleCatalogJson> = loadCatalog()
@@ -43,7 +41,7 @@ class ArticlesRepositoryImpl @Inject constructor(
 
         fun toCard(m: MergedArticle): ArticleCardUi {
             // правило: статья дня N открывается после завершения дня N
-            val locked = lastCompletedDay < m.day
+            val locked = maxCompletedDay < m.day
             return ArticleCardUi(
                 id = m.id,
                 title = m.title,
@@ -52,7 +50,7 @@ class ArticlesRepositoryImpl @Inject constructor(
             )
         }
 
-        val categorySections = merged
+        return merged
             .groupBy { it.category }
             .toList()
             .sortedBy { (cat, _) -> cat.ordinal }
@@ -63,8 +61,6 @@ class ArticlesRepositoryImpl @Inject constructor(
                     items = list.sortedBy { it.orderInCategory }.map(::toCard)
                 )
             }
-
-        return categorySections
     }
 
     private data class MergedArticle(
