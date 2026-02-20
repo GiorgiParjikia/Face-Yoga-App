@@ -10,7 +10,7 @@ data class ArticleCardUi(
 )
 
 data class ArticleSectionUi(
-    @StringRes val titleRes: Int,
+    @param:StringRes val titleRes: Int,
     val categoryKey: String?, // null для Recommended
     val items: List<ArticleCardUi>
 )

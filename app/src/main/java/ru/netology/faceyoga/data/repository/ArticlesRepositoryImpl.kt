@@ -16,7 +16,7 @@ import javax.inject.Singleton
 
 @Singleton
 class ArticlesRepositoryImpl @Inject constructor(
-    @ApplicationContext private val appContext: Context
+    @param:ApplicationContext private val appContext: Context
 ) : ArticlesRepository {
 
     private val gson = Gson()

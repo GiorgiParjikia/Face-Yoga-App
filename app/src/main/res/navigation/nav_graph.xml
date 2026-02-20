@@ -39,7 +39,7 @@
     <!-- Экран: обратный отсчёт перед стартом -->
     <fragment
         android:id="@+id/countdownFragment"
-        android:name="ru.netology.faceyoga.ui.countdown.CountdownFragment"
+        android:name="ru.netology.faceyoga.ui.player.countdown.CountdownFragment"
         android:label="Countdown">
 
         <argument

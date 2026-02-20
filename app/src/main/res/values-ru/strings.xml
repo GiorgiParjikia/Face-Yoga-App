@@ -107,7 +107,7 @@
         <string name="articles_recommended">Recommended articles</string>
 
         <!-- Categories -->
-        <string name="articles_cat_base_care">🧱 БАЗА УХОДА (фундамент)</string>
+        <string name="articles_cat_base_care">🧱 БАЗА УХОДА (Фундамент)</string>
         <string name="articles_cat_process_tech">🔬 ПРОЦЕССЫ И ТЕХНОЛОГИИ</string>
         <string name="articles_cat_face_system">🧠 ЛИЦО КАК СИСТЕМА</string>
         <string name="articles_cat_lifestyle">🌿 ОБРАЗ ЖИЗНИ И ЛИЦО</string>

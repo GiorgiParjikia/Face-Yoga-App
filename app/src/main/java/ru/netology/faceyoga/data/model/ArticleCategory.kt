@@ -3,7 +3,10 @@ package ru.netology.faceyoga.data.model
 import androidx.annotation.StringRes
 import ru.netology.faceyoga.R
 
-enum class ArticleCategory(val key: String, @StringRes val titleRes: Int) {
+enum class ArticleCategory(
+    val key: String,
+    @param:StringRes val titleRes: Int
+) {
     BASE_CARE("base_care", R.string.articles_cat_base_care),
     PROCESS_TECH("process_tech", R.string.articles_cat_process_tech),
     FACE_SYSTEM("face_system", R.string.articles_cat_face_system),

@@ -1,4 +1,4 @@
-package ru.netology.faceyoga.ui.countdown
+package ru.netology.faceyoga.ui.player.countdown
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -90,7 +90,7 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
             putInt("dayNumber", dayNumber)
         }
 
-        // ✅ лучше навигировать по action, чтобы не было сюрпризов со стеком
+        // лучше навигировать по action, чтобы не было сюрпризов со стеком
         findNavController().navigate(
             R.id.action_countdownFragment_to_videoPlayerFragment,
             args
