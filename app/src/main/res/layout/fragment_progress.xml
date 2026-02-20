@@ -23,8 +23,7 @@
             android:padding="16dp"
             android:background="@color/surface_card">
 
-
-        <TextView
+            <TextView
                 android:id="@+id/tvProgressTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,14 +54,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary" />
-
-            <TextView
-                android:id="@+id/tvStreak"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:textSize="14sp"
                 android:textColor="@color/text_primary" />
 

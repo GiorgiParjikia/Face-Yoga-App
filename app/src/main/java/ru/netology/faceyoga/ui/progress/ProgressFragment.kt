@@ -42,7 +42,6 @@ class ProgressFragment : Fragment(R.layout.fragment_progress) {
 
         val tvDone = view.findViewById<TextView>(R.id.tvDone)
         val tvPercent = view.findViewById<TextView>(R.id.tvPercent)
-        val tvStreak = view.findViewById<TextView>(R.id.tvStreak)
         val progressBar = view.findViewById<LinearProgressIndicator>(R.id.progressBar)
         val grid = view.findViewById<RecyclerView>(R.id.daysGrid)
 
@@ -88,7 +87,6 @@ class ProgressFragment : Fragment(R.layout.fragment_progress) {
                 vm.ui.collect { ui ->
                     tvDone.text = getString(R.string.progress_done_format, ui.doneDays, ui.totalDays)
                     tvPercent.text = getString(R.string.progress_percent_format, ui.percent)
-                    tvStreak.text = getString(R.string.progress_streak_format, ui.streak)
 
                     progressBar.progress = ui.percent
                     adapter.submitList(ui.days)

@@ -11,6 +11,5 @@ data class ProgressUi(
     val doneDays: Int,
     val totalDays: Int,
     val percent: Int,
-    val streak: Int,
     val days: List<ProgressDayUi>
 )

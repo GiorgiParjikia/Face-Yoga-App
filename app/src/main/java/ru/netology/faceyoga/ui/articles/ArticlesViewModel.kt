@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import ru.netology.faceyoga.data.repository.ArticlesRepository
 import ru.netology.faceyoga.data.repository.ProgramRepository
 import ru.netology.faceyoga.data.repository.ProgressRepository
+import ru.netology.faceyoga.ui.articles.mapper.toUi
 import ru.netology.faceyoga.ui.articles.model.ArticleSectionUi
 import javax.inject.Inject
 
@@ -44,7 +45,9 @@ class ArticlesViewModel @Inject constructor(
                 }
                 .distinctUntilChanged()
                 .collect { maxDay ->
-                    _sections.value = repo.loadSections(maxCompletedDay = maxDay)
+                    _sections.value = repo
+                        .loadSections(maxCompletedDay = maxDay)
+                        .map { it.toUi() }
                 }
         }
     }

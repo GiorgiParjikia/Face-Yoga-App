@@ -8,8 +8,8 @@ import ru.netology.faceyoga.data.model.ArticleCatalogJson
 import ru.netology.faceyoga.data.model.ArticleCategory
 import ru.netology.faceyoga.data.model.ArticleJson
 import ru.netology.faceyoga.data.util.pick
-import ru.netology.faceyoga.ui.articles.model.ArticleCardUi
-import ru.netology.faceyoga.ui.articles.model.ArticleSectionUi
+import ru.netology.faceyoga.domain.model.ArticleCard
+import ru.netology.faceyoga.domain.model.ArticleSection
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,7 +21,7 @@ class ArticlesRepositoryImpl @Inject constructor(
 
     private val gson = Gson()
 
-    override suspend fun loadSections(maxCompletedDay: Int): List<ArticleSectionUi> {
+    override suspend fun loadSections(maxCompletedDay: Int): List<ArticleSection> {
         val lang = appContext.currentLang()
 
         val articles: List<ArticleJson> = loadArticles()
@@ -39,10 +39,10 @@ class ArticlesRepositoryImpl @Inject constructor(
             )
         }
 
-        fun toCard(m: MergedArticle): ArticleCardUi {
+        fun toCard(m: MergedArticle): ArticleCard {
             // правило: статья дня N открывается после завершения дня N
             val locked = maxCompletedDay < m.day
-            return ArticleCardUi(
+            return ArticleCard(
                 id = m.id,
                 title = m.title,
                 isLocked = locked,
@@ -55,7 +55,7 @@ class ArticlesRepositoryImpl @Inject constructor(
             .toList()
             .sortedBy { (cat, _) -> cat.ordinal }
             .map { (cat, list) ->
-                ArticleSectionUi(
+                ArticleSection(
                     titleRes = cat.titleRes,
                     categoryKey = cat.key,
                     items = list.sortedBy { it.orderInCategory }.map(::toCard)

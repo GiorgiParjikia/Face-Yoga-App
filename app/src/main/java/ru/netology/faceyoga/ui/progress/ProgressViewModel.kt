@@ -23,7 +23,7 @@ class ProgressViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _ui = MutableStateFlow(
-        ProgressUi(doneDays = 0, totalDays = 30, percent = 0, streak = 0, days = emptyList())
+        ProgressUi(doneDays = 0, totalDays = 30, percent = 0, days = emptyList())
     )
     val ui: StateFlow<ProgressUi> = _ui.asStateFlow()
 
@@ -76,13 +76,10 @@ class ProgressViewModel @Inject constructor(
             ProgressDayUi(day = day, state = state)
         }
 
-        val streak = if (done == 0) 0 else minOf(done, 7)
-
         return ProgressUi(
             doneDays = done,
             totalDays = total,
             percent = percent,
-            streak = streak,
             days = days
         )
     }

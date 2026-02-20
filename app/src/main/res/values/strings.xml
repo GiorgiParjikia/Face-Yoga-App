@@ -45,7 +45,6 @@
 
     <string name="progress_done_format">%1$d / %2$d</string>
     <string name="progress_percent_format">%1$d%%</string>
-    <string name="progress_streak_format">Streak: %1$d</string>
     <string name="progress_title">Progress</string>
 
     <string name="thirty_days">30 Days</string>
