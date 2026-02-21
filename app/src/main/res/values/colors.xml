@@ -46,6 +46,8 @@
     <color name="icon_on_video">#000000</color>
     <color name="transparent">#00000000</color>
 
+    <color name="bg_canvas">#F5F6F8</color>
+    <color name="stroke_soft">#E6E8EC</color>
 
     <!-- Progress -->
     <color name="progress_background">#BDBDBD</color>

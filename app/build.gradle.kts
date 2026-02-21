@@ -80,6 +80,8 @@ dependencies {
     // Room (Offline)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.navigation.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.navigation.ui.ktx)
     kapt(libs.androidx.room.compiler)
 
     // Hilt (DI)

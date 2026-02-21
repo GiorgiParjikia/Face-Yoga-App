@@ -34,6 +34,8 @@ navigationUiKtx = "2.9.6"
 firebase-bom = "33.6.0"
 google-services = "4.4.2"
 coroutines-play-services = "1.9.0"
+navigationFragmentKtxVersion = "2.9.7"
+navigationUiKtxVersion = "2.9.7"
 
 
 [libraries]
@@ -84,6 +86,8 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx" }
 kotlinx-coroutines-play-services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines-play-services" }
+androidx-navigation-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtxVersion" }
+androidx-navigation-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
 
 
 [plugins]
