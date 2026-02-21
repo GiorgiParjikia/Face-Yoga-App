@@ -43,6 +43,7 @@
 
     <string name="loading_video">Loading Video…</string>
 
+
     <string name="progress_done_format">%1$d / %2$d</string>
     <string name="progress_percent_format">%1$d%%</string>
     <string name="progress_title">Progress</string>
@@ -70,6 +71,14 @@
     <string name="settings_email_chooser">Choose email app</string>
 
     <string name="settings_email_body_hint">Describe the issue or suggestion</string>
+
+    <!-- res/values/strings.xml (EN default) -->
+    <string name="no_connection_title">No internet connection</string>
+    <string name="no_connection_desc">Video can’t be loaded right now. Check your connection and try again.</string>
+    <string name="retry">Retry</string>
+    <string name="watch_a_bit_to_continue">Watch a bit to continue</string>
+
+
 
 
     <!--Progress Cancel-->

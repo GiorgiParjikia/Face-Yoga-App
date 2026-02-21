@@ -1,5 +1,8 @@
 package ru.netology.faceyoga.ui.player
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
@@ -15,11 +18,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
+import androidx.media3.common.PlaybackException
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
 import ru.netology.faceyoga.data.media.VideoUrlResolver
@@ -59,7 +65,14 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         requireArguments().getInt(StateKeys.DAY_NUMBER, 1)
     }
 
-    // ---------------- lifecycle ----------------
+    // offline / retry
+    private var lastResolvedHttps: String? = null
+
+    // засчет упражнения только при реальном проигрывании
+    private var completeJob: Job? = null
+
+    // таймаут ожидания READY
+    private var readyTimeoutJob: Job? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentVideoPlayerBinding.bind(view)
@@ -79,6 +92,11 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             showExitDialog()
         }
         binding.btnClose.setOnClickListener { showExitDialog() }
+
+        binding.btnRetry.setOnClickListener {
+            binding.offlineOverlay.visibility = View.GONE
+            playCurrent(forceResolve = true)
+        }
 
         setupPlayer()
         setupButtons()
@@ -103,17 +121,28 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         timer?.cancel()
         timer = null
 
+        completeJob?.cancel()
+        completeJob = null
+
+        readyTimeoutJob?.cancel()
+        readyTimeoutJob = null
+
         player?.pause()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        readyTimeoutJob?.cancel()
+        readyTimeoutJob = null
+
+        completeJob?.cancel()
+        completeJob = null
+
         _binding = null
         player?.release()
         player = null
     }
-
-    // ---------------- setup ----------------
 
     private fun setupPlayer() {
         player = ExoPlayer.Builder(requireContext()).build().also { exo ->
@@ -121,13 +150,43 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             binding.playerView.player = exo
 
             exo.addListener(object : Player.Listener {
+
                 override fun onPlaybackStateChanged(state: Int) {
                     when (state) {
-                        Player.STATE_BUFFERING ->
+                        Player.STATE_BUFFERING -> {
+                            // BUFFERING может быть бесконечным при отсутствии сети → мы держим таймаут
                             binding.loadingOverlay.visibility = View.VISIBLE
-                        Player.STATE_READY ->
+                        }
+                        Player.STATE_READY -> {
+                            // Видео реально подготовилось
                             binding.loadingOverlay.visibility = View.GONE
+                            binding.offlineOverlay.visibility = View.GONE
+
+                            readyTimeoutJob?.cancel()
+                            readyTimeoutJob = null
+
+                            maybeScheduleCompleteAfterRealPlayback()
+                        }
+                        Player.STATE_ENDED -> {
+                            // не используем, repeat one
+                        }
+                        Player.STATE_IDLE -> {
+                            // ничего
+                        }
                     }
+                }
+
+                override fun onIsPlayingChanged(isPlaying: Boolean) {
+                    if (isPlaying) {
+                        maybeScheduleCompleteAfterRealPlayback()
+                    } else {
+                        completeJob?.cancel()
+                        completeJob = null
+                    }
+                }
+
+                override fun onPlayerError(error: PlaybackException) {
+                    showOffline()
                 }
             })
         }
@@ -135,6 +194,15 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
     private fun setupButtons() {
         binding.btnNext.setOnClickListener {
+            if (!playerViewModel.isCurrentCompleted()) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.watch_a_bit_to_continue),
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
             val state = lastQueueState ?: return@setOnClickListener
             val hasNext = state.index + 1 < state.list.size
 
@@ -153,8 +221,6 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             }
         }
     }
-
-    // ---------------- observers ----------------
 
     private fun observeDayExercises() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -177,14 +243,20 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 playerViewModel.queue.collect { state ->
                     lastQueueState = state
+
+                    // сменилось упражнение
+                    lastResolvedHttps = null
+                    completeJob?.cancel(); completeJob = null
+                    readyTimeoutJob?.cancel(); readyTimeoutJob = null
+
                     updateOverlay(state)
-                    playCurrent()
+                    setNextEnabled(playerViewModel.isCurrentCompleted())
+
+                    playCurrent(forceResolve = false)
                 }
             }
         }
     }
-
-    // ---------------- UI ----------------
 
     private fun updateOverlay(state: PlayerQueueState) {
         val ctx = requireContext()
@@ -228,36 +300,116 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         }
     }
 
-    // ---------------- video ----------------
+    private fun setNextEnabled(enabled: Boolean) {
+        binding.btnNext.isEnabled = enabled
+        binding.btnNext.alpha = if (enabled) 1f else 0.55f
+    }
 
-    private fun playCurrent() {
+    private fun playCurrent(forceResolve: Boolean) {
         val item = playerViewModel.current() ?: return
         val gs = item.videoUri ?: return
+
+        // ✅ 1) если нет сети — сразу оффлайн, без вечного лоадера
+        if (!isOnline(requireContext())) {
+            showOffline()
+            return
+        }
+
+        binding.offlineOverlay.visibility = View.GONE
+        binding.loadingOverlay.visibility = View.VISIBLE
+        setNextEnabled(playerViewModel.isCurrentCompleted())
+
+        // ✅ 2) таймаут: если READY не наступит — покажем оффлайн
+        startReadyTimeout()
+
+        val cached = lastResolvedHttps
+        if (!forceResolve && !cached.isNullOrBlank()) {
+            playHttps(cached)
+            return
+        }
 
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             runCatching {
                 videoUrlResolver.resolve(gs)
             }.onSuccess { https ->
+                lastResolvedHttps = https
                 launch(Dispatchers.Main) {
-                    player?.apply {
-                        setMediaItem(MediaItem.fromUri(https))
-                        prepare()
-                        playWhenReady = true
-                    }
+                    playHttps(https)
                 }
             }.onFailure {
                 launch(Dispatchers.Main) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Не удалось открыть видео",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showOffline()
                 }
             }
         }
     }
 
-    // ---------------- helpers ----------------
+    private fun playHttps(https: String) {
+        player?.apply {
+            setMediaItem(MediaItem.fromUri(https))
+            prepare()
+            playWhenReady = true
+        }
+    }
+
+    private fun startReadyTimeout() {
+        readyTimeoutJob?.cancel()
+        readyTimeoutJob = viewLifecycleOwner.lifecycleScope.launch {
+            delay(8000) // 8 сек хватает
+            val p = player
+            // если за 8 сек не вышли в READY — считаем, что сети/доступа нет
+            if (p == null || p.playbackState != Player.STATE_READY) {
+                showOffline()
+            }
+        }
+    }
+
+    private fun showOffline() {
+        readyTimeoutJob?.cancel()
+        readyTimeoutJob = null
+
+        binding.loadingOverlay.visibility = View.GONE
+        binding.offlineOverlay.visibility = View.VISIBLE
+        setNextEnabled(false)
+
+        // на всякий случай остановим попытки воспроизведения
+        player?.pause()
+    }
+
+    private fun maybeScheduleCompleteAfterRealPlayback() {
+        if (playerViewModel.isCurrentCompleted()) {
+            setNextEnabled(true)
+            return
+        }
+
+        if (binding.offlineOverlay.visibility == View.VISIBLE) {
+            setNextEnabled(false)
+            return
+        }
+
+        val exo = player ?: return
+        if (!exo.isPlaying) {
+            setNextEnabled(false)
+            return
+        }
+
+        if (completeJob?.isActive == true) return
+
+        completeJob = viewLifecycleOwner.lifecycleScope.launch {
+            delay(1500)
+
+            val p = player ?: return@launch
+            val reallyPlaying =
+                p.isPlaying &&
+                        p.currentPosition > 0L &&
+                        p.playbackState == Player.STATE_READY
+
+            if (reallyPlaying) {
+                playerViewModel.markCurrentCompleted()
+                setNextEnabled(true)
+            }
+        }
+    }
 
     private fun isTimer(item: DayExerciseUi): Boolean =
         item.rightInfo.contains(":")
@@ -329,4 +481,12 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
     private fun dp(value: Int): Int =
         (value * resources.displayMetrics.density).toInt()
+
+    private fun isOnline(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = cm.activeNetwork ?: return false
+        val caps = cm.getNetworkCapabilities(network) ?: return false
+        // достаточно, чтобы была возможность в интернет (WIFI/CELL)
+        return caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
 }

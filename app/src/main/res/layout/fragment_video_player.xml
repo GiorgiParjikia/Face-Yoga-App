@@ -37,7 +37,9 @@
         android:background="@color/overlay_dark"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true">
 
         <ProgressBar
             android:id="@+id/pbLoading"
@@ -54,6 +56,78 @@
             android:textColor="@color/text_on_dark"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <!-- 📴 Offline / Error overlay -->
+    <FrameLayout
+        android:id="@+id/offlineOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="24dp">
+
+        <!-- затемнение фона -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B3000000" />
+
+        <!-- карточка по центру -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#F2FFFFFF"
+            app:strokeWidth="1dp"
+            app:strokeColor="#1A000000">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:id="@+id/tvOfflineTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/no_connection_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvOfflineDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/no_connection_desc"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/retry"
+                    android:textAllCaps="false"
+                    android:textColor="@color/surface_card"
+                    app:backgroundTint="@color/green_primary"
+                    app:cornerRadius="22dp"
+                    android:paddingStart="26dp"
+                    android:paddingEnd="26dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
 
     <!-- 1 / 6 (preview) -->
     <TextView
@@ -100,7 +174,6 @@
                     android:maxLines="2"
                     android:textColor="@color/text_primary" />
 
-
                 <ProgressBar
                     android:id="@+id/progressLine"
                     style="?android:attr/progressBarStyleHorizontal"
@@ -124,7 +197,6 @@
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
-
                 <TextView
                     android:id="@+id/tvNext"
                     android:layout_width="match_parent"
@@ -134,7 +206,6 @@
                     tools:text="Next: Exercise"
                     android:maxLines="2"
                     android:textColor="@color/text_secondary" />
-
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

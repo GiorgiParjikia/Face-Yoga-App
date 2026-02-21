@@ -75,6 +75,12 @@
     <string name="settings_email_button">დაგვიკავშირდით ელფოსტით</string>
     <string name="settings_email_chooser">აირჩიეთ ელფოსტის აპლიკაცია</string>
 
+    <!-- res/values-ka/strings.xml -->
+    <string name="no_connection_title">ინტერნეტთან კავშირი არ არის</string>
+    <string name="no_connection_desc">ვიდეო ახლა ვერ იტვირთება. შეამოწმე კავშირი და დააჭირე „ხელახლა“.</string>
+    <string name="retry">ხელახლა</string>
+    <string name="watch_a_bit_to_continue">გთხოვ, ცოტა უყურე და შემდეგ გააგრძელე</string>
+
     <!--Warnings-->
     <string name="exit_workout_title">ვარჯიშიდან გასვლა</string>
     <string name="exit_workout_message">დარწმუნებული ხართ, რომ გსურთ გასვლა? მიმდინარე ვარჯიში შეწყდება.</string>

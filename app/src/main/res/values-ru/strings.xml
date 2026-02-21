@@ -76,6 +76,12 @@
 
     <string name="settings_email_body_hint">Опишите проблему или предложение</string>
 
+    <!-- res/values-ru/strings.xml -->
+    <string name="no_connection_title">Нет подключения к интернету</string>
+    <string name="no_connection_desc">Видео сейчас не загружается. Проверь соединение и нажми «Повторить».</string>
+    <string name="retry">Повторить</string>
+    <string name="watch_a_bit_to_continue">Посмотри немного, чтобы продолжить</string>
+
     <!--Progress Cancel-->
     <string name="reset_progress">Сбросить прогресс</string>
     <string name="reset_progress_title">Сбросить прогресс?</string>
