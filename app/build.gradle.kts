@@ -5,7 +5,11 @@ plugins {
     id("kotlin-kapt")
 
     alias(libs.plugins.hilt)
-    alias(libs.plugins.google.services)
+
+    // На CI (GitHub Actions) google-services.json нет, поэтому отключаем плагин
+    if (System.getenv("CI") != "true") {
+        alias(libs.plugins.google.services)
+    }
 }
 
 android {
@@ -107,8 +111,6 @@ dependencies {
 
     // Lottie
     implementation(libs.lottie)
-
-
 }
 
 kapt {
