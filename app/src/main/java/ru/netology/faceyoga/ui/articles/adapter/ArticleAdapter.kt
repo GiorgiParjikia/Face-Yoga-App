@@ -10,6 +10,7 @@ import ru.netology.faceyoga.databinding.ItemArticleImageBinding
 import ru.netology.faceyoga.databinding.ItemArticleTextBinding
 import ru.netology.faceyoga.ui.articles.model.ArticleBlock
 import coil.load
+import android.text.method.LinkMovementMethod
 
 
 class ArticleAdapter(
@@ -64,19 +65,20 @@ class ArticleAdapter(
         private val b: ItemArticleTextBinding
     ) : RecyclerView.ViewHolder(b.root) {
 
+        init {
+            b.text.movementMethod = LinkMovementMethod.getInstance()
+        }
+
         fun bind(item: ArticleBlock.Text) {
             val raw = item.text.trim()
 
             when {
                 raw.startsWith("## ") -> {
-                    // Заголовок
                     b.text.text = raw.removePrefix("## ").trim()
                     b.text.setTypeface(null, Typeface.BOLD)
                     b.text.textSize = 18f
                 }
-
                 else -> {
-                    // Обычный текст
                     b.text.text = raw
                     b.text.setTypeface(null, Typeface.NORMAL)
                     b.text.textSize = 14f
