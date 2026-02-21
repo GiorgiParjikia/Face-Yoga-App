@@ -52,6 +52,29 @@
 
     <string name="thirty_days">30 დღე</string>
 
+    <string name="settings_email_body_hint">აღწერეთ პრობლემა ან წინადადება</string>
+
+    <!--Settings-->
+    <string name="settings_language_title">ენა</string>
+    <string name="settings_language_system">სისტემური</string>
+    <string name="settings_language_english">ინგლისური</string>
+    <string name="settings_language_russian">რუსული</string>
+    <string name="settings_language_georgian">ქართული</string>
+
+    <string name="settings_faq_title">ხშირად დასმული კითხვები</string>
+
+    <string name="faq_report_problem_q">როგორ შევატყობინო პრობლემის შესახებ?</string>
+    <string name="faq_report_problem_a">გახსენით „პარამეტრები“ და დააჭირეთ „დაგვიკავშირდით ელფოსტით“.</string>
+
+    <string name="faq_reset_progress_q">როგორ გავანულო პროგრესი?</string>
+    <string name="faq_reset_progress_a">„ვარჯიშების“ ჩანართში დააჭირეთ მარცხენა ზედა კუთხეში არსებულ სამ წერტილს. შემდეგ აირჩიეთ „პროგრესის განულება“. ამის შემდეგ მთელი პროგრესი განულდება.</string>
+
+    <string name="faq_preview_q">როგორ ვნახო პრევიუ ვარჯიშის დაწყებამდე?</string>
+    <string name="faq_preview_a">დაწყებამდე ვარჯიშების სიაში დააჭირეთ და დააკავეთ სურათი 1.5 წამით.</string>
+
+    <string name="settings_email_button">დაგვიკავშირდით ელფოსტით</string>
+    <string name="settings_email_chooser">აირჩიეთ ელფოსტის აპლიკაცია</string>
+
     <!--Warnings-->
     <string name="exit_workout_title">ვარჯიშიდან გასვლა</string>
     <string name="exit_workout_message">დარწმუნებული ხართ, რომ გსურთ გასვლა? მიმდინარე ვარჯიში შეწყდება.</string>

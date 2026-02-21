@@ -49,6 +49,28 @@
 
     <string name="thirty_days">30 Days</string>
 
+    <!--Settings-->
+    <string name="settings_language_title">Language</string>
+    <string name="settings_language_system">System</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_russian">Russian</string>
+    <string name="settings_language_georgian">Georgian</string>
+
+    <string name="settings_faq_title">FAQ</string>
+    <string name="faq_report_problem_q">How to report a problem?</string>
+    <string name="faq_report_problem_a">Open Settings and tap “Email support”.</string>
+
+    <string name="faq_reset_progress_q">How to reset progress?</string>
+    <string name="faq_reset_progress_a">In the "Lessons" tab, tap the three-dot button in the top left corner. Then select "Reset progress". After that, all progress will be cleared.</string>
+
+    <string name="faq_preview_q">How to preview before exercises?</string>
+    <string name="faq_preview_a">Before starting, press and hold the image in the exercise list for 1.5 seconds.</string>
+
+    <string name="settings_email_button">Email support</string>
+    <string name="settings_email_chooser">Choose email app</string>
+
+    <string name="settings_email_body_hint">Describe the issue or suggestion</string>
+
 
     <!--Progress Cancel-->
     <string name="reset_progress">Reset progress</string>

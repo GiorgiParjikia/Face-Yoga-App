@@ -53,6 +53,29 @@
     Сначала завершите предыдущий день
 </string>
 
+    <!--Settings-->
+    <string name="settings_language_title">Язык</string>
+    <string name="settings_language_system">Системный</string>
+    <string name="settings_language_english">Английский</string>
+    <string name="settings_language_russian">Русский</string>
+    <string name="settings_language_georgian">Грузинский</string>
+
+    <string name="settings_faq_title">FAQ</string>
+
+    <string name="faq_report_problem_q">Как сообщить о проблеме?</string>
+    <string name="faq_report_problem_a">Откройте «Настройки» и нажмите «Написать в поддержку».</string>
+
+    <string name="faq_reset_progress_q">Как обнулить прогресс?</string>
+    <string name="faq_reset_progress_a">Во вкладке «Упражнения» нажмите на кнопку с тремя точками в левом верхнем углу. Затем выберите «Сброс прогресса». После этого весь прогресс будет обнулён.</string>
+
+    <string name="faq_preview_q">Как посмотреть превью перед началом упражнения?</string>
+    <string name="faq_preview_a">Перед началом в списке упражнений нажмите и удерживайте изображение 1,5 секунды.</string>
+
+    <string name="settings_email_button">Написать в поддержку</string>
+    <string name="settings_email_chooser">Выберите почтовое приложение</string>
+
+    <string name="settings_email_body_hint">Опишите проблему или предложение</string>
+
     <!--Progress Cancel-->
     <string name="reset_progress">Сбросить прогресс</string>
     <string name="reset_progress_title">Сбросить прогресс?</string>

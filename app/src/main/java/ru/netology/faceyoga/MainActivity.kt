@@ -16,6 +16,7 @@ import ru.netology.faceyoga.data.db.ProgramDao
 import ru.netology.faceyoga.data.db.ProgressDao
 import ru.netology.faceyoga.data.repository.ProgressRepository
 import ru.netology.faceyoga.data.seed.DbSeeder
+import ru.netology.faceyoga.ui.settings.LanguageManager
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -30,6 +31,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // ✅ Language: по умолчанию system, если пользователь выбрал язык — применяем его
+        LanguageManager.apply(LanguageManager.getSelectedLang(this))
 
         val navHost =
             supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
@@ -101,7 +105,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 lifecycleScope.launch {
                     // 1) сброс в Room + prefs (важно для вкладки Progress)
                     launch(Dispatchers.IO) {
-                        val programId = programDao.getIdByTitle(DbSeeder.PROGRAM_TITLE) ?: return@launch
+                        val programId =
+                            programDao.getIdByTitle(DbSeeder.PROGRAM_TITLE) ?: return@launch
                         progressDao.resetProgressForProgram(programId)
 
                         // ✅ сброс SharedPreferences (last_completed_day)
