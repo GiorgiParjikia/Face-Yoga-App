@@ -122,7 +122,7 @@ object SeedPlansHard {
                 ex("Gentle Facial Massage with Tapping and Smoothing", reps = 12),
                 ex("Head Lifts and Drops", reps = 12),
                 relax(60),
-                ex("Air Wave", reps = 10),
+                ex("Air Wave", reps = 12),
                 ex("Cheek Massage with Fist Exercise", reps = 12),
                 ex("Chin Line Finger Lift", reps = 12),
                 relax(60),
