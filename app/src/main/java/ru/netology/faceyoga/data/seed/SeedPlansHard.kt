@@ -30,7 +30,7 @@ object SeedPlansHard {
                 ex("Smiling Resistance", reps = 8),
                 ex("Lip-Tucked Smile Exercise", reps = 8),
                 relax(60),
-                ex("Eyebrow Pressure", reps = 10),
+                ex("Eyebrow Pressure", reps = 8),
                 ex("Forehead and Temple Relaxation Massage", reps = 8),
                 ex("Head Turns", reps = 8),
                 relax(60),
