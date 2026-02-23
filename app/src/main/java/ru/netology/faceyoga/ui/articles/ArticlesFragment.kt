@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
@@ -19,15 +20,19 @@ import ru.netology.faceyoga.ui.common.FySnack
 class ArticlesFragment : Fragment(R.layout.fragment_articles) {
 
     private val vm: ArticlesViewModel by viewModels()
-    private lateinit var adapter: ArticlesSectionsAdapter
+
+    private var adapter: ArticlesSectionsAdapter? = null
+    private var list: RecyclerView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val list = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.sectionsList)
+        val list = view.findViewById<RecyclerView>(R.id.sectionsList)
+        this.list = list
+
         val anchor = requireActivity().findViewById<View>(R.id.bottom_nav)
 
-        adapter = ArticlesSectionsAdapter { article ->
+        val adapter = ArticlesSectionsAdapter { article ->
             if (article.isLocked) {
                 val day = article.lockedAfterDay ?: 0
                 FySnack.show(
@@ -42,6 +47,7 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
                 )
             }
         }
+        this.adapter = adapter
 
         list.layoutManager = LinearLayoutManager(requireContext())
         list.adapter = adapter
@@ -53,5 +59,15 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         }
 
         vm.start()
+    }
+
+    override fun onDestroyView() {
+        // важно: разорвать RecyclerView -> Adapter -> View ссылки
+        list?.adapter = null
+        list = null
+
+        adapter = null
+
+        super.onDestroyView()
     }
 }
