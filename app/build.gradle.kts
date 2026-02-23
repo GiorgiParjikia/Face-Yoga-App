@@ -6,10 +6,8 @@ plugins {
 
     alias(libs.plugins.hilt)
 
-    // На CI (GitHub Actions) google-services.json нет, поэтому отключаем плагин
-    if (System.getenv("CI") != "true") {
-        alias(libs.plugins.google.services)
-    }
+    // Firebase / Google Services (нужен и локально, и на CI)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -36,7 +34,6 @@ android {
         }
     }
 
-    // ViewBinding
     buildFeatures {
         viewBinding = true
     }
@@ -59,7 +56,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // Coli
+    // Images (Coil)
     implementation(libs.coil)
 
     // Lifecycle / MVVM
@@ -84,8 +81,6 @@ dependencies {
     // Room (Offline)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.navigation.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.navigation.ui.ktx)
     kapt(libs.androidx.room.compiler)
 
     // Hilt (DI)
@@ -96,14 +91,6 @@ dependencies {
     implementation(libs.media3.exoplayer)
     implementation(libs.media3.ui)
 
-    // Images
-    implementation(libs.coil)
-
-    // Tests
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.storage.ktx)
@@ -111,6 +98,11 @@ dependencies {
 
     // Lottie
     implementation(libs.lottie)
+
+    // Tests
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
 
 kapt {

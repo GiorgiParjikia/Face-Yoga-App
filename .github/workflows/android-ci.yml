@@ -21,6 +21,15 @@ jobs:
           java-version: "17"
           cache: "gradle"
 
+      # Создаём google-services.json из GitHub Secret (FIREBASE_SECRET)
+      - name: Decode google-services.json
+        shell: bash
+        env:
+          FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+        run: |
+          mkdir -p app
+          printf '%s' "$FIREBASE_SECRET" > app/google-services.json
+
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
