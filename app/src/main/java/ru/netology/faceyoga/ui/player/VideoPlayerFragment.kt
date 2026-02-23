@@ -31,6 +31,7 @@ import ru.netology.faceyoga.R
 import ru.netology.faceyoga.data.media.VideoUrlResolver
 import ru.netology.faceyoga.databinding.FragmentVideoPlayerBinding
 import ru.netology.faceyoga.ui.common.StateKeys
+import ru.netology.faceyoga.ui.common.dp
 import ru.netology.faceyoga.ui.common.localizedExerciseTitle
 import ru.netology.faceyoga.ui.day.DayExerciseUi
 import ru.netology.faceyoga.ui.day.DayExercisesViewModel
@@ -83,7 +84,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 binding.bottomContainer.paddingLeft,
                 binding.bottomContainer.paddingTop,
                 binding.bottomContainer.paddingRight,
-                navBarBottom + dp(8)
+                navBarBottom + 8.dp(resources)
             )
             insets
         }
@@ -478,9 +479,6 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             }
             .show()
     }
-
-    private fun dp(value: Int): Int =
-        (value * resources.displayMetrics.density).toInt()
 
     private fun isOnline(context: Context): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

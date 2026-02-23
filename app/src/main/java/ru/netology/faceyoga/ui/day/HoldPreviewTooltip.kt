@@ -9,6 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.databinding.ViewHoldPreviewTooltipBinding
 import ru.netology.faceyoga.ui.common.TooltipPrefs
+import ru.netology.faceyoga.ui.common.dp
 
 class HoldPreviewTooltip(
     private val parent: ViewGroup,
@@ -41,7 +42,7 @@ class HoldPreviewTooltip(
 
         // ⚠️ Ждём, пока layout посчитается
         binding!!.root.post {
-            val y = anchor.bottom + dp(8)
+            val y = anchor.bottom + 8.dp(parent.resources)
             binding!!.root.translationY = y.toFloat()
 
             binding!!.root.animate()
@@ -62,7 +63,4 @@ class HoldPreviewTooltip(
         }
         binding = null
     }
-
-    private fun dp(value: Int): Int =
-        (value * parent.resources.displayMetrics.density).toInt()
 }
