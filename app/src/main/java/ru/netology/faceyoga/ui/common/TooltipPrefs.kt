@@ -1,6 +1,7 @@
 package ru.netology.faceyoga.ui.common
 
 import android.content.Context
+import androidx.core.content.edit
 
 object TooltipPrefs {
 
@@ -16,8 +17,8 @@ object TooltipPrefs {
     fun markHoldPreviewShown(context: Context) {
         context
             .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            .edit()
-            .putBoolean(KEY_HOLD_PREVIEW_SHOWN, true)
-            .apply()
+            .edit {
+                putBoolean(KEY_HOLD_PREVIEW_SHOWN, true)
+            }
     }
 }

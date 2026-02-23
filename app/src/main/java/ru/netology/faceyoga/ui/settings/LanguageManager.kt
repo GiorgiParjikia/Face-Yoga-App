@@ -2,6 +2,7 @@ package ru.netology.faceyoga.ui.settings
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
 import androidx.core.os.LocaleListCompat
 
 object LanguageManager {
@@ -15,9 +16,9 @@ object LanguageManager {
 
     fun setSelectedLang(context: Context, lang: String) {
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            .edit()
-            .putString(KEY_LANG, lang)
-            .apply()
+            .edit {
+                putString(KEY_LANG, lang)
+            }
 
         apply(lang)
     }

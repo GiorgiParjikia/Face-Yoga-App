@@ -1,6 +1,7 @@
 package ru.netology.faceyoga.data.repository
 
 import android.content.Context
+import androidx.core.content.edit
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,17 +37,17 @@ class ProgressRepositoryImpl @Inject constructor(
     override suspend fun setLastCompletedDay(day: Int) {
         val current = _lastDayFlow.value
         if (day > current) {
-            prefs.edit()
-                .putInt(KEY_LAST_COMPLETED_DAY, day)
-                .apply()
+            prefs.edit {
+                putInt(KEY_LAST_COMPLETED_DAY, day)
+            }
             _lastDayFlow.value = day
         }
     }
 
     override suspend fun resetLocalProgress() {
-        prefs.edit()
-            .putInt(KEY_LAST_COMPLETED_DAY, 0)
-            .apply()
+        prefs.edit {
+            putInt(KEY_LAST_COMPLETED_DAY, 0)
+        }
         _lastDayFlow.value = 0
     }
 
