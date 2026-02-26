@@ -9,14 +9,16 @@ import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
+import ru.netology.faceyoga.analytics.AnalyticsEvents
+import ru.netology.faceyoga.analytics.AnalyticsLogger
 import ru.netology.faceyoga.data.repository.ProgressRepository
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class CongratsFragment : Fragment(R.layout.fragment_congrats) {
 
-    @Inject
-    lateinit var progressRepo: ProgressRepository
+    @Inject lateinit var progressRepo: ProgressRepository
+    @Inject lateinit var analytics: AnalyticsLogger
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,6 +29,16 @@ class CongratsFragment : Fragment(R.layout.fragment_congrats) {
         // 👉 номер дня, который только что был завершён
         val dayNumber = arguments?.getInt("dayNumber", -1) ?: -1
 
+        // ✅ Analytics: тренировка завершена (дошёл до Congrats)
+        if (dayNumber > 0) {
+            analytics.log(
+                AnalyticsEvents.WORKOUT_FINISH,
+                Bundle().apply { putInt("day_number", dayNumber) }
+            )
+        } else {
+            analytics.log(AnalyticsEvents.WORKOUT_FINISH)
+        }
+
         // ✅ сохраняем прогресс сразу при показе экрана Congrats
         if (dayNumber > 0) {
             viewLifecycleOwner.lifecycleScope.launch {
@@ -35,12 +47,14 @@ class CongratsFragment : Fragment(R.layout.fragment_congrats) {
         }
 
         btnOpenArticle.setOnClickListener {
-            // защита от кривых аргументов (на всякий случай)
             if (dayNumber <= 0) return@setOnClickListener
 
             findNavController().navigate(
                 R.id.articleFragment,
-                Bundle().apply { putInt("articleId", dayNumber) }
+                Bundle().apply {
+                    putInt("articleId", dayNumber)
+                    putBoolean("fromCongrats", true) // ✅ важно для аналитики
+                }
             )
         }
 

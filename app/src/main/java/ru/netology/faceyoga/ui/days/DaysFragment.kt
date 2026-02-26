@@ -14,9 +14,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
+import ru.netology.faceyoga.analytics.AnalyticsEvents
+import ru.netology.faceyoga.analytics.AnalyticsLogger
 import ru.netology.faceyoga.databinding.FragmentDaysBinding
 import ru.netology.faceyoga.ui.common.FySnack
 import ru.netology.faceyoga.ui.common.StateKeys
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DaysFragment : Fragment(R.layout.fragment_days) {
@@ -25,6 +28,8 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
     private val binding get() = _binding!!
 
     private val viewModel: DaysViewModel by viewModels()
+
+    @Inject lateinit var analytics: AnalyticsLogger
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +45,12 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
 
         val adapter = DaysAdapter(
             onClick = { day ->
+                // ✅ Analytics: открытие дня
+                analytics.log(
+                    AnalyticsEvents.DAY_OPEN,
+                    Bundle().apply { putInt("day_number", day.dayNumber) }
+                )
+
                 val args = Bundle().apply {
                     putLong(StateKeys.PROGRAM_DAY_ID, day.programDayId)
                     putInt(StateKeys.DAY_NUMBER, day.dayNumber)
@@ -111,6 +122,9 @@ class DaysFragment : Fragment(R.layout.fragment_days) {
                 dialog.dismiss()
             }
             .setPositiveButton(getString(R.string.reset)) { _, _ ->
+                // ✅ Analytics: пользователь подтвердил сброс прогресса
+                analytics.log(AnalyticsEvents.PROGRESS_RESET)
+
                 viewModel.resetProgress()
                 FySnack.show(
                     rootView = binding.root,

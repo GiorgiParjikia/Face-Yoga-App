@@ -1,8 +1,6 @@
 package ru.netology.faceyoga
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -12,9 +10,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.netology.faceyoga.data.db.ProgramDao
-import ru.netology.faceyoga.data.db.ProgressDao
-import ru.netology.faceyoga.data.repository.ProgressRepository
+import ru.netology.faceyoga.analytics.AnalyticsEvents
+import ru.netology.faceyoga.analytics.AnalyticsLogger
 import ru.netology.faceyoga.data.seed.DbSeeder
 import ru.netology.faceyoga.ui.settings.LanguageManager
 import javax.inject.Inject
@@ -24,10 +21,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     @Inject lateinit var seeder: DbSeeder
 
-    // ✅ для reset
-    @Inject lateinit var programDao: ProgramDao
-    @Inject lateinit var progressDao: ProgressDao
-    @Inject lateinit var progressRepo: ProgressRepository
+    // ✅ Firebase Analytics (через обёртку)
+    @Inject lateinit var analytics: AnalyticsLogger
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,55 +69,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                     menuItem.isChecked = true
                 }
             }
+
+            // ✅ Analytics: логируем открытие вкладок (только корневые табы)
+            when (destination.findBottomTabId()) {
+                R.id.daysFragment -> analytics.log(AnalyticsEvents.TAB_EXERCISES_OPEN)
+                R.id.articlesFragment -> analytics.log(AnalyticsEvents.TAB_ARTICLES_OPEN)
+                R.id.progressFragment -> analytics.log(AnalyticsEvents.TAB_PROGRESS_OPEN)
+                R.id.settingsFragment -> analytics.log(AnalyticsEvents.TAB_SETTINGS_OPEN)
+            }
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
             seeder.seedIfNeeded()
-        }
-    }
-
-    // ─────────────────────────────
-    // TOP MENU (⋮)
-    // ─────────────────────────────
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_settings, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val navHost =
-            supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
-        val navController = navHost.navController
-
-        return when (item.itemId) {
-            R.id.action_about -> {
-                navController.navigate(R.id.aboutFragment)
-                true
-            }
-
-            R.id.action_reset_progress -> {
-                lifecycleScope.launch {
-                    // 1) сброс в Room + prefs (важно для вкладки Progress)
-                    launch(Dispatchers.IO) {
-                        val programId =
-                            programDao.getIdByTitle(DbSeeder.PROGRAM_TITLE) ?: return@launch
-                        progressDao.resetProgressForProgram(programId)
-
-                        // ✅ сброс SharedPreferences (last_completed_day)
-                        progressRepo.resetLocalProgress()
-                    }.join()
-
-                    // 2) UI: увести в корень вкладки "Упражнения"
-                    navController.popBackStack(R.id.daysFragment, false)
-                    if (navController.currentDestination?.id != R.id.daysFragment) {
-                        navController.navigate(R.id.daysFragment)
-                    }
-                }
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
         }
     }
 

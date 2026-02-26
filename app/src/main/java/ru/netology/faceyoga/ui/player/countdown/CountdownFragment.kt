@@ -5,10 +5,15 @@ import android.os.CountDownTimer
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.faceyoga.R
+import ru.netology.faceyoga.analytics.AnalyticsEvents
+import ru.netology.faceyoga.analytics.AnalyticsLogger
 import ru.netology.faceyoga.databinding.FragmentCountdownBinding
+import javax.inject.Inject
 import kotlin.math.ceil
 
+@AndroidEntryPoint
 class CountdownFragment : Fragment(R.layout.fragment_countdown) {
 
     private var _binding: FragmentCountdownBinding? = null
@@ -16,12 +21,20 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
 
     private var timer: CountDownTimer? = null
 
+    @Inject lateinit var analytics: AnalyticsLogger
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCountdownBinding.bind(view)
 
         val programDayId = requireArguments().getLong("programDayId")
         val dayNumber = requireArguments().getInt("dayNumber", 1)
+
+        // ✅ Analytics: старт тренировки (вход в countdown)
+        analytics.log(
+            AnalyticsEvents.WORKOUT_START,
+            Bundle().apply { putInt("day_number", dayNumber) }
+        )
 
         val totalSeconds = 10
         val skipAvailableAfter = 0 // можно поставить 3, если хочешь как YouTube (появится через 3 сек)

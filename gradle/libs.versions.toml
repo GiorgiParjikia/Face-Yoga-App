@@ -90,6 +90,7 @@ javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet"
 # Firebase (через BOM)
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx" }
+firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx" }
 
 
 [plugins]
