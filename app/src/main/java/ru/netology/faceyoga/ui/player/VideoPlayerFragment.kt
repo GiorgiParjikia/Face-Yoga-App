@@ -22,6 +22,7 @@ import androidx.media3.common.PlaybackException
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -75,8 +76,16 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
     // таймаут ожидания READY
     private var readyTimeoutJob: Job? = null
 
+    // ✅ Crashlytics
+    private val crash by lazy { FirebaseCrashlytics.getInstance() }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentVideoPlayerBinding.bind(view)
+
+        // ✅ Crashlytics: базовые keys + breadcrumb
+        crash.setCustomKey("day_number", dayNumber)
+        crash.setCustomKey("program_day_id", programDayId)
+        crash.log("player_open day=$dayNumber programDayId=$programDayId")
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
             val navBarBottom = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
@@ -90,11 +99,16 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            crash.log("player_back_pressed day=$dayNumber")
             showExitDialog()
         }
-        binding.btnClose.setOnClickListener { showExitDialog() }
+        binding.btnClose.setOnClickListener {
+            crash.log("player_close_clicked day=$dayNumber")
+            showExitDialog()
+        }
 
         binding.btnRetry.setOnClickListener {
+            crash.log("player_retry_clicked day=$dayNumber")
             binding.offlineOverlay.visibility = View.GONE
             playCurrent(forceResolve = true)
         }
@@ -107,12 +121,14 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
     override fun onStart() {
         super.onStart()
+        crash.log("player_onStart day=$dayNumber")
         player?.playWhenReady = true
         player?.play()
     }
 
     override fun onStop() {
         super.onStop()
+        crash.log("player_onStop day=$dayNumber")
 
         pausedTimerSeconds =
             if (binding.progressLine.visibility == View.VISIBLE)
@@ -133,6 +149,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        crash.log("player_onDestroyView day=$dayNumber")
 
         readyTimeoutJob?.cancel()
         readyTimeoutJob = null
@@ -155,10 +172,12 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 override fun onPlaybackStateChanged(state: Int) {
                     when (state) {
                         Player.STATE_BUFFERING -> {
+                            crash.log("player_state=BUFFERING day=$dayNumber")
                             // BUFFERING может быть бесконечным при отсутствии сети → мы держим таймаут
                             binding.loadingOverlay.visibility = View.VISIBLE
                         }
                         Player.STATE_READY -> {
+                            crash.log("player_state=READY day=$dayNumber")
                             // Видео реально подготовилось
                             binding.loadingOverlay.visibility = View.GONE
                             binding.offlineOverlay.visibility = View.GONE
@@ -178,6 +197,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 }
 
                 override fun onIsPlayingChanged(isPlaying: Boolean) {
+                    crash.log("player_isPlaying=$isPlaying day=$dayNumber")
                     if (isPlaying) {
                         maybeScheduleCompleteAfterRealPlayback()
                     } else {
@@ -187,6 +207,8 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 }
 
                 override fun onPlayerError(error: PlaybackException) {
+                    crash.log("player_error day=$dayNumber code=${error.errorCodeName}")
+                    crash.recordException(error)
                     showOffline()
                 }
             })
@@ -195,6 +217,11 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
     private fun setupButtons() {
         binding.btnNext.setOnClickListener {
+            val state = lastQueueState
+            val idx = state?.index ?: -1
+            crash.setCustomKey("exercise_index", idx)
+            crash.log("next_clicked day=$dayNumber index=$idx completed=${playerViewModel.isCurrentCompleted()}")
+
             if (!playerViewModel.isCurrentCompleted()) {
                 Toast.makeText(
                     requireContext(),
@@ -204,13 +231,14 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                 return@setOnClickListener
             }
 
-            val state = lastQueueState ?: return@setOnClickListener
-            val hasNext = state.index + 1 < state.list.size
+            val s = state ?: return@setOnClickListener
+            val hasNext = s.index + 1 < s.list.size
 
             if (hasNext) {
                 pausedTimerSeconds = null
                 playerViewModel.next()
             } else {
+                crash.log("finish_day_clicked day=$dayNumber")
                 playerViewModel.finishDay()
                 findNavController().navigate(
                     R.id.action_videoPlayerFragment_to_congratsFragment,
@@ -231,6 +259,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
                     val withVideo = list.filter { !it.videoUri.isNullOrBlank() }
                     if (withVideo.isNotEmpty() && !queueWasSet) {
+                        crash.log("queue_set day=$dayNumber size=${withVideo.size}")
                         queueWasSet = true
                         playerViewModel.setQueue(withVideo)
                     }
@@ -244,6 +273,18 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 playerViewModel.queue.collect { state ->
                     lastQueueState = state
+
+                    // ✅ Crashlytics: exercise keys + breadcrumb
+                    val current = state.current
+                    if (current != null) {
+                        val title = runCatching { requireContext().localizedExerciseTitle(current.title) }
+                            .getOrElse { current.title }
+                        crash.setCustomKey("exercise_index", state.index)
+                        crash.setCustomKey("exercise_title", title)
+                        crash.log("exercise_change day=$dayNumber index=${state.index} title=$title")
+                    } else {
+                        crash.log("exercise_change day=$dayNumber index=${state.index} title=null")
+                    }
 
                     // сменилось упражнение
                     lastResolvedHttps = null
@@ -310,8 +351,11 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         val item = playerViewModel.current() ?: return
         val gs = item.videoUri ?: return
 
+        crash.log("play_current day=$dayNumber forceResolve=$forceResolve")
+
         // ✅ 1) если нет сети — сразу оффлайн, без вечного лоадера
         if (!isOnline(requireContext())) {
+            crash.log("offline_no_network day=$dayNumber")
             showOffline()
             return
         }
@@ -325,6 +369,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
 
         val cached = lastResolvedHttps
         if (!forceResolve && !cached.isNullOrBlank()) {
+            crash.log("play_cached_https day=$dayNumber")
             playHttps(cached)
             return
         }
@@ -335,10 +380,13 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             }.onSuccess { https ->
                 lastResolvedHttps = https
                 launch(Dispatchers.Main) {
+                    crash.log("resolve_ok day=$dayNumber")
                     playHttps(https)
                 }
-            }.onFailure {
+            }.onFailure { e ->
                 launch(Dispatchers.Main) {
+                    crash.log("resolve_fail day=$dayNumber")
+                    crash.recordException(e)
                     showOffline()
                 }
             }
@@ -360,6 +408,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             val p = player
             // если за 8 сек не вышли в READY — считаем, что сети/доступа нет
             if (p == null || p.playbackState != Player.STATE_READY) {
+                crash.log("ready_timeout_show_offline day=$dayNumber")
                 showOffline()
             }
         }
@@ -372,6 +421,8 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
         binding.loadingOverlay.visibility = View.GONE
         binding.offlineOverlay.visibility = View.VISIBLE
         setNextEnabled(false)
+
+        crash.log("offline_shown day=$dayNumber")
 
         // на всякий случай остановим попытки воспроизведения
         player?.pause()
@@ -406,6 +457,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
                         p.playbackState == Player.STATE_READY
 
             if (reallyPlaying) {
+                crash.log("mark_completed day=$dayNumber")
                 playerViewModel.markCurrentCompleted()
                 setNextEnabled(true)
             }
@@ -438,6 +490,8 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
     private fun startRestTimer(totalSeconds: Int) {
         timer?.cancel()
 
+        crash.log("timer_start day=$dayNumber seconds=$totalSeconds")
+
         binding.progressLine.max = totalSeconds
         binding.progressLine.progress = totalSeconds
         binding.tvMainInfo.text = formatMmSs(totalSeconds)
@@ -451,6 +505,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             }
 
             override fun onFinish() {
+                crash.log("timer_finish_auto_next day=$dayNumber")
                 pausedTimerSeconds = null
                 binding.progressLine.progress = 0
                 binding.tvMainInfo.text = "00:00"
@@ -475,6 +530,7 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
             .setMessage(getString(R.string.exit_workout_message))
             .setNegativeButton(getString(R.string.stay)) { d, _ -> d.dismiss() }
             .setPositiveButton(getString(R.string.exit)) { _, _ ->
+                crash.log("exit_confirmed day=$dayNumber")
                 findNavController().popBackStack(R.id.dayExercisesFragment, false)
             }
             .show()

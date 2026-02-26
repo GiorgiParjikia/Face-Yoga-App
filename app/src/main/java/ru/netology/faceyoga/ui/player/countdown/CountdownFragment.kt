@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.faceyoga.R
 import ru.netology.faceyoga.analytics.AnalyticsEvents
@@ -30,6 +31,10 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
         val programDayId = requireArguments().getLong("programDayId")
         val dayNumber = requireArguments().getInt("dayNumber", 1)
 
+        // ✅ Crashlytics: day_number + breadcrumb
+        FirebaseCrashlytics.getInstance().setCustomKey("day_number", dayNumber)
+        FirebaseCrashlytics.getInstance().log("workout_start day=$dayNumber (countdown_enter)")
+
         // ✅ Analytics: старт тренировки (вход в countdown)
         analytics.log(
             AnalyticsEvents.WORKOUT_START,
@@ -43,6 +48,7 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
         binding.btnSkip.isEnabled = skipAvailableAfter == 0
 
         binding.btnSkip.setOnClickListener {
+            FirebaseCrashlytics.getInstance().log("countdown_skip day=$dayNumber")
             goToPlayer(programDayId, dayNumber)
         }
 
@@ -89,6 +95,7 @@ class CountdownFragment : Fragment(R.layout.fragment_countdown) {
 
             override fun onFinish() {
                 binding.tvCounter.text = if (twoDigits) "00" else "0"
+                FirebaseCrashlytics.getInstance().log("countdown_finish_to_player day=$dayNumber")
                 goToPlayer(programDayId, dayNumber)
             }
         }.start()

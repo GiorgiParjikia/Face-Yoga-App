@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,6 +30,8 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val crash = FirebaseCrashlytics.getInstance()
+
         // --- Toolbar ---
         val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbar)
         toolbar.setNavigationOnClickListener {
@@ -43,11 +46,21 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         val articleId = arguments?.getInt("articleId", -1) ?: -1
         val fromCongrats = arguments?.getBoolean("fromCongrats", false) ?: false
 
+        // ✅ dayNumber берём из args (правильно), если нет — fallback на articleId (чтобы не ломать текущую схему)
+        val dayNumber = (arguments?.getInt("dayNumber", -1) ?: -1).let { dn ->
+            if (dn > 0) dn else articleId
+        }
+
+        // ✅ Crashlytics: keys + breadcrumb
+        crash.setCustomKey("article_id", articleId)
+        if (dayNumber > 0) crash.setCustomKey("day_number", dayNumber)
+        crash.log("article_open id=$articleId source=${if (fromCongrats) "congrats" else "articles"} day=$dayNumber")
+
         // ✅ Analytics: открытие статьи
         val params = Bundle().apply {
             putInt("article_id", articleId)
-            putInt("day_number", articleId) // у тебя articleId == dayNumber (если так и задумано)
             putString("source", if (fromCongrats) "congrats" else "articles")
+            if (dayNumber > 0) putInt("day_number", dayNumber)
         }
 
         if (fromCongrats) {

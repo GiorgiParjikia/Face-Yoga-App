@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.netology.faceyoga.R
@@ -27,6 +28,9 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val crash = FirebaseCrashlytics.getInstance()
+        crash.log("articles_open")
+
         val list = view.findViewById<RecyclerView>(R.id.sectionsList)
         this.list = list
 
@@ -35,12 +39,16 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         val adapter = ArticlesSectionsAdapter { article ->
             if (article.isLocked) {
                 val day = article.lockedAfterDay ?: 0
+                crash.log("article_click_locked id=${article.id} unlockAfter=$day")
+
                 FySnack.show(
                     rootView = view,
                     message = getString(R.string.articles_unlock_after_day, day),
                     anchor = anchor
                 )
             } else {
+                crash.log("article_click_open id=${article.id}")
+
                 findNavController().navigate(
                     R.id.action_articlesFragment_to_articleFragment,
                     bundleOf("articleId" to article.id)
@@ -65,9 +73,7 @@ class ArticlesFragment : Fragment(R.layout.fragment_articles) {
         // важно: разорвать RecyclerView -> Adapter -> View ссылки
         list?.adapter = null
         list = null
-
         adapter = null
-
         super.onDestroyView()
     }
 }

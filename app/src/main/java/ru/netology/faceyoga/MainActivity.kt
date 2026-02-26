@@ -6,7 +6,9 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
+import androidx.appcompat.widget.TooltipCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,6 +38,23 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
+        // ✅ Убираем tooltip по long tap на нижних вкладках (реально убирает "Статьи/Прогресс/...")
+        // Работает на всех API: чистим tooltip у itemView + съедаем long-press.
+        val menuView = bottomNav.getChildAt(0) as? android.view.ViewGroup
+        menuView?.let { mv ->
+            for (i in 0 until mv.childCount) {
+                val itemView = mv.getChildAt(i)
+                TooltipCompat.setTooltipText(itemView, null)
+                itemView.setOnLongClickListener { true }
+            }
+        }
+
+        // ✅ Crashlytics instance + базовые keys
+        val crash = FirebaseCrashlytics.getInstance()
+        crash.setCustomKey("locale", LanguageManager.getSelectedLang(this))
+        crash.setCustomKey("version_name", BuildConfig.VERSION_NAME)
+        crash.setCustomKey("version_code", BuildConfig.VERSION_CODE)
+
         // ✅ ВАЖНО: НЕ используем setupWithNavController, иначе будет "залипание" на вложенных экранах
         // bottomNav.setupWithNavController(navController)
 
@@ -60,6 +79,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNav.isVisible = destination.id !in hideBottomNavOn
+
+            // ✅ Crashlytics: screen key + breadcrumb
+            val screenName = runCatching { resources.getResourceEntryName(destination.id) }
+                .getOrElse { destination.id.toString() }
+            crash.setCustomKey("screen", screenName)
+            crash.log("screen=$screenName")
 
             // ✅ корректная подсветка вкладки
             val tabId = destination.findBottomTabId()
