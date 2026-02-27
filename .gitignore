@@ -13,5 +13,13 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Build artifacts (do not commit)
+*.aab
+*.apk
+*.apks
+
 # Firebase
 app/google-services.json
+
+app/release/
