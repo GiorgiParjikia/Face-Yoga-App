@@ -19,8 +19,8 @@ android {
         applicationId = "ru.netology.faceyoga"
         minSdk = 24
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 4
+        versionName = "1.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -96,7 +96,11 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.storage.ktx)
-    implementation(libs.firebase.analytics.ktx)
+
+    // Exclude ads-adservices (it adds ACCESS_ADSERVICES_* permissions)
+    implementation(libs.firebase.analytics.ktx) {
+        exclude(group = "androidx.privacysandbox.ads", module = "ads-adservices")
+    }
     implementation(libs.firebase.crashlytics.ktx)
     implementation(libs.kotlinx.coroutines.play.services)
 
